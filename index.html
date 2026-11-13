@@ -762,9 +762,9 @@ svg.lc{display:block;overflow:visible}
 <script>
 /* ============ CONFIG ============ */
 const CONFIG={
-  API_URL:"https://script.google.com/macros/s/AKfycbyhewT1OuskIIVwF_RpPLFD5wZYAtSOP_J0S2sJPY_XHO8GNkBODRuEyjUPGuYM1i_S_g/exec",                       // Tempel URL Apps Script (/exec) di sini. Kosong = mode demo.
+  API_URL:"https://script.google.com/macros/s/AKfycbzYVsA9x1oKyeupqynGo6EphB-VvCJvRP5XdTMK9apVkjtmy5PY3NNwboqP93cQVvFhuQ/exec",                       // Tempel URL Apps Script (/exec) di sini. Kosong = mode demo.
   LOGO:"logo ut school.png",        // nama file logo di GitHub
-  TEMPLATE_URL:"Template_Laporan_LP.xlsx",   // template Excel untuk LP (taruh di folder yang sama)
+  // Template Excel LP kini tertanam di dalam file ini (lihat TEMPLATE_B64 di bagian bawah)
   LAST_DUE_MONTH:10,                // di mode server nilai ini diambil dari sheet Config
   YEAR:2026                         // di mode server nilai ini diambil dari sheet Config
 };
@@ -1228,7 +1228,7 @@ function viewInput(){
  const notes=f=>(f.errors.length?`<ul class="msgs e">${f.errors.map(x=>`<li>${esc(x)}</li>`).join("")}</ul>`:"")+(f.warnings.length?`<ul class="msgs w">${f.warnings.map(x=>`<li>${esc(x)}</li>`).join("")}</ul>`:"")+(f.dup?'<ul class="msgs w"><li>LP + bulan yang sama muncul di file yang lebih baru; file ini dilewati.</li></ul>':"")+(f.overwrite&&f.report&&!f.dup?'<ul class="msgs w"><li>Akan menimpa laporan yang sudah ada untuk LP + bulan ini.</li></ul>':"");
  const saved=LPS.map(l=>{const r=REP[l.id+"|"+m];return`<tr><td><b>${esc(l.name)}</b></td><td>${r?stPill(r.status):'<span class="pill r">Belum ada</span>'}</td><td>${r?esc(r.pic||"—"):"—"}</td><td class="tcell">${r?esc((r.updatedAt||"").slice(0,16).replace("T"," ")||"—"):"—"}</td><td>${r?`<button class="btn-s" onclick="setSaved('${l.id}',${m},'${r.status==="draft"?"submitted":"draft"}')">Jadikan ${r.status==="draft"?"Final":"Draft"}</button><button class="btn-s d" onclick="deleteSaved('${l.id}',${m})">Hapus</button>`:"—"}</td></tr>`}).join("");
  return`<div class="steps">
-  <div class="card"><div class="hd">Langkah 1 · Template untuk LP</div><div class="desc" style="margin-bottom:10px">Bagikan template ini ke setiap LP. LP mengisi kolom kuning, lalu mengirim file ke HO. Satu file = satu LP untuk satu bulan.</div><a class="bt" href="${esc(CONFIG.TEMPLATE_URL)}" download>⬇ Unduh Template_Laporan_LP.xlsx</a></div>
+  <div class="card"><div class="hd">Langkah 1 · Template untuk LP</div><div class="desc" style="margin-bottom:10px">Bagikan template ini ke setiap LP. LP mengisi kolom kuning, lalu mengirim file ke HO. Satu file = satu LP untuk satu bulan.</div><button class="bt" type="button" onclick="downloadTemplate()">⬇ Unduh Template_Laporan_LP.xlsx</button></div>
   <div class="card"><div class="hd">Langkah 2 · Pilih status hasil impor</div><div class="desc" style="margin-bottom:10px"><b>Final</b> langsung masuk hitungan dashboard. <b>Draft</b> tersimpan tetapi tidak dihitung sampai dijadikan Final.</div>
    <select class="fs" onchange="UP.status=this.value"><option value="submitted" ${UP.status==="submitted"?"selected":""}>Final (masuk dashboard)</option><option value="draft" ${UP.status==="draft"?"selected":""}>Draft (belum dihitung)</option></select></div></div>
  <div class="card" style="margin-bottom:10px"><div class="hd">Langkah 3 · Unggah laporan LP (.xlsx, boleh banyak file sekaligus)<small>${DEMO?"MODE DEMO: data tidak disimpan ke spreadsheet":"data disimpan ke Google Spreadsheet"}</small></div>
@@ -1523,6 +1523,179 @@ function boot(){
  if(saved&&saved.role){SESSION=saved;enterApp()}
 }
 boot();
+</script>
+<script>
+/* ============ TEMPLATE EXCEL TERTANAM (Template_Laporan_LP.xlsx, base64) ============
+   Template disimpan di dalam index.html ini, jadi repo GitHub cukup 1 file.
+   Untuk mengganti template: ubah file .xlsx -> base64 -> tempel di TEMPLATE_B64 di bawah. */
+const TEMPLATE_NAME="Template_Laporan_LP.xlsx";
+const TEMPLATE_B64=
+"UEsDBBQAAAAIAG8fbF1Gx01IlQAAAM0AAAAQAAAAZG9jUHJvcHMvYXBwLnhtbE3PTQvCMAwG4L9SdreZih6kDkQ9ip68zy51hbYp"+
+"bYT67+0EP255ecgboi6JIia2mEXxLuRtMzLHDUDWI/o+y8qhiqHke64x3YGMsRoPpB8eA8OibdeAhTEMOMzit7Dp1C5GZ3XPlkJ3"+
+"sjpRJsPiWDQ6sScfq9wcChDneiU+ixNLOZcrBf+LU8sVU57mym/8ZAW/B7oXUEsDBBQAAAAIAG8fbF01tdo77gAAACsCAAARAAAA"+
+"ZG9jUHJvcHMvY29yZS54bWzNksFqwzAMhl9l+J4oTlhhJvWlo6cOBits7GZstTWLY2NrJH37JV6bMrYH2NHS70+fQK0OQvuIz9EH"+
+"jGQx3Y2u65PQYc1OREEAJH1Cp1I5JfqpefDRKZqe8QhB6Q91RKiragUOSRlFCmZgERYik63RQkdU5OMFb/SCD5+xyzCjATt02FMC"+
+"XnJgcp4YzmPXwg0wwwijS98FNAsxV//E5g6wS3JMdkkNw1AOTc5NO3B4e9q95HUL2ydSvcbpV7KCzgHX7Dr5tdk87rdM1lW9Kjgv"+
+"eL2vGnH/IBr+Prv+8LsJO2/swf5j46ugbOHXXcgvUEsDBBQAAAAIAG8fbF2ZXJwjEAYAAJwnAAATAAAAeGwvdGhlbWUvdGhlbWUx"+
+"LnhtbO1aW3PaOBR+76/QeGf2bQvGNoG2tBNzaXbbtJmE7U4fhRFYjWx5ZJGEf79HNhDLlg3tkk26mzwELOn7zkVH5+g4efPuLmLo"+
+"hoiU8nhg2S/b1ru3L97gVzIkEUEwGaev8MAKpUxetVppAMM4fckTEsPcgosIS3gUy9Zc4FsaLyPW6rTb3VaEaWyhGEdkYH1eLGhA"+
+"0FRRWm9fILTlHzP4FctUjWWjARNXQSa5iLTy+WzF/NrePmXP6TodMoFuMBtYIH/Ob6fkTlqI4VTCxMBqZz9Wa8fR0kiAgsl9lAW6"+
+"Sfaj0xUIMg07Op1YznZ89sTtn4zK2nQ0bRrg4/F4OLbL0otwHATgUbuewp30bL+kQQm0o2nQZNj22q6RpqqNU0/T933f65tonAqN"+
+"W0/Ta3fd046Jxq3QeA2+8U+Hw66JxqvQdOtpJif9rmuk6RZoQkbj63oSFbXlQNMgAFhwdtbM0gOWXin6dZQa2R273UFc8FjuOYkR"+
+"/sbFBNZp0hmWNEZynZAFDgA3xNFMUHyvQbaK4MKS0lyQ1s8ptVAaCJrIgfVHgiHF3K/99Ze7yaQzep19Os5rlH9pqwGn7bubz5P8"+
+"c+jkn6eT101CznC8LAnx+yNbYYcnbjsTcjocZ0J8z/b2kaUlMs/v+QrrTjxnH1aWsF3Pz+SejHIju932WH32T0duI9epwLMi15RG"+
+"JEWfyC265BE4tUkNMhM/CJ2GmGpQHAKkCTGWoYb4tMasEeATfbe+CMjfjYj3q2+aPVehWEnahPgQRhrinHPmc9Fs+welRtH2Vbzc"+
+"o5dYFQGXGN80qjUsxdZ4lcDxrZw8HRMSzZQLBkGGlyQmEqk5fk1IE/4rpdr+nNNA8JQvJPpKkY9psyOndCbN6DMawUavG3WHaNI8"+
+"ev4F+Zw1ChyRGx0CZxuzRiGEabvwHq8kjpqtwhErQj5iGTYacrUWgbZxqYRgWhLG0XhO0rQR/FmsNZM+YMjszZF1ztaRDhGSXjdC"+
+"PmLOi5ARvx6GOEqa7aJxWAT9nl7DScHogstm/bh+htUzbCyO90fUF0rkDyanP+kyNAejmlkJvYRWap+qhzQ+qB4yCgXxuR4+5Xp4"+
+"CjeWxrxQroJ7Af/R2jfCq/iCwDl/Ln3Ppe+59D2h0rc3I31nwdOLW95GblvE+64x2tc0LihjV3LNyMdUr5Mp2DmfwOz9aD6e8e36"+
+"2SSEr5pZLSMWkEuBs0EkuPyLyvAqxAnoZFslCctU02U3ihKeQhtu6VP1SpXX5a+5KLg8W+Tpr6F0PizP+Txf57TNCzNDt3JL6raU"+
+"vrUmOEr0scxwTh7LDDtnPJIdtnegHTX79l125COlMFOXQ7gaQr4Dbbqd3Do4npiRuQrTUpBvw/npxXga4jnZBLl9mFdt59jR0fvn"+
+"wVGwo+88lh3HiPKiIe6hhpjPw0OHeXtfmGeVxlA0FG1srCQsRrdguNfxLBTgZGAtoAeDr1EC8lJVYDFbxgMrkKJ8TIxF6HDnl1xf"+
+"49GS49umZbVuryl3GW0iUjnCaZgTZ6vK3mWxwVUdz1Vb8rC+aj20FU7P/lmtyJ8MEU4WCxJIY5QXpkqi8xlTvucrScRVOL9FM7YS"+
+"lxi84+bHcU5TuBJ2tg8CMrm7Oal6ZTFnpvLfLQwJLFuIWRLiTV3t1eebnK56Inb6l3fBYPL9cMlHD+U751/0XUOufvbd4/pukztI"+
+"TJx5xREBdEUCI5UcBhYXMuRQ7pKQBhMBzZTJRPACgmSmHICY+gu98gy5KRXOrT45f0Usg4ZOXtIlEhSKsAwFIRdy4+/vk2p3jNf6"+
+"LIFthFQyZNUXykOJwT0zckPYVCXzrtomC4Xb4lTNuxq+JmBLw3punS0n/9te1D20Fz1G86OZ4B6zh3OberjCRaz/WNYe+TLfOXDb"+
+"Ot4DXuYTLEOkfsF9ioqAEativrqvT/klnDu0e/GBIJv81tuk9t3gDHzUq1qlZCsRP0sHfB+SBmOMW/Q0X48UYq2msa3G2jEMeYBY"+
+"8wyhZjjfh0WaGjPVi6w5jQpvQdVA5T/b1A1o9g00HJEFXjGZtjaj5E4KPNz+7w2wwsSO4e2LvwFQSwMEFAAAAAgAbx9sXdXyblry"+
+"BAAAFgwAABgAAAB4bC93b3Jrc2hlZXRzL3NoZWV0MS54bWx9V2tv2zgQ/CsLFSgSILAtO07SNAmQ+NA2fZ0Rt3ef1xZtsaJIHR91"+
+"8u9vSNlyrtcogCWKr52d3R0yV1tjK1cK4emxVtpdZ6X3zeVw6FalqNkNTCM0RtbG1uzxaTdD11jBRVpUq+F4NDob1ix1dnOV+ub2"+
+"5soEr6QWc0su1DXbpzuhzPY6y7N9x4PclD52DG+uGt6IhfDfm7nF17DbpZC10E4aTVasr7O78eXdeBQXpBl/SbF1z9rkSrN9b2Xx"+
+"GZbhyCij6NzSmCoO3xexC/OFEisfN2W8foqZUOo6u43I/klmbhOmYbfv8/be3rtEB9xbshMzo/6WhS+vs4uMCrHmoPyD2X4QOxen"+
+"cb+VUS49advOnWS0Cs6bercWAGqp2zc/7ph5Nj/PRy+sGO9WjBPu1lBC+Qd7vrmyZks2jmK72LjDfJdWA5zUMU4LbzEqsc7ffBN1"+
+"o9gL+syNsazpLijWeH8WbLXUG5obqf3V0MNYXDJc4QcjnaVJZ2mSLI1fsPT9Gy1WpYGLr1/lF5O3NDPaGSULTuF5ELDvo8HFk/Oi"+
+"7rE47SxOk8XJCxZnbJmQUxvpZM92Z912Z2m70xe2ywcgp2Jq6yfbEZYN6N5JKlk/MVVGmZq+SsWSjpB6tBR2Cx4xEiKZxwP6lKZg"+
+"gqYfrDdgupBhyeWgB+F5h/C8F+F4QAv2gdZSCbomF9v/jSMF7UPVjixjpAc0l0qWv0w7oW9cBn1CxT4j0LISj7VnS08ATl5YJwrJ"+
+"fcAvOuAXvcAnLYnYFvx61g2e0svqBIzWfELI7EA+KOmAJHtoMjpaGe1NeUn5dLT7A7m37QbIqYqWRomStNggv9Z9IN90IN/0gjxF"+
+"/HkjgaD1P1nhgumoBi4V4/8gKhs8Uo7GLeY7kMnKyep4h6eQlXEmwtSEBAk2lFjYBy8fdfiiJvQAnA7oC+tCpkDp1GZv7BMdzdsI"+
+"arpd+cDqmLb8Qy4BBpXRUj+iH7KjDk71IsoPiPJeRGdILwEUDcjQQ6lXphawmiIJPIpregiN5JJw7oRyXx2zFFtM3NXaXpvaImvg"+
+"V8BXe0i9PZQRgiAjq0veoP7gGtK7z42DRubjXjfOUVeybqLNWFlHg0flHo9PUMUqUAW+a6oEffhzgF8SnKA3G46BJSW27GNfoHvd"+
+"BE9RpeEC0qZgVy4N26IX5EFe88kLIP+/6PSw6LRXIm99iMQ2ohZWVo7RNjhyUDKO2nzdg+zDeBDkfNpL5OtXF+Px2dtfRalkGxxE"+
+"qQYzUJWYGyLFVKeulqyoPAN6HzTH2imsaQqzhUTtwh9pF5AMHI4aKd7L6UHx837J3+OdRwh2X9ywGWqFpF1Kdiklk3EbVsFf0gI3"+
+"jgoVhbUXoynWovqNF67ruNeQzp/xCrPv+TL7PqCPXf2dUB30KqhIBkiKtUNHbWWidozi6rjXvcNxkfefF3v3FtJtoxNKLGUpCRcC"+
+"vdPcd+wQGeBtwLo8TLFCr3BNiExseFeXtWhhVymh9sh7kR7Oh7z/gNgj/WSgb/GkcJCFJMOtnIIYjjXXQKJlBTKFRha19ydhfz/z"+
+"KyIw283oQzk+CPC4FeDpCyg/HlIxHult+iYJO4EsWRS+R2q0Cd1eFT6BMflb48Nnd7p4Y/7CdiO1g6CsYXs0OAcI21452w9vmnTN"+
+"WxoPl1KzxMVd2DgB42uDLNx9xJtj96/Azb9QSwMEFAAAAAgAbx9sXRRvN0aKEAAAL3IAABgAAAB4bC93b3Jrc2hlZXRzL3NoZWV0"+
+"Mi54bWy1nW1zozgSx78K55u6mn1xiZEAkZ1JqvyAdzN5mJST7L5WbGKzxuAFPNm5T38SD5adkbpxyEyVMwlNN+ivBvFTG/j8kmar"+
+"fBmGhfXPOk7y896yKDa/np7ms2W45vlJugkTYXlOszUvxJ/Z4jTfZCGfl07r+JT0+97pmkdJ7+Jzuewuu/hc8KdRGqeZlS2eznv9"+
+"/mQy8um4d3rxOd0WcZSEd5mVb9drnn0fhnH6ct6ze82CabRYFnKBWHvDF+F9WDxu7jLx1+ku/jxah0kepYmVhc/nvYH968Qn0qFc"+
+"448ofMn3frfyZfryWxbNr8WWRRP7PUs2+ylNV9J8OZeL5MaS0Pp+v4kjsXmnZxXp5jp8LkZhHItNuD2Lz4roW3gnVjvvPaVFka6l"+
+"Xex4wQux6DlL/xcm5V6EcSjWFbu3+WHlKkgdVLb677oJvV0L5U7t/960ZVJ2gpDuieeh0PfPaF4sz3t+z5qHz3wbF9P05fewls+V"+
+"8WZpnJc/rZdqXdvrWbNtLvamdhZ7sI6S6n/+Ty37ngN1DA6kdiCvHIhpC7R2oK8cbN/g4NQOzisHt29wcGsH9/UuEYODVzt4pfaV"+
+"WKXSY17wi89Z+mJlcm0RTf5SdlfpJQSOEpnH90UmrJHwKy6u+SbNeGINtzFPxP/XIc+SKFlYd2mUFJ9PC7ENuebpTHxE7N0GyG4D"+
+"pNwAMWzgMo+slTis1tZtFPPI+rjayvi/nFhfeLIQWxQHxWL7xJf1WlfbZBadWKM0KdKlteTJdy4Tcr4Vq1YH9AmwV0J+mUhKvF1q"+
+"7XbXKXeXGXZ3yBcRTw63UPoNYT/RTK3bCHYrNdG4jWG3UiSNW4C4hUWYlaprfCewb9UhgPRuLX3fLL1bbsE3SXg7+Tq9Gdxf6tSv"+
+"XM9KV3nWVgIbLWOjJTBaJjrLQTO9XWu8clW7b2pOUqZrruunYe1rm45K4CisWl0HIJpm1yZqiB2J/TqJN7rsqT0dg+ddFEdLa86z"+
+"SPx4Lnimy6I6hmuIcRPOX2ffgbxsJy/rIC+D5X3gy21ixdWpT6du7e9p1GUt1C1kfJ3ADBb4JspPLNInnk7Y2pft9unbRbXqN42M"+
+"/k5Gv4OMPixjOWZAMvrmJPVbyPgk4+tk9N8hT304T7+uivQpzIBMPdtJfNZB4jNY4lu+5tbd5cgSV7SLSBtiVIfwNSqftVB5E810"+
+"Gp/BGpc7tgmL7YLn1ncxppTjuH4PJ2ew1sPtPLLuuRhf8hQQXAqMjTByHWCIuQruL+//HAxurf/82/bpJ2saXE0fH26CW13f1MF0"+
+"g47ZNDabArNpojUdNn+vlTaccdNwlW0L0SGWrW2X3SLpnngxW+rSrfHW5VtjMyVcFq7sE1PkoPEGT49D6W3RM12eNQGMiab1PVRZ"+
+"XdfapJvKBFb5LszDrOCW5K6V/shuQmjTjLSQ2hw7aPxNYg+SxYqLw8T3++4nq6+Vu77y7+8NSQ7p60cksaM7YWk3YSly8SQ4Irc2"+
+"ebRKizDX6koBXWkLXYHgQROgi7D0R2Fp3ySso4R1ugnrtBFWXJCG2TdB+FplHUBZp4WyUPSgidBFWudHaW3fJK2rpHW7Seu2kfZm"+
+"9KgV1QVEdVuIup5ttXK63eV0NXIaTwGKnWwEnpScRCsnwk/ICOYBIxhCT0JPAoxgCEFdiSscKWpi/RUJaYtozlcWn3OttAckpb8k"+
+"ULRkI7iECYoQU5vBigFZilBTqSo0WCHg1CZTGS6noiYbwSZMToScWgxRPqAmAk+lmuAQhQBUGzl9XE5FSDaCSJicCCW1GZjOAD0R"+
+"TCr1hAcmhJbaCHqGCkr6as6130nQxv1Nw1HjrJOysYFSGoajxreDiE0ISEQbp0hiH0eRw8vbh8H1/eWVVmvbSJFm09hsCsymidZ0"+
+"2Py9eXuEb4Yi5XksTiPaVnWnGwLQDUHo5ilKoPGCHAc3n6yVYWC2IBEmRANAnuHihyj+IQj/wMJ3ph8C0A9B6EfqDo0s5Dj4ebPw"+
+"GkByXIPwio8Iwkew8N3piAB0RBA6ksqDYxA5Do7eLL0GoKgp5xU/EYSfYOm70BMB6Ikg9CRFN41Wx8HTm+XWAJaJr4jiK4LwFSw3"+
+"Vp1KV/rZ7BEByIogZCW1jk2RA4KQVbVP1iaM+SrnCdeXOAlSnRryOFpt+AYsURHW4gqCgVcQg6vBOLi5vGouIK6C68G9NQ1+e7wO"+
+"ptouYeaLCKNpbDYFZtNEazpUQIESQUFpsY3DTD8rQhBMgjG+8dYmG4pIC2AimiB8tD8R7WvzDKku6X0PNVb0RFB6gjRG2OnLdh3L"+
+"L1+IA0d/tQCAE0HBSahsihyQ7tBUhzgcjPQnR6rgiaLwBOhJEXS6kzXRPMpfdJM6IwqwE0XZSai5MZREaXd4qkMciHlmGGqoOtVR"+
+"tBgFqYmUou6lkBZfFVsea/W0AT3RYpTQ09RTAUWKUW0EtX8U1HcMgiouo2jdCRIU4bJK0K9fHrRqAkRG0XqTUDP9S/dllYB2rzVR"+
+"DWqZroOoQi2KlpoqLbWzJBRBLXh4arx1wxNFi0wLYJaZIpB1zCxzEwuYMaEKoChaYILkRAAKG4koQE8UrS0JQY0jEe1eV2pCQDoq"+
+"GqJoNQnSEaEhZAQCcIiixSShonEE6l5NakJAIirGoWgNCRIRYRx04PEAGdEakpDRPPAgpNNGR7x0RFXpiKKlI0hHpHAEjzdAyYii"+
+"JSMhomm86V4uoni5iCoKoi0piGol7ERBFKAgilMQBYYZhIKOGmbwchFVwENbAo9ezo7AQwHgoTjwUGCY6Q48TQhAR0eBjtMSdLQ6"+
+"Op1AxwFAx8FBhxqHGac76DQhIBH37hdoyTd6ETvyjQPwjYPzDTUPM053vmlCQDoqrHFaYo1exy5Y4wBY4+BYQ03DjNMda5oQkIQU"+
+"n2506FHTjXfTr79NBzfW6F472VhH0002mk1jsykwmyZa02H7FX44CH6Y2tMOPDZZusj4WptBAHo4CHrM8uzEHDpwurOHoynJGKYZ"+
+"HMUgDsIgJjER+qjFzMNVKv4/vdMfkQCEOAiESD3r6Fo9u2OIo6m5+AY9FY44CI6Y9ERApEnOqp6uFRNAEQdBkTI5jaEDpzuL1CEO"+
+"J25MRXKnRWnFgUsrV5d318157vJ29PUmsD5OH+8uB7//opXfXFgxm8ZmU2A2TbSmw/YrpHDQG3dm6TrUNgnhiRuezKMs2g0G+gut"+
+"kQN8A81BwGJdbcJ8EYegxZ+DL5fDE2u63URl7ifbpVXwZCMpo4hWn6woj6x+C+6oN3T4/VS3X/8zJKECEQe9tcfYCQiFvOqEwcx4"+
+"BQjgiIPgSNMN3BQ9cBAkeb+O0FRqbErAjnAVybgIyZg7wkUwRnYEL9LsO3Y8uADRuAjRrJuNGI8IF8Gad+sIV1Pl8eEDwt27gxeB"+
+"IaAfEBL6oR/Mh4QLQJGLQJHqCfNB4SJo9H59oSkQMQ/uC9LiNmvSeoQcPd4/iCFyag0HU923Z4Z1LO2N10bT2GwKzKaJ1nTYelXZ"+
+"cZHKzqgUx1Qmc9uUdmZ1iFNx+f5XONPeh+0CVR4XqfLI+PZJIjalzcJ3rPK4B1UezVzOQ/PAhZtI3ncOfC/BVTjmYjgGdwFGZWES"+
+"aSfoGkfdbcUuBmOl5EW00Z2jAhdhsdvwxdo16tSSf94ZU2PiOrDo+9EgwRWyuRiyNfumnap3EXJrn/MukPMYvYn4xJzzCLwdlfN4"+
+"MclV9OZi9AZLi0GcMZeB5zi4GLuVUhpzGUG3I3MZryi5qqLkIhWl3Xa1c30uUlJqn6cMyFOkvCTjU3OeIgWmo/IUrzS5CgtdBAsR"+
+"aRE0NOcp8CgHF4HBSkpjniIoeGSe4nUmV+Gdi+DdbruOVsw2z25olafAExxcBPFkfMecpwjeHZWneOnJU8DmIcAGS+sh0GbM08ZR"+
+"+1wcBNIqKU156iGAdlyeNtEgMdUFvYdQ1267rlbMNo97aJOnTSBdnnoId8n4rjFPPYS4jslTD69Keaoq5SFVKURapCxlzlMC5ClS"+
+"kqqkNOYpUpQ6Mk/x+pTXoj7lwfWpfSKdDO4f763bB+vx4V4rubk4ZTaNzabAbJpoTYeNVzTkITQ04flWlwtDDwGh0tGaR1mYzHjC"+
+"V/rpKQ8oUXkIFT3LLRinprzuFSpP99QFwwyHp3jHQ3jHLCmCOpWkRZhthJzaO1k8oELlIYxTybnNw7lWzu4FKk9ToGIGNb0WR6cH"+
+"Hp3jweRhMLUG94GuljesvbUHpNE0NpsCs2miNR22V1GIh1DIIA8L/dSE14ZAuHDXZg5AHR5CHTKmeUbIQ6ijvC1FnMy/h6sizapv"+
+"OFkDbQIdMIdmPggOcqi4ghMPgRNAcQRMrtJkbnj8mQegiYegSaX3yhg88BA6GfJoJUbR6TYXFyQfq1v8xKmaJ4sF31jSqqs6Tjwf"+
+"1l86QpIrhPEQhCkl185ZeG3wxZjkALJ4CLLImOYpIO8dkcXDkYUpZGEIspilZAiuANnLAGBhCLBUQgLZyxBmeWP2MhxemBpdGAIv"+
+"paza2QrWBlxMGcoAWGEIrMiY5skf9o6wwnBYYQpWGAIrgJQIqEAZCqAKQ1ClEhLKUIRW3pqhOLYwVUpiSCmplFU7T8HalJGMGQqU"+
+"jhhSOpIxzdM+7B1LR4ziUioIYggEAVIiFARlKFAQYgj6VEJCGYrQz1szFL9fiCkQYggIlbJqZyhYm6KPMUOBQg9DIEjGNE/4sHcs"+
+"9DC80MNUoYchhR5ASqTIA2UoUOZhSJmnEhLKUKTS89YMxUs+bO9p3W1gS/dc6yHrAlsMgC3WArY8c4a+Y4mH4SUepiiKtaEovZRv"+
+"pygGUBRrQVEemKE/h6IYXuxhipRYG1JiWlm7kBIDSIm1ICVmztB3JCWGk5KvSMlvQ0paKf23k5IPkJLfgpQYlKH+zyElHyclX5GS"+
+"34aUdM8bGfpdSMkHSMlvQUq+MUP9dyQlHyclX5GS34aU9FK+nZR8gJT8FqTkgxn6c0jJB0jpdO+1QnPx8w8eix6Sr4jKrVm6TYrq"+
+"bSiHpubdUOUbSpbpyzhLN+P0JSnfYCUXXCabbXET5jlfhLuFQZal2W6h0J7HcfoyjHmyKtcJpf0hKmJhPXw5Sm0771VvfZCpuP/q"+
+"hxPRru8b4RVHeSF2Vr6KYRtz++J8XNr/9WHwgfwqf4jz1c74+fSwUcZG+j+rkeW7NV61rXwfxnGNG8rGDT/Y9C2Ncx1r5Hri41sj"+
+"r29VRcv3aa192NqyTvqqtQeFSrGD2/1aJd7ykWz56MObGu6JBjPRYEbER4jAhAhMLPPFMv+niVCfWV7JUB7XZfPLQxtv+Fg2fPy2"+
+"hrOflc7lG3d2LZPvBCvfkWPJGwD+S+x+f9eul2Uahz0r3YSZ/J72ee8pLF7CMNlvKym/Hq2aV/9GLmSknYG0b7ctOtqm4iM623bF"+
+"h4mP6HD7zBoR0elE2ImwE2Enwk7EciqWU1t8hI2K5VQspyJRqPClwu4IuyPsjrA7wu4IuyPsjojrCLsr7K6we8JWFvR+SlKV1cQD"+
+"4XlZX+xXORWHTyLHPu59e/10la756XTzy65H5uEsWvN4v08WWciLMHtY8uRrFvy9Fda97umDqfdqQV69MPGGZ4tIjCtx+CyGlf6J"+
+"hPqsKlRWfxTppmxc9VrC8tdlyOdhJlcQ9uc0LZo/5Ivxdu+IvPg/UEsDBBQAAAAIAG8fbF2pKVVFfAMAADUPAAAYAAAAeGwvd29y"+
+"a3NoZWV0cy9zaGVldDMueG1sjVftdps4EH0VDg9QjPLZHsfnxMl2d9Ok6xN3d3+PzdhWEBIribp9+x1hAk5KNPljA+Je7gzcK2m6"+
+"N7Z0O0Sf/KiUdlfpzvv6U5a59Q4rcB9MjZpGNsZW4OnUbjNXW4SiBVUqE5PJeVaB1Ols2l5b2NnUNF5JjQubuKaqwP6cozL7qzRP"+
+"ny88yu3OhwvZbFrDFpfo/64Xls6ynqWQFWonjU4sbq7S6/zTrbgIgPaOfyTu3dFx4nZm/7uVxT09mQqZpEkobmVMGYb/LMIluh8V"+
+"rn0gBfr7jjeoVOAmZf91j0l7FQF4fPz8vM9tO6i8FTi8MepfWfjdVXqZJgVuoFH+0ez/wK7Es8C3Nsq1v8n+cK8QabJunDdVByYF"+
+"ldSHf/jRteY9ANEBxHsBJx3g5L2A0w5w2nbmUErbh1vwMJtas09suJvYwkHbTKKjP6pf6vApLL2lYUlAP7tHsFrqbbIwUvtp5ok0"+
+"jGTrjmDOEMwbBXoEd8Pg7lBL15WIdoTgliH4YnQhnUzorb/SnVET+k6IvhPiwCfe4HvAYrSQOYO7A92AlWMtYJBfySg3kQYw8DnI"+
+"MlL4SV/4SZxngSXoFdhmrHgG+xlX9q3qGWiofmHNEyXAWPEM+rFxEKv+tK/+lKkeFFYr0Nux6hnsA9jot3fWiziLE30D/dSQCX/T"+
+"shrTwcCvaytVRMd5r+M8TnQPVd2Mt4JBPqCMCLjoBVxwZirBehgTwCEbHVNw2Su4jPMsaaq1b3wODPSuUTEJH3sJHxkJjYUV/Bzt"+
+"AgO93lKeNC6iIp8MU8OE00HG2I/KYKFYe7LV61x7qeRokso5o3l6KaPW4KB/ld4wOoYpImcjV8myhnp8ouDQX813tidDaudMAi6B"+
+"PlSpi/H3w4Bv0bFShgjNmRycU3wBrcKc1DHCIQ7z9+VhjGzItJyJpiX4JubLfEinnAmZB5rrQP3iiZd0Q9TkXNZQzoB/HXcv2YbU"+
+"yBnvz6nOEp5+ya6Xy6HB/oLx8POk9IgFrmKUg48F6+MSnIPYZyeOFmzcig00FCbGNbhJMIb4YhRpi3ENdhCMHZbGmvhLGJwgGCfc"+
+"0TxQ03wQYxusIBgrfJOVjFc5eEFwXkALTYljZNnRhiRsKGmdtJXaJQo3RDX5cEFF28OO7HDiTd3ucFbG02q4PdzRvhZtuIHGN8b4"+
+"55Ow7el3yrP/AVBLAwQUAAAACABvH2xdshyfCLMDAAA1GgAADQAAAHhsL3N0eWxlcy54bWzdWe1u2jAUfZUoD7CQBNJkAiRKizRp"+
+"myqtP/bXEAcsOR9zTAd9+vnGgZDi24UWunagKravz7nH9/oDp8NSbjn9saJUWpuUZ+XIXklZfHaccrGiKSk/5QXNlCXJRUqkqoql"+
+"UxaCkrgEUModr9cLnJSwzB4Ps3U6S2VpLfJ1Jkd2z3bGwyTPmhbXtXWL6ktSaj0QPrKnhLO5YFVnkjK+1c0eNCxyngtLKi1UoaGl"+
+"fNRmV9dAZs2TsiwX0OhoD0/9TAQjHOzzmqFFF3ZBajliOVeD6w2ug+Cq1yLpvdi91wX5cj8t4RPXm3iTMwkPXiVlVn3OODZ34Ebu"+
+"7emELZJwEvUnrcxGXTgYJuqYryWqepSKmHG+XyqBrRvGw4JISUU2U5UKUzUemay6fL8t1FJZCrJ1vYHdGVDmnMXgcjk1h9M5gL6S"+
+"dDabhv7NuUm9WX8WnF3pzLv2UdLqoRI3z0VMxT51nr1rGg85TaSCC7ZcwVPmBczeXMo8VYWYkWWekSqvO8Qh0qr255EtV9X+2ppU"+
+"N+HNza3eNqBr7aMjoupbyekIUD13ujsidOeDgdUFFa8F5fwHkPxMmqNBUW0SSx8hX2I4PSxYF7uiinRd1DS6Ao4O2TT3Aa3nv4jX"+
+"KthDLq/XaghZVf+1ziW9EzRhm6q+SfYCMHb3ouzeRdl9nJ0UBd9OOFtmKdWJ6+xwPCQ7nPVAhWQL2AvV1LKt34IU93Qj6+3T2SS4"+
+"uP57Fje4aF6Ci7JfNezeIbt7gcAuVJWKv4YzbCT55x9w76Ls2BL9h+HEls77kDS4jKRVLtij8gai4Ki0TxcZNSL77y9ub5XKkzZC"+
+"Fztd3zpm7keYa+6bBu5IpVFTP/oIkfM/mMh3k94OB/95zsFnfq+dwO7Uv+wPrg+ty8O+1YKr+cj+Dq+seENhzdeMS5bVtRWLY5od"+
+"3SEUvSRzTtv8qn9ME7Lm8n5vHNlN+RuN2TqN9r3uYFh1r6b8FS5d+oVJdWlSvlgW0w2Np3VV3aJa90/9AcBTS/Pi5NiCYbTNbAEb"+
+"5gdTgGE0CvPzP40nRMejbZi20GgJUUyIYjTKZJlWX8yPGROpj3mkUeT7QYBFdDo1KphicQsC+DOzYdoAgfkBT6fFGs82PkOenwdY"+
+"Tp+bIdhI8ZmIjRSPNVjMcQNEFJmzjfkBBJYFbO6Af7MfmFNmjO9DVjFt2ArGLVGEWWAumudoECDRCeBrzg+2Snw/iswWsJkV+D5m"+
+"gdWIWzAFoAGz+Pot55PzyNmdU07zj6LxH1BLAwQUAAAACABvH2xdl4q7HMAAAAATAgAACwAAAF9yZWxzLy5yZWxznZK5bsMwDEB/"+
+"xdCeMAfQIYgzZfEWBPkBVqIP2BIFikWdv6/apXGQCxl5PTwS3B5pQO04pLaLqRj9EFJpWtW4AUi2JY9pzpFCrtQsHjWH0kBE22ND"+
+"sFosPkAuGWa3vWQWp3OkV4hc152lPdsvT0FvgK86THFCaUhLMw7wzdJ/MvfzDDVF5UojlVsaeNPl/nbgSdGhIlgWmkXJ06IdpX8d"+
+"x/aQ0+mvYyK0elvo+XFoVAqO3GMljHFitP41gskP7H4AUEsDBBQAAAAIAG8fbF1Ki93PWAEAAD4DAAAPAAAAeGwvd29ya2Jvb2su"+
+"eG1stZLbTsMwDIZfpcoD0G0cJCa6GyYOEoKJIe691qVmSVw5LoM9PWmmikpIEzdcpf5tuZ9/+2rHst0wb7NPZ30oTKPazvM8lA06"+
+"CCfcoo+ZmsWBxlDe8tAKQhUaRHU2n00mF7kD8mZxNfRaST4OWLFUYh/FXngl3IWffB9mHxRoQ5b0qzDp26LJHHlytMeqMBOThYZ3"+
+"dyy0Z69g16WwtYWZHhKvKErlL3ndQ77AJiRFYfMMEaQwF5PYsCYJmipSf4iMHxiLUy10yjdkFWUJirfCXUv+rU/FKfLRGMmH4T2Y"+
+"OJe/2Mh1TSUuuewcej34KGh7QB8aaoPJPDgszAq18+/dth8p/uO+OoynkWtklswpJuS+SoT/R/MALQv4EczsCMzsf2GWUCvIiOX0"+
+"CMtpWt2wrwpr8lg9xj4h6vF2ypVk/ZMMnp2dTy/jjXTWXkftyT8wVMP6h9NdfANQSwMEFAAAAAgAbx9sXbts6uy6AAAAGgMAABoA"+
+"AAB4bC9fcmVscy93b3JrYm9vay54bWwucmVsc8WTOQ6DMBBFr4J8AIYlSREBVRraiAtYMCxiseWZKHD7ECjAUoo0iMr6Y/n9V4yj"+
+"J3aSGzVQ3Whyxr4bKBY1s74DUF5jL8lVGof5plSmlzxHU4GWeSsrhMDzbmD2DJFEe6aTTRr/IaqybHJ8qPzV48A/wPBWpqUakYWT"+
+"SVMhxwLGbhsTLIfvzmThpEUsTFr4As4WCiyh4Hyh0BIKDxQinjqkzWbNVv3lwHqe3+LWvsR1aC/J9esA1ldIPlBLAwQUAAAACABv"+
+"H2xdpvxKWyMBAADfBAAAEwAAAFtDb250ZW50X1R5cGVzXS54bWzNlM9OwzAMxl+l6nVqMobEAa27AFfYgRcIjbtGzT/F3ujeHrfd"+
+"JoFGxTQkuDRqbH8/x5+S5es+Amadsx7LvCGK91Ji1YBTKEIEz5E6JKeIf9NGRlW1agNyMZ/fySp4Ak8F9Rr5avkItdpayp463kYT"+
+"fJknsJhnD2NizypzFaM1lSKOy53XXyjFgSC4csjBxkSccUIuzxL6yPeAQ93LDlIyGrK1SvSsHGfJzkqkvQUU0xJnegx1bSrQodo6"+
+"LhEYEyiNDQA5K0bR2TSZeMIwfm+u5g8yU0DOXKcQkR1LcDnuaElfXUQWgkRm+ognIktffT7o3dagf8jm8b6H1A5+oByW62f82eOT"+
+"/oV9LP5JH7d/2MdbCO1vX7l+FU4Zf+TL4V1bfQBQSwECFAMUAAAACABvH2xdRsdNSJUAAADNAAAAEAAAAAAAAAAAAAAAgAEAAAAA"+
+"ZG9jUHJvcHMvYXBwLnhtbFBLAQIUAxQAAAAIAG8fbF01tdo77gAAACsCAAARAAAAAAAAAAAAAACAAcMAAABkb2NQcm9wcy9jb3Jl"+
+"LnhtbFBLAQIUAxQAAAAIAG8fbF2ZXJwjEAYAAJwnAAATAAAAAAAAAAAAAACAAeABAAB4bC90aGVtZS90aGVtZTEueG1sUEsBAhQD"+
+"FAAAAAgAbx9sXdXyblryBAAAFgwAABgAAAAAAAAAAAAAAICBIQgAAHhsL3dvcmtzaGVldHMvc2hlZXQxLnhtbFBLAQIUAxQAAAAI"+
+"AG8fbF0UbzdGihAAAC9yAAAYAAAAAAAAAAAAAACAgUkNAAB4bC93b3Jrc2hlZXRzL3NoZWV0Mi54bWxQSwECFAMUAAAACABvH2xd"+
+"qSlVRXwDAAA1DwAAGAAAAAAAAAAAAAAAgIEJHgAAeGwvd29ya3NoZWV0cy9zaGVldDMueG1sUEsBAhQDFAAAAAgAbx9sXbIcnwiz"+
+"AwAANRoAAA0AAAAAAAAAAAAAAIABuyEAAHhsL3N0eWxlcy54bWxQSwECFAMUAAAACABvH2xdl4q7HMAAAAATAgAACwAAAAAAAAAA"+
+"AAAAgAGZJQAAX3JlbHMvLnJlbHNQSwECFAMUAAAACABvH2xdSovdz1gBAAA+AwAADwAAAAAAAAAAAAAAgAGCJgAAeGwvd29ya2Jv"+
+"b2sueG1sUEsBAhQDFAAAAAgAbx9sXbts6uy6AAAAGgMAABoAAAAAAAAAAAAAAIABBygAAHhsL19yZWxzL3dvcmtib29rLnhtbC5y"+
+"ZWxzUEsBAhQDFAAAAAgAbx9sXab8SlsjAQAA3wQAABMAAAAAAAAAAAAAAIAB+SgAAFtDb250ZW50X1R5cGVzXS54bWxQSwUGAAAA"+
+"AAsACwDKAgAATSoAAAAA";
+function downloadTemplate(){
+ try{
+  const bin=atob(TEMPLATE_B64.replace(/\s/g,"")),u8=new Uint8Array(bin.length);
+  for(let i=0;i<bin.length;i++)u8[i]=bin.charCodeAt(i);
+  const blob=new Blob([u8],{type:"application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"});
+  if(window.navigator.msSaveOrOpenBlob){window.navigator.msSaveOrOpenBlob(blob,TEMPLATE_NAME);return}
+  const url=URL.createObjectURL(blob),a=document.createElement("a");
+  a.href=url;a.download=TEMPLATE_NAME;document.body.appendChild(a);a.click();a.remove();
+  setTimeout(()=>URL.revokeObjectURL(url),4000);
+ }catch(e){toast("Template gagal dibuat: "+e.message,"err")}
+}
 </script>
 </body>
 </html>
