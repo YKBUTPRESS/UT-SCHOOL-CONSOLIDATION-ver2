@@ -713,11 +713,56 @@ svg.lc{display:block;overflow:visible}
 .mf-hint{font-size:12.5px;color:var(--mu);background:var(--soft);border-radius:12px;padding:8px 12px}
 .mf-det{background:var(--soft);border-radius:14px;padding:10px 14px}
 .mf-det summary{cursor:pointer;font-size:13px;font-weight:700}
-.mf-mon{display:grid;grid-template-columns:48px 1fr 1fr;gap:6px;margin-top:10px;align-items:center;font-size:12px;font-weight:700}
-.mf-mon input{width:100%;padding:7px 10px;border:0;border-radius:8px;box-shadow:0 0 0 1px var(--line);font-size:12.5px}
+.mf-mon{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px}
+.mf-mi{display:flex;align-items:center;gap:8px;background:#fff;border-radius:10px;padding:4px 4px 4px 12px;box-shadow:0 0 0 1px var(--line)}
+.mf-mi span{font-size:12px;font-weight:800;color:var(--mu);width:28px;flex:none}
+.mf-mi input{flex:1;min-width:0;border:0;outline:0;padding:7px 8px;font-size:12.5px;background:transparent}
+.mf-mi:focus-within{box-shadow:0 0 0 2px var(--ink)}
+.mf-monf{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:10px;font-size:12.5px;font-weight:700}.mf-monf span{margin-right:auto;color:var(--mu)}
 .mf-foot{position:sticky;bottom:-26px;display:flex;align-items:center;justify-content:flex-end;gap:8px;padding:12px 0 4px;margin-top:4px;background:linear-gradient(180deg,#fff0,#fff 30%);border-top:1px solid var(--line)}
 .mf-msg{margin-right:auto;font-size:12.5px;font-weight:600;line-height:1.5}.mf-msg.e{color:#b91c1c}
 @media(max-width:700px){.how{grid-template-columns:1fr}}
+
+.incc{display:grid;grid-template-columns:minmax(170px,230px) 1fr;gap:20px;align-items:center}
+.sgrid.incT{grid-template-columns:repeat(auto-fit,minmax(130px,1fr))}
+@media(max-width:700px){.incc{grid-template-columns:1fr}}
+
+/* ================= PLAN (kartu per LP) ================= */
+.pl-head{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin-bottom:16px}
+.pl-head h2{font:700 28px var(--fh);letter-spacing:-.8px;margin:0}
+.pl-head p{flex-basis:100%;margin:0;color:var(--mu);font-size:13px}
+.pl-act{margin-left:auto;display:flex;gap:8px;flex-wrap:wrap}
+.pl-sum{display:grid;grid-template-columns:minmax(250px,1.4fr) 1.2fr 1fr 1fr;gap:14px;margin-bottom:18px}
+.pl-t{background:var(--soft);border-radius:20px;padding:18px 20px;display:flex;flex-direction:column;justify-content:center;min-width:0}
+.pl-t small{display:block;font-size:12.5px;font-weight:700;color:var(--mu)}
+.pl-t b{display:block;font:700 28px/1.1 var(--fh);letter-spacing:-.6px;margin-top:4px}
+.pl-t b span{font-size:14px;font-weight:600;color:var(--mu);letter-spacing:0}
+.pl-t.hl{background:var(--y)}.pl-t.hl small{color:#5b4300}
+.pl-t.ring{flex-direction:row;align-items:center;gap:16px}
+.pl-up{margin-bottom:18px;background:var(--soft);border-radius:20px;padding:0 20px}
+.pl-up>summary{cursor:pointer;display:flex;align-items:baseline;gap:10px;padding:16px 0;font-weight:700;list-style:none}
+.pl-up>summary::-webkit-details-marker{display:none}
+.pl-up>summary small{color:var(--mu);font-weight:600}
+.pl-upb{padding:0 0 18px}.pl-uprow{margin:10px 0}
+.pl-bar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:14px}
+.pl-bar .fs{min-width:260px;border:0;border-radius:999px;box-shadow:0 0 0 1px var(--line);padding:9px 14px;font-size:13px}
+.pl-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px}
+.pc{background:#fff;border-radius:20px;box-shadow:var(--sh);padding:18px 20px;display:flex;flex-direction:column;gap:14px;min-width:0}
+.pc.empty{background:transparent;box-shadow:none;border:2px dashed var(--line);align-items:flex-start;justify-content:space-between}
+.pc.empty .pc-h{width:100%}
+.pc-h{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}
+.pc-h h4{font:700 17px var(--fh);margin:0;cursor:pointer}.pc-h small{color:var(--mu);font-size:12px;font-weight:600}
+.pc-inc small{display:block;color:var(--mu);font-size:12px;font-weight:700}
+.pc-inc b{font:700 26px/1.15 var(--fh);letter-spacing:-.6px}
+.pc-st{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;padding:10px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.pc-st b{display:block;font:700 16px var(--fh)}.pc-st small{font-size:11px;color:var(--mu);font-weight:600}
+.pc-f{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;font-size:11.5px;color:var(--mu)}
+.pc-a{display:flex;gap:6px}
+.pc-none{color:var(--mu);font-size:13px}
+@media(max-width:900px){.pl-sum{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.pl-sum{grid-template-columns:1fr}.pl-bar .fs{min-width:0;width:100%}}
+
+.ast-bar .ast-add{min-width:200px}
 </style>
 </head>
 <body>
@@ -792,9 +837,7 @@ svg.lc{display:block;overflow:visible}
     <div class="card c1"><div class="hd">Perlu Perhatian</div>
      <div class="tog"><button id="tgLow" class="on" onclick="setAttn('low')">Capaian rendah</button><button id="tgAsset" onclick="setAttn('asset')">Aset rusak</button></div>
      <div id="attn"></div></div>
-    <div class="card click" onclick="showInfo('tot')"><div class="hd">Income Total (YTD)<span class="i">ⓘ</span></div><div id="g1"></div></div>
-    <div class="card click" onclick="showInfo('mand')"><div class="hd">Mandiri<span class="i">ⓘ</span></div><div id="g2"></div></div>
-    <div class="card click" onclick="showInfo('mandt')"><div class="hd">Mandatory<span class="i">ⓘ</span></div><div id="g3"></div></div>
+    <div class="card c3 click" onclick="showInfo('tot')"><div class="hd">Income (YTD)<span class="i">ⓘ</span></div><div class="incc"><div id="g1"></div><div class="sgrid incT" id="incTiles"></div></div></div>
     <div class="card rank"><div class="hd"><span id="rankTitle">Capaian Income per LP</span><select id="rankSel" onchange="S.rank=this.value;renderRank()"><option value="achv_asc">Urut: Terendah</option><option value="achv_desc">Urut: Tertinggi</option><option value="plan">Urut: Plan terbesar</option><option value="name">Urut: Nama A–Z</option></select></div>
      <div class="leg" id="rankLeg"></div>
      <div class="rs" id="rankList"></div></div>
@@ -820,7 +863,7 @@ svg.lc{display:block;overflow:visible}
 <script>
 /* ============ CONFIG ============ */
 const CONFIG={
-  API_URL:"https://script.google.com/macros/s/AKfycbydBTJoamwverxeskSzIttYGmCrq_n0UdcmEJo3XjZSW5ysTlAZscaihoblIBSodrCF/exec",                       // Tempel URL Apps Script (/exec) di sini. Kosong = mode demo.
+  API_URL:"https://script.google.com/macros/s/AKfycbxQVwxjyuboilupXAFTyuORXILrQSGyWCUxYGyaICQVUJHi4U3335aeaJVQGKCtBLQ9/exec",                       // Tempel URL Apps Script (/exec) di sini. Kosong = mode demo.
   LOGO:"logo ut school.png",        // nama file logo di GitHub
   // Template Excel LP kini tertanam di dalam file ini (lihat TEMPLATE_B64 di bagian bawah)
   LAST_DUE_MONTH:10,                // di mode server nilai ini diambil dari sheet Config
@@ -875,7 +918,7 @@ function genDemo(year){year=year||CONFIG.YEAR;if(year>CONFIG.YEAR)return {};cons
    out[lp.id+"|"+m]={lp:lp.id,year,month:m,status:st,pic:"PIC "+lp.name,
     kesiswaan:{batches:[{name:"Batch "+(39-off),seleksi,psikotes:ps,interview:iv,mcu:mc}],bintalsik:hasBin?{seleksi:Math.round(seleksi*.6),psikotes:Math.round(ps*.6),interview:Math.round(iv*.6),mcu:Math.round(mc*.6),lokasi:sites[Math.floor(R()*4)]}:null},
     akademik:{batches:bat,csr},
-    kipl:{mandiri:{plan:annM*m/12,actual:aM},mandatory:{plan:annD*m/12,actual:aD},customers:cs,fasusPlan:fPlan,fasusUsed:Math.round(fPlan*fRate*Math.min(1,m/8))},
+    kipl:{mandiri:{plan:0,actual:0},mandatory:{plan:(annM+annD)*m/12,actual:aM+aD},customers:cs,fasusPlan:fPlan,fasusUsed:Math.round(fPlan*fRate*Math.min(1,m/8))},
     assets};
   }
  });
@@ -897,6 +940,15 @@ const dueNow=()=>dueFor(S.year);
    plan={lp,year,pic,mandiri,mandatory,m_mandiri[12]|null,m_mandatory[12]|null,cust,fasus,batches:[{name,start:"yyyy-mm",end,kelas,siswa,seleksi,mcu}]}
    Actual = laporan bulanan. Bila LP belum punya plan tahun itu, dashboard memakai angka plan dari laporan lama (kompatibilitas). */
 const planOf=id=>(PL[S.year]||{})[id];
+/* Mandiri sudah dihapus: sisa data lama (Mandiri) dilipat ke Income (jalur "mandatory") saat dimuat, total tidak berubah. */
+function foldIncome(reps,plans){
+ Object.values(reps||{}).forEach(r=>{const k=r.kipl;if(k&&k.mandiri&&(k.mandiri.plan||k.mandiri.actual)){k.mandatory.plan=(k.mandatory.plan||0)+(k.mandiri.plan||0);k.mandatory.actual=(k.mandatory.actual||0)+(k.mandiri.actual||0);k.mandiri={plan:0,actual:0}}});
+ const eff=(a,ann)=>a&&a.some(v=>v>0)?a.map(v=>v||0):Array(12).fill((ann||0)/12);
+ Object.values(plans||{}).forEach(p=>{
+  if(p.m_mandiri&&p.m_mandiri.some(v=>v>0)){const a=eff(p.m_mandatory,p.mandatory),b=eff(p.m_mandiri,p.mandiri);p.m_mandatory=a.map((v,i)=>v+b[i])}
+  p.m_mandiri=null;if(p.mandiri){p.mandatory=(p.mandatory||0)+p.mandiri}p.mandiri=0;
+ });
+}
 function planYTD(p,kind,m){const a=p["m_"+kind];if(a&&a.some(v=>v>0))return a.slice(0,m).reduce((t,v)=>t+(v||0),0);return(p[kind]||0)*m/12}
 function bPlan(id,b){const pl=planOf(id);if(!pl)return b.siswaPlan||0;const k=batchKey(b.name),m=pl.batches.find(x=>batchKey(x.name)===k);return m?m.siswa:0}
 function pInc(id,x){const pl=planOf(id);return pl?planYTD(pl,"mandiri",x.month)+planYTD(pl,"mandatory",x.month):x.kipl.mandiri.plan+x.kipl.mandatory.plan}
@@ -987,15 +1039,22 @@ const stPill=s=>`<span class="pill ${stLabel[s][1]}">${stLabel[s][0]}</span>`;
 function lpList(){return LPS.filter(l=>(S.region==="all"||l.region===S.region)&&(S.coord==="all"||(S.coord==="direct"?!l.coord:l.coord===S.coord)))}
 const curStatus=(id,m)=>(REP[id+"|"+m]||{status:"missing"}).status;
 function latest(id,m){for(let k=m;k>=1;k--){const r=REP[id+"|"+k];if(r&&r.status==="submitted")return r}return null}
+/* Aset diambil dari laporan terakhir (s.d. periode) yang final atau sudah memuat aset (termasuk draft hasil input aset manual). */
+function latestAssetRep(id,m){for(let k=m;k>=1;k--){const r=REP[id+"|"+k];if(r&&(r.status==="submitted"||(r.assets&&r.assets.length)))return r}return null}
+/* Laporan "virtual" untuk LP yang baru punya Plan (belum ada laporan bulanan); hanya dipakai di mode Plan saja, tidak pernah disimpan. */
+function planOnlyRep(pl,m){return{virtual:true,month:m,pic:pl.pic||"",kesiswaan:{batches:[],bintalsik:null},akademik:{batches:(pl.batches||[]).map(b=>({name:b.name,kelas:b.kelas,siswaPlan:b.siswa,siswa:0,ojt:0})),csr:{program:0,sekolah:0,peserta:0}},kipl:{mandiri:{plan:0,actual:0},mandatory:{plan:0,actual:0},customers:[],fasusPlan:pl.fasus,fasusUsed:0},assets:[]}}
 function metrics(lp,m=S.month){
- let r=latest(lp.id,m),nb=0,bm=null;const stale=!!(r&&r.month<m);
+ let r=latest(lp.id,m),nb=0,bm=null;
+ if(!r&&S.pa==="plan"){const p0=planOf(lp.id);if(p0)r=planOnlyRep(p0,m)}   // mode "Plan saja": LP yang baru punya plan (belum ada laporan) tetap tampil
+ const stale=!!(r&&r.month<m);
  if(S.batch!=="all"){
   const rb=latestBatch(lp.id,m,S.batch),f=b=>batchKey(b.name)===S.batch;   // rb boleh berasal dari tahun sebelumnya
   if(rb){nb=1;bm=rb.month}
   if(r||rb){const base=r||{month:rb.month,pic:"",kesiswaan:{batches:[],bintalsik:null},akademik:{batches:[],csr:{program:0,sekolah:0,peserta:0}},kipl:{mandiri:{plan:0,actual:0},mandatory:{plan:0,actual:0},customers:[],fasusPlan:0,fasusUsed:0},assets:[]};
    r={...base,kesiswaan:{...base.kesiswaan,batches:rb?(rb.rek||[]).filter(f):[]},akademik:{...base.akademik,batches:rb?(rb.reg||[]).filter(f):[]}}}   // salinan; data asli tidak diubah
  }
- const o={lp,status:curStatus(lp.id,m),rep:r,stale,nb,batchMonth:bm};
+ const ar=latestAssetRep(lp.id,m),ast=ar?ar.assets:[];
+ const o={lp,status:curStatus(lp.id,m),rep:r,stale,nb,batchMonth:bm,ast,astMonth:ar?ar.month:null,assetN:ast.length,bad:ast.filter(a=>a.cond==="Rusak").length};
  if(!r)return{...o,plan:0,actual:0,achv:null,mand:{plan:0,actual:0},mandt:{plan:0,actual:0}};
  const k=r.kipl,kb=r.kesiswaan.batches;
  const pl=planOf(lp.id);o.hasPlan=!!pl;
@@ -1003,18 +1062,19 @@ function metrics(lp,m=S.month){
  o.plan=o.mand.plan+o.mandt.plan;o.actual=o.mand.actual+o.mandt.actual;o.achv=pc(o.actual,o.plan);
  o.sel=sum(kb,b=>b.seleksi);o.psi=sum(kb,b=>b.psikotes);o.itv=sum(kb,b=>b.interview);o.mcu=sum(kb,b=>b.mcu);
  o.sPlan=pl?sum(pl.batches.filter(b=>S.batch==="all"||batchKey(b.name)===S.batch),b=>b.siswa):sum(r.akademik.batches,b=>b.siswaPlan);o.siswa=sum(r.akademik.batches,b=>b.siswa);o.ojt=sum(r.akademik.batches,b=>b.ojt);
- o.cust=k.customers.length;o.fU=k.fasusUsed;o.fP=pl?pl.fasus:k.fasusPlan;o.cP=pl?pl.cust:0;o.bad=r.assets.filter(a=>a.cond==="Rusak").length;
+ o.cust=k.customers.length;o.fU=k.fasusUsed;o.fP=pl?pl.fasus:k.fasusPlan;o.cP=pl?pl.cust:0
  return o;
 }
 function agg(ms){
  const a=ms.filter(x=>x.rep),T={n:ms.length,sub:ms.filter(x=>x.status==="submitted").length,draft:ms.filter(x=>x.status==="draft").length,rep:a.length};
- ["plan","actual","sel","psi","itv","mcu","sPlan","siswa","ojt","cust","cP","fU","fP","bad"].forEach(k=>T[k]=sum(a,x=>x[k]));
+ ["plan","actual","sel","psi","itv","mcu","sPlan","siswa","ojt","cust","cP","fU","fP"].forEach(k=>T[k]=sum(a,x=>x[k]));
+ T.bad=sum(ms,x=>x.bad||0);
  T.mPlan=sum(a,x=>x.mand.plan);T.mAct=sum(a,x=>x.mand.actual);T.dPlan=sum(a,x=>x.mandt.plan);T.dAct=sum(a,x=>x.mandt.actual);
  T.achv=pc(T.actual,T.plan);
  T.csrP=sum(a,x=>x.rep.akademik.csr.program);T.csrS=sum(a,x=>x.rep.akademik.csr.sekolah);T.csrQ=sum(a,x=>x.rep.akademik.csr.peserta);
  const bs=a.map(x=>x.rep.kesiswaan.bintalsik).filter(Boolean);
  T.binN=bs.length;T.binSel=sum(bs,b=>b.seleksi);T.binPsi=sum(bs,b=>b.psikotes);T.binItv=sum(bs,b=>b.interview);T.binMcu=sum(bs,b=>b.mcu);T.binLok=[...new Set(bs.map(b=>b.lokasi))].length;
- T.assets=sum(a,x=>x.rep.assets.length);
+ T.assets=sum(ms,x=>x.assetN||0);
  return T;
 }
 function batchAgg(ms){const o={};ms.filter(x=>x.rep).forEach(x=>x.rep.akademik.batches.forEach(b=>{const g=o[b.name]||(o[b.name]={kelas:0,plan:0,siswa:0,ojt:0,lp:0});g.kelas+=b.kelas||0;g.plan+=bPlan(x.lp.id,b);g.siswa+=b.siswa||0;g.ojt+=b.ojt||0;g.lp++}));return o}
@@ -1063,14 +1123,14 @@ const chip=(v,l,c)=>`<span class="ch" style="--c:${c}"><b>${v}</b>${l}</span>`;
 const tbl=(heads,rows,emptyMsg)=>`<div class="tw"><table class="t"><thead><tr>${heads.map(h=>`<th>${h}</th>`).join("")}</tr></thead><tbody>${rows.join("")||`<tr><td colspan="${heads.length}" class="empty">${emptyMsg||"Tidak ada data."}</td></tr>`}</tbody></table></div>`;
 function incHeads(){return["Learning Point",...(showP()?["Plan YTD"]:[]),...(showA()?["Actual YTD"]:[]),...(cmp()?["Capaian"]:[])]}
 function incRows(ms,kind){
- return ms.filter(x=>x.rep).map(x=>{const o=kind==="mand"?x.mand:kind==="mandt"?x.mandt:{plan:x.plan,actual:x.actual},p=pc(o.actual,o.plan);return{x,o,p}})
+ return ms.filter(x=>x.rep).map(x=>{const o={plan:x.plan,actual:x.actual},p=pc(o.actual,o.plan);return{x,o,p}})
  .sort((a,b)=>cmp()?(a.p??999)-(b.p??999):S.pa==="plan"?b.o.plan-a.o.plan:b.o.actual-a.o.actual)
  .map(({x,o,p})=>`<tr class="cl" onclick="openLP('${x.lp.id}')"><td><b>${esc(x.lp.name)}</b></td>${showP()?`<td>${rp(o.plan)}</td>`:""}${showA()?`<td>${rp(o.actual)}</td>`:""}${cmp()?`<td style="background:${heatBg(p)}"><b>${fp(p)}</b></td>`:""}</tr>`);
 }
 function showInfo(key){
  const ms=lpList().map(l=>metrics(l)),T=agg(ms),per=MONTHS[S.month-1]+" "+S.year,md=PA_LABEL[S.pa];
- if(key==="tot"||key==="mand"||key==="mandt"){
-  const t=key==="tot"?[T.plan,T.actual]:key==="mand"?[T.mPlan,T.mAct]:[T.dPlan,T.dAct],nm=key==="tot"?"Income Total":key==="mand"?"Income Mandiri":"Income Mandatory";
+ if(key==="tot"){
+  const t=[T.plan,T.actual],nm="Income";
   openModal(nm+" · "+md+" · s.d. "+per,`<div class="desc">Income kumulatif tahun berjalan (YTD), dari laporan terakhir tiap LP. ${cmp()?"Diurutkan dari capaian terendah.":"Hanya menampilkan data "+md+"; diurutkan dari nilai terbesar."}</div><div class="chips">${showP()?chip(rp(t[0]),"Plan","#3f6fb5"):""}${showA()?chip(rp(t[1]),"Actual","#2f8f5b"):""}${cmp()?chip(fp(pc(t[1],t[0])),"Capaian","#f5a800")+chip(rp(t[0]-t[1]),"Gap","#d64545"):""}</div>`+tbl(incHeads(),incRows(ms,key)),true);
  }else if(key==="sis"){
   const rows=ms.filter(x=>x.rep).sort((a,b)=>cmp()?pc(a.siswa,a.sPlan)-pc(b.siswa,b.sPlan):S.pa==="plan"?b.sPlan-a.sPlan:b.siswa-a.siswa).map(x=>{const p=pc(x.siswa,x.sPlan);return`<tr class="cl" onclick="openLP('${x.lp.id}')"><td><b>${esc(x.lp.name)}</b></td>${showA()?`<td>${x.siswa}</td>`:""}${showP()?`<td>${x.sPlan}</td>`:""}${cmp()?`<td style="background:${heatBg(p)}"><b>${fp(p)}</b></td>`:""}${showA()?`<td>${x.ojt}</td>`:""}</tr>`});
@@ -1133,7 +1193,7 @@ async function loadData(manual){
  try{
   if(CONFIG.API_URL){
    const y=S.year,firstLoad=!YEARS.length&&!Object.keys(YR).length,r=await api("reports",{year:y});if(!r.ok)throw new Error(r.message||"Gagal mengambil data.");
-   YR[y]=r.reports||{};PL[y]=r.plans||{};DEMO=false;BM=r.batchMaster||[];BR=r.batchRecords||[];if(Array.isArray(r.years))YEARS=r.years.map(Number).filter(Boolean);
+   YR[y]=r.reports||{};PL[y]=r.plans||{};foldIncome(YR[y],PL[y]);DEMO=false;BM=r.batchMaster||[];BR=r.batchRecords||[];if(Array.isArray(r.years))YEARS=r.years.map(Number).filter(Boolean);
    if(y!==S.year)return;   // pengguna sudah pindah tahun; data tahun ini tetap tersimpan di cache
    if(r.config){const dy=r.config.defaultYear!=null?r.config.defaultYear:(firstLoad?r.config.year:null);if(dy!=null){CONFIG.YEAR=dy;CONFIG.LAST_DUE_MONTH=r.config.lastDueMonth;if(!S.yearTouched&&S.year!==dy){S.year=dy;return await loadData(false)}}}
    if(Array.isArray(r.lps)&&r.lps.length)LPS=r.lps.map(l=>({id:l.id,name:l.name,region:l.region,coord:l.coord||"",ll:[l.lat,l.lng]}));
@@ -1171,9 +1231,9 @@ function renderFilters(){
  const bn=$("batchNote");bn.classList.toggle("hide",S.batch==="all"||S.view==="input"||S.view==="plan");
  bn.innerHTML=`<b>Filter batch: ${esc(S.batch)}</b> · periode ${spanText(S.batch)}. Rekrutmen/MCU dan Siswa/OJT menampilkan batch ini secara utuh, termasuk laporan dari tahun kalender lain selama batch berlangsung. Income, customer, Fasus, CSR, Bintalsik, dan aset dilaporkan per LP (bukan per batch) sehingga tidak ikut disaring.`+(S.view==="asset"?" Daftar aset tidak dipengaruhi batch.":"")+` <button class="btn-s" onclick="showBatchHistory()">Riwayat batch</button>`;
  $("fbar").classList.toggle("hide",S.view==="input"||S.view==="plan");
- const pn=$("planNote"),miss=LPS.filter(l=>!planOf(l.id)).length;
- pn.classList.toggle("hide",DEMO||!miss||S.view==="input"||S.view==="plan");
- pn.innerHTML=`<b>${miss} dari ${LPS.length} LP belum memiliki Plan ${S.year}.</b> Capaian LP tersebut memakai angka plan dari laporan lama (jika ada) atau belum bisa dihitung. <button class="btn-s" onclick="switchView('plan')">Buka menu Plan</button>`;
+ const pn=$("planNote"),miss=LPS.filter(l=>!planOf(l.id)).length,waiting=S.pa==="both"?LPS.filter(l=>planOf(l.id)&&!latest(l.id,S.month)).length:0;   // sudah punya Plan, belum ada laporan Actual final
+ pn.classList.toggle("hide",DEMO||(!miss&&!waiting)||S.view==="input"||S.view==="plan");
+ pn.innerHTML=(miss?`<b>${miss} dari ${LPS.length} LP belum memiliki Plan ${S.year}.</b> Capaian LP tersebut memakai angka plan dari laporan lama (jika ada) atau belum bisa dihitung. <button class="btn-s" onclick="switchView('plan')">Buka menu Plan</button>`:"")+(waiting?`${miss?"<br>":""}<b>${waiting} LP sudah punya Plan ${S.year} tetapi belum ada laporan Actual final.</b> Capaian baru dihitung setelah laporan bulanannya masuk. <button class="btn-s" onclick="S.pa='plan';renderAll()">Lihat Plan saja</button>`:"");
 }
 function renderAll(){
  if(!SESSION)return;rebuildBX();renderFilters();
@@ -1181,19 +1241,19 @@ function renderAll(){
  else if(S.view==="summary")$("view-summary").innerHTML=viewSummary();
  else if(S.view==="asset"){$("view-asset").innerHTML=viewAsset();renderAssetBody()}
  else if(S.view==="input")$("view-input").innerHTML=viewInput();
- else if(S.view==="plan")$("view-plan").innerHTML=viewPlan();
+ else if(S.view==="plan"){$("view-plan").innerHTML=viewPlan();renderPlanGrid()}
 }
 function renderDashboard(){
  const lps=lpList(),ms=lps.map(l=>metrics(l)),T=agg(ms),per=MONTHS[S.month-1],P=S.pa;
  const kInc=cmp()?`<div class="kpi" onclick="showInfo('tot')"><span>Capaian income (YTD) <i class="i">ⓘ</i></span><b>${fp(T.achv)}</b>${vbar(T.achv)}<em>${rp(T.actual)} dari plan ${rp(T.plan)}</em></div>`
-  :`<div class="kpi" onclick="showInfo('tot')"><span>Income ${P==="plan"?"Plan":"Actual"} (YTD) <i class="i">ⓘ</i></span><b>${rp(P==="plan"?T.plan:T.actual)}</b><em>Mandiri ${rp(P==="plan"?T.mPlan:T.mAct)} · Mandatory ${rp(P==="plan"?T.dPlan:T.dAct)}</em></div>`;
+  :`<div class="kpi" onclick="showInfo('tot')"><span>Income ${P==="plan"?"Plan":"Actual"} (YTD) <i class="i">ⓘ</i></span><b>${rp(P==="plan"?T.plan:T.actual)}</b><em>Kumulatif s.d. ${per} ${S.year}</em></div>`;
  const kSis=cmp()?`<div class="kpi" onclick="showInfo('sis')"><span>Siswa reguler <i class="i">ⓘ</i></span><b>${nf(T.siswa)}<small> / ${nf(T.sPlan)}</small></b>${vbar(pc(T.siswa,T.sPlan),"#3f6fb5")}<em>${fp(pc(T.siswa,T.sPlan))} dari plan · ${T.ojt} lokasi OJT</em></div>`
   :`<div class="kpi" onclick="showInfo('sis')"><span>Siswa reguler ${P==="plan"?"(Plan)":"(Actual)"} <i class="i">ⓘ</i></span><b>${nf(P==="plan"?T.sPlan:T.siswa)}</b><em>${P==="plan"?"Plan siswa seluruh batch reguler":T.ojt+" lokasi OJT"}</em></div>`;
  const kCus=cmp()?`<div class="kpi" onclick="showInfo('cust')"><span>New customer / project <i class="i">ⓘ</i></span><b>${T.cust}</b>${vbar(pc(T.fU,T.fP),"#7b61c9")}<em>${T.cP?"Target customer "+T.cP+" · ":""}Fasus NT UTS terpakai ${T.fU} / ${T.fP} (${fp(pc(T.fU,T.fP))})</em></div>`
   :P==="plan"?`<div class="kpi" onclick="showInfo('cust')"><span>Fasus NT UTS (Plan) <i class="i">ⓘ</i></span><b>${T.fP}</b><em>Fasus direncanakan</em></div>`
   :`<div class="kpi" onclick="showInfo('cust')"><span>New customer / project <i class="i">ⓘ</i></span><b>${T.cust}</b><em>Fasus NT UTS terpakai ${T.fU}</em></div>`;
  $("kpis").innerHTML=kInc+kSis+kCus;
- $("g1").innerHTML=incGauge(T.plan,T.actual);$("g2").innerHTML=incGauge(T.mPlan,T.mAct);$("g3").innerHTML=incGauge(T.dPlan,T.dAct);
+ $("g1").innerHTML=incGauge(T.plan,T.actual);renderIncTiles(T);
  renderMap(ms);renderAttn(ms);renderRank(ms);renderTrend(lps);renderPillars(ms,T);renderHeat();renderLPTable();
 }
 var lokLg=null;
@@ -1201,6 +1261,10 @@ function mapLegend(){
  if(cmp())return'<i style="background:#2f8f5b"></i>Capaian ≥ 85%<br><i style="background:#e8a317"></i>70–84%<br><i style="background:#d64545"></i>&lt; 70%<br><i style="background:#cbd0d6"></i>Belum ada laporan<br><span style="font-weight:600;color:#555">Ukuran = actual income</span>';
  const n=S.pa==="plan"?"Plan":"Actual";
  return`<i style="background:${pkCol(null)}"></i>${n} income (YTD)<br><i style="background:#cbd0d6"></i>Belum ada laporan<br><span style="font-weight:600;color:#555">Ukuran = ${n.toLowerCase()} income</span>`;
+}
+function renderIncTiles(T){
+ const tl=(v,l,c)=>`<div class="st" style="--c:${c}"><b>${v}</b><span>${l}</span></div>`;
+ $("incTiles").innerHTML=(showP()?tl(rp(T.plan),"Plan YTD","#3f6fb5"):"")+(showA()?tl(rp(T.actual),"Actual YTD","#2f8f5b"):"")+(cmp()?tl(fp(T.achv),"Capaian","#f5a800")+tl(rp(T.plan-T.actual),"Gap","#d64545"):"");
 }
 function renderMap(ms){
  const box=$("lokMap");
@@ -1249,10 +1313,10 @@ function renderRank(ms){
 }
 function renderTrend(lps){
  const labels=[],plan=[],act=[];
- const lastM=Math.max(0,...lps.map(l=>(latest(l.id,12)||{}).month||0));
+ const lastM=S.pa==="plan"?S.month:Math.max(0,...lps.map(l=>(latest(l.id,12)||{}).month||0));
  for(let m=1;m<=S.month;m++){labels.push(MON[m-1]);if(m>lastM){plan.push(0);act.push(0);continue}const ms=lps.map(l=>metrics(l,m)).filter(x=>x.rep);plan.push(sum(ms,x=>x.plan));act.push(sum(ms,x=>x.actual))}
  const series=[];if(showP())series.push({name:"Plan (YTD)",color:"#9aa1a9",vals:plan,dash:1,w:2.5});if(showA())series.push({name:"Actual (YTD)",color:"#111",vals:act});
- $("trendNote").textContent=(cmp()?"Plan vs actual":PA_LABEL[S.pa])+" · Mandiri + Mandatory";
+ $("trendNote").textContent=(cmp()?"Plan vs actual":PA_LABEL[S.pa])+" · Income";
  $("trend").innerHTML=lineChart(labels,series);
 }
 function pillarsHTML(ms,T){
@@ -1266,12 +1330,11 @@ function pillarsHTML(ms,T){
  const csr=P==="plan"?onlyA:`<div class="sgrid s3">${tl(T.csrP,"Program","#2f8f5b")}${tl(T.csrS,"Sekolah / PT","#3f6fb5")}${tl(nf(T.csrQ),"Peserta","#f5a800")}</div>`;
  const rgw=(p,l,pl,ac)=>`<div class="rgw"><div class="rg" style="--p:${cl(p)};--c:${band(p)}"><b>${fp(p)}</b></div><strong>${l}</strong><span>Plan ${rp(pl)}<br>Actual ${rp(ac)}</span></div>`;
  const kv=(l,v)=>`<div class="kv"><span>${l}</span><b>${v}</b></div>`;
- const inc=cmp()?`<div class="rgs">${rgw(pc(T.mAct,T.mPlan),"Mandiri",T.mPlan,T.mAct)}${rgw(pc(T.dAct,T.dPlan),"Mandatory",T.dPlan,T.dAct)}</div>`:kv("Mandiri",rp(P==="plan"?T.mPlan:T.mAct))+kv("Mandatory",rp(P==="plan"?T.dPlan:T.dAct));
  const kHead=cmp()?"Achievement":P==="plan"?"Plan":"Actual",bigv=cmp()?`${rp(T.actual)} <small>(${fp(T.achv)})</small>`:rp(P==="plan"?T.plan:T.actual);
  const fo=pc(T.fU,T.fP),fasus=cmp()?`${vbar(fo,"#f5a800")}<div class="sgrid s3" style="margin-top:10px">${tl(T.fU,"Terpakai","#2f8f5b")}${tl(T.fP,"Direncanakan","#3f6fb5")}${tl(fp(fo),"Optimalisasi","#f5a800")}</div>`:`<div class="sgrid s3">${P==="plan"?tl(T.fP,"Direncanakan","#3f6fb5"):tl(T.fU,"Terpakai","#2f8f5b")}</div>`;
  return`<div class="card"><div class="ph">KESISWAAN</div>${kes}</div>
  <div class="card"><div class="ph">AKADEMIK</div>${aka}<div class="sh">Program CSR</div>${csr}</div>
- <div class="card"><div class="ph">KIPL</div><div class="sh" style="margin-top:6px">${kHead} as of ${MONTHS[S.month-1]}</div><div class="bigv">${bigv}</div>${inc}
+ <div class="card"><div class="ph">KIPL</div><div class="sh" style="margin-top:6px">${kHead} as of ${MONTHS[S.month-1]}</div><div class="bigv">${bigv}</div>
   ${showA()?`<div class="sh">New Project / New Customer</div><div class="sgrid s3">${tl(T.cust,"Total (Big 5)","#2f8f5b")}</div>`:""}
   <div class="sh">Optimalisasi Fasus NT UTS</div>${fasus}</div>`;
 }
@@ -1389,8 +1452,8 @@ function parseTemplateRows(rows,fileName){
  const csr={program:N("csr.program","CSR program"),sekolah:N("csr.sekolah","CSR sekolah/PT"),peserta:N("csr.peserta","CSR peserta")};
  // KIPL
  const inc={};
- for(const k of ["mandiri.plan","mandatory.plan"])inc[k]=has(k)?N(k,k.replace("."," ")):0;   // template lama masih boleh memuat plan; template baru tidak
- for(const k of ["mandiri.actual","mandatory.actual"]){if(!has(k)){R.errors.push(k.replace("."," ")+" wajib diisi (isi 0 jika tidak ada).");inc[k]=0}else inc[k]=N(k,k.replace("."," "))}
+ const sumKeys=(ks,l)=>{let t=0,any=false;ks.forEach(k=>{if(has(k)){any=true;t+=N(k,l)}});return{t,any}};   // template lama masih memuat Mandiri: dilipat ke Income
+ const ip=sumKeys(["mandiri.plan","mandatory.plan"],"Income plan"),ia=sumKeys(["mandiri.actual","mandatory.actual"],"Income actual");if(!ia.any)R.errors.push("Income actual wajib diisi (isi 0 jika tidak ada).");inc.plan=ip.t;inc.actual=ia.t;
  const customers=[];
  for(let n=1;n<=5;n++){if(!has("cust"+n+".nama"))continue;const t=T("cust"+n+".tipe").toLowerCase();
   if(t&&t!=="new customer"&&t!=="new project")R.warnings.push("Customer "+n+": jenis \""+T("cust"+n+".tipe")+"\" tidak dikenal, dianggap New Customer.");
@@ -1405,7 +1468,7 @@ function parseTemplateRows(rows,fileName){
  if(!R.errors.length){
   R.report={lp:lp.id,year,month,status:"submitted",pic:T("info.pic"),
    kesiswaan:{batches:rek,bintalsik:bin},akademik:{batches:reg,csr},
-   kipl:{mandiri:{plan:inc["mandiri.plan"]||0,actual:inc["mandiri.actual"]},mandatory:{plan:inc["mandatory.plan"]||0,actual:inc["mandatory.actual"]},customers,fasusPlan,fasusUsed},assets};
+   kipl:{mandiri:{plan:0,actual:0},mandatory:{plan:inc.plan||0,actual:inc.actual||0},customers,fasusPlan,fasusUsed},assets};
   R.overwrite=!!(YR[year]&&YR[year][lp.id+"|"+month]);
  }
  return R;
@@ -1427,7 +1490,7 @@ async function importUploads(){
  const use=UP.files.filter(f=>f.report&&!f.dup);
  if(!use.length){toast("Tidak ada laporan valid untuk diimpor.","err");return}
  if(!confirm("Impor "+use.length+" laporan sebagai "+(UP.status==="draft"?"DRAFT":"FINAL")+"?"+(use.some(f=>f.overwrite)?"\nSebagian akan menimpa laporan yang sudah ada.":"")))return;
- const reports=use.map(f=>({...f.report,status:UP.status}));
+ const reports=use.map(f=>{const r={...f.report,status:UP.status};if(!(r.assets&&r.assets.length)){const o=(YR[r.year]||{})[r.lp+"|"+r.month];if(o&&o.assets&&o.assets.length)r.assets=o.assets.map(a=>({...a}))}return r});
  UP.busy=true;renderAll();
  try{
   if(CONFIG.API_URL){
@@ -1463,7 +1526,7 @@ function lpBody(id){
  if(!r)body='<div class="empty">Belum ada laporan yang masuk untuk learning point ini.</div>';
  else{
   const k=r.kipl,kb=r.kesiswaan,bs=kb.bintalsik,ser=[];
-  const lm=(latest(id,12)||{}).month||0,vals=f=>Array.from({length:S.month},(_,i)=>{const x=latest(id,i+1);return x&&i+1<=lm?f(x):0});
+  const lm=r.virtual?S.month:(latest(id,12)||{}).month||0,vals=f=>Array.from({length:S.month},(_,i)=>{const x=latest(id,i+1)||(r.virtual?{...r,month:i+1}:null);return x&&i+1<=lm?f(x):0});
   if(showP())ser.push({name:"Plan (YTD)",color:"#9aa1a9",dash:1,w:2.5,vals:vals(x=>pInc(id,x))});
   if(showA())ser.push({name:"Actual (YTD)",color:"#111",vals:vals(x=>x.kipl.mandiri.actual+x.kipl.mandatory.actual)});
   const tr=lineChart(MON.slice(0,S.month),ser);
@@ -1481,11 +1544,11 @@ function lpBody(id){
   ${r.akademik.batches.map(b=>`<div class="sbox"><h4>${esc(b.name)}</h4><div class="mini">${showA()?chip(b.kelas,"Kelas","#f5a800"):""}${sisChip(b)}${showA()?chip(b.ojt,"Lokasi OJT","#7b61c9"):""}</div></div>`).join("")}
   <div class="sbox"><h4>Program CSR</h4>${P==="plan"?onlyA:`<div class="mini">${chip(r.akademik.csr.program,"Program","#2f8f5b")}${chip(r.akademik.csr.sekolah,"Sekolah / PT","#3f6fb5")}${chip(r.akademik.csr.peserta,"Peserta","#f5a800")}</div>`}</div>
   <div class="sectt">KIPL</div>
-  <div class="sbox"><h4>${incHead}</h4><div class="split">${inc("Mandiri",m.mand)}${inc("Mandatory",m.mandt)}</div><div style="margin-top:10px">${tr}</div></div>
+  <div class="sbox"><h4>${incHead}</h4>${inc("Income",m.mandt)}<div style="margin-top:10px">${tr}</div></div>
   ${showA()?`<div class="sbox"><h4>New Project / New Customer (Big 5)</h4>${k.customers.length?`<table class="t"><tbody>${k.customers.map((c,i)=>`<tr><td>${i+1}</td><td>${esc(c.name)}</td><td><span class="pill ${c.type==="New Customer"?"g":"a"}">${c.type}</span></td></tr>`).join("")}</tbody></table>`:'<div class="empty">Belum ada.</div>'}</div>`:""}
   <div class="sbox"><h4>Optimalisasi Fasus NT UTS</h4>${fas}</div>
   <div class="sectt">DAFTAR LAPORAN ASET</div>
-  <div class="sbox">${P==="plan"?onlyA:`<table class="t"><tbody>${r.assets.map((a,i)=>`<tr><td>${i+1}</td><td>${esc(a.name)}</td><td><span class="pill ${a.cond==="Baik"?"g":"r"}">${a.cond}</span></td></tr>`).join("")}</tbody></table>`}</div>`;
+  <div class="sbox">${P==="plan"?onlyA:`<table class="t"><tbody>${m.ast.map((a,i)=>`<tr><td>${i+1}</td><td>${esc(a.name)}</td><td><span class="pill ${a.cond==="Baik"?"g":"r"}">${a.cond}</span></td></tr>`).join("")}</tbody></table>`}</div>`;
  }
  return{lp,m,r,body};
 }
@@ -1493,26 +1556,48 @@ function lpBody(id){
 /* ============ PLAN (menu khusus: template → PIC → unggah → Plan vs Actual) ============ */
 const ymS=v=>{const m=String(v||"").match(/(\d{4})-(\d{1,2})/);return m?MON[+m[2]-1]+" "+m[1]:"?"};
 const planPeriod=b=>b.start?ymS(b.start)+" – "+(b.end?ymS(b.end):"berjalan"):"—";
+let PQ={q:"",f:"all"};
+function planCard(l,p,adm){
+ if(!p)return`<article class="pc empty"><div class="pc-h"><div><h4>${esc(l.name)}</h4><small>${esc(l.region)}</small></div><span class="pill r">Belum ada</span></div><div class="pc-none">Plan ${S.year} belum disusun.</div>${adm?`<button class="bt" type="button" onclick="openManualPlan('${l.id}')">+ Isi plan</button>`:""}</article>`;
+ const siswa=sum(p.batches,b=>b.siswa),inc=(p.mandatory||0)+(p.mandiri||0),dt=String(p.updatedAt||"").slice(0,10);
+ return`<article class="pc"><div class="pc-h"><div><h4 onclick="openPlan('${l.id}')">${esc(l.name)}</h4><small>${esc(l.region)}</small></div><span class="pill g">Ada</span></div>
+  <div class="pc-inc"><small>Target income / tahun</small><b>${rp(inc)}</b></div>
+  <div class="pc-st"><div><b>${nf(siswa)}</b><small>Plan siswa</small></div><div><b>${p.batches.length}</b><small>Batch</small></div><div><b>${nf(p.fasus)}</b><small>Fasus</small></div><div><b>${nf(p.cust)}</b><small>Customer</small></div></div>
+  <div class="pc-f"><span>${esc(p.pic||"—")}${dt?" · "+esc(dt):""}</span><span class="pc-a"><button class="btn-s" type="button" onclick="openPlan('${l.id}')">Detail</button>${adm?`<button class="btn-s" type="button" onclick="openManualPlan('${l.id}')">Edit</button><button class="btn-s d" type="button" onclick="deletePlan('${l.id}')">Hapus</button>`:""}</span></div></article>`;
+}
+function renderPlanGrid(){
+ const el=$("planGrid");if(!el)return;
+ const adm=isAdmin(),P=PL[S.year]||{},q=PQ.q.trim().toLowerCase();
+ document.querySelectorAll("#plSeg button").forEach(x=>x.classList.toggle("on",x.dataset.v===PQ.f));
+ const rows=LPS.filter(l=>(!q||(l.name+" "+l.region).toLowerCase().includes(q))&&(PQ.f==="all"||(PQ.f==="ada"?!!P[l.id]:!P[l.id])));
+ el.innerHTML=rows.length?rows.map(l=>planCard(l,P[l.id],adm)).join(""):`<div class="ast-empty"><b>Tidak ada LP yang cocok</b>Ubah kata kunci atau filter.</div>`;
+}
 function viewPlan(){
  const adm=isAdmin(),P=PL[S.year]||{},list=LPS.map(l=>P[l.id]).filter(Boolean),okN=PU.files.filter(f=>f.plan&&!f.dup).length,errN=PU.files.filter(f=>!f.plan).length;
  const pill=f=>!f.plan?'<span class="pill r">Ditolak</span>':f.dup?'<span class="pill n">Diganti file lain</span>':f.warnings.length?'<span class="pill a">Siap · '+f.warnings.length+' peringatan</span>':'<span class="pill g">Siap</span>';
  const notes=f=>(f.errors.length?`<ul class="msgs e">${f.errors.map(x=>`<li>${esc(x)}</li>`).join("")}</ul>`:"")+(f.warnings.length?`<ul class="msgs w">${f.warnings.map(x=>`<li>${esc(x)}</li>`).join("")}</ul>`:"")+(f.dup?'<ul class="msgs w"><li>LP + tahun yang sama muncul di file yang lebih baru; file ini dilewati.</li></ul>':"")+(f.overwrite&&f.plan&&!f.dup?'<ul class="msgs w"><li>Akan menimpa plan yang sudah ada untuk LP + tahun ini.</li></ul>':"");
- const rows=LPS.map(l=>{const p=P[l.id];return p?`<tr class="cl" onclick="openPlan('${l.id}')"><td><b>${esc(l.name)}</b></td><td><span class="pill g">Ada</span></td><td>${esc(p.pic||"—")}</td><td>${rp(p.mandiri+p.mandatory)}</td><td>${p.batches.length}</td><td>${nf(sum(p.batches,b=>b.siswa))}</td><td>${p.fasus}</td><td>${p.cust}</td><td class="tcell">${esc(String(p.updatedAt||"").slice(0,16).replace("T"," ")||"—")}</td><td>${adm?`<button class="btn-s" onclick="event.stopPropagation();openManualPlan('${l.id}')">Edit</button><button class="btn-s d" onclick="event.stopPropagation();deletePlan('${l.id}')">Hapus</button>`:"—"}</td></tr>`:`<tr><td><b>${esc(l.name)}</b></td><td><span class="pill r">Belum ada</span></td><td colspan="${adm?7:8}">—</td>${adm?`<td><button class="btn-s" onclick="openManualPlan('${l.id}')">Isi</button></td>`:""}</tr>`}).join("");
- const up=adm?`<div class="card" style="margin-bottom:10px"><div class="hd">Cara menyusun Plan<small>pilih salah satu</small></div><div class="how">
-  <div class="how-i"><b>✎ Tulis langsung di aplikasi</b><span>Isi target income, batch, customer, dan Fasus lewat formulir untuk satu LP. Bisa juga mengedit plan yang sudah ada.</span><button class="bt" type="button" onclick="openManualPlan()">Buka formulir Plan</button></div>
-  <div class="how-i"><b>⬇ Pakai template Excel</b><span>Unduh template Plan, isi per LP, lalu unggah di Langkah 2 di bawah. Cocok untuk banyak LP sekaligus.</span><button class="bt w" type="button" onclick="downloadTemplate('plan')">Unduh template</button></div></div></div>
- <div class="steps"><div class="card"><div class="hd">Langkah 1 · Template Plan</div><div class="desc" style="margin-bottom:10px">Plan hanya disusun oleh HO. Satu file = satu LP untuk satu tahun. Isi target income, batch (periode, kelas, jumlah siswa), customer, dan Fasus.</div><button class="bt" type="button" onclick="downloadTemplate('plan')">⬇ Unduh Template_Plan_LP.xlsx</button></div>
-  <div class="card"><div class="hd">Langkah 2 · Unggah Plan yang sudah diisi HO</div>
-  <div class="drop" onclick="$('plFile').click()" ondragover="event.preventDefault();this.classList.add('over')" ondragleave="this.classList.remove('over')" ondrop="event.preventDefault();this.classList.remove('over');handlePlanFiles(event.dataTransfer.files)">⬆ Klik atau seret file Plan (.xlsx, boleh banyak)<small>Dicek dulu sebelum disimpan</small></div>
-  <input type="file" id="plFile" class="hide" multiple accept=".xlsx,.xls" onchange="handlePlanFiles(this.files);this.value=''">${PU.msg?`<div class="desc" style="margin-top:8px;font-weight:700">${esc(PU.msg)}</div>`:""}</div></div>
-  ${PU.files.length?`<div class="card" style="margin-bottom:10px"><div class="hd">Hasil pemeriksaan<small>${DEMO?"MODE DEMO: tidak disimpan ke spreadsheet":"disimpan ke Google Spreadsheet"}</small></div><div class="chips" style="margin-bottom:8px">${chip(okN,"siap disimpan","#2f8f5b")}${chip(errN,"ditolak","#d64545")}${chip(PU.files.length,"file dibaca","#3f6fb5")}</div>
+ const pct=LPS.length?list.length/LPS.length*100:0,inc=sum(list,p=>(p.mandatory||0)+(p.mandiri||0));
+ const up=adm?`<details class="pl-up" ${PU.files.length||PU.msg?"open":""}><summary><span>⬆ Unggah banyak Plan dari Excel</span><small>untuk mengisi banyak LP sekaligus</small></summary>
+  <div class="pl-upb"><div class="desc">Satu file = satu LP untuk satu tahun. Unduh template, isi target income, batch, customer dan Fasus, lalu unggah. File dicek dulu sebelum disimpan.</div>
+  <div class="pl-uprow"><button class="bt w" type="button" onclick="downloadTemplate('plan')">⬇ Unduh Template_Plan_LP.xlsx</button></div>
+  <div class="drop" onclick="$('plFile').click()" ondragover="event.preventDefault();this.classList.add('over')" ondragleave="this.classList.remove('over')" ondrop="event.preventDefault();this.classList.remove('over');handlePlanFiles(event.dataTransfer.files)">Klik atau seret file Plan (.xlsx, boleh banyak)<small>Dicek dulu sebelum disimpan</small></div>
+  <input type="file" id="plFile" class="hide" multiple accept=".xlsx,.xls" onchange="handlePlanFiles(this.files);this.value=''">${PU.msg?`<div class="desc" style="margin-top:8px;font-weight:700">${esc(PU.msg)}</div>`:""}
+  ${PU.files.length?`<div style="margin-top:12px"><div class="chips" style="margin-bottom:8px">${chip(okN,"siap disimpan","#2f8f5b")}${chip(errN,"ditolak","#d64545")}${chip(PU.files.length,"file dibaca","#3f6fb5")}</div>
   ${tbl(["File","Plan","Hasil","Catatan"],PU.files.map((f,i)=>`<tr><td>${esc(f.fileName)}</td><td><b>${esc(f.label)}</b></td><td>${pill(f)}</td><td>${notes(f)||"—"}<button class="btn-s" style="margin-top:4px" onclick="removePlanUpload(${i})">Buang</button></td></tr>`))}
-  <div style="margin-top:10px;display:flex;gap:8px"><button class="bt" ${PU.busy||!okN?"disabled":""} onclick="importPlans()">${PU.busy?"Menyimpan…":"✔ Simpan "+okN+" plan"}</button><button class="bt w" onclick="PU.files=[];PU.msg='';renderAll()">Kosongkan daftar</button></div></div>`:""}`:"";
- return`<div class="card" style="margin-bottom:10px"><div class="hd">Alur Plan → Actual</div><div class="chips">${chip("1","HO menetapkan plan tahunan (benchmark)","#f5a800")}${chip("2","HO mengisi Template Plan per LP","#3f6fb5")}${chip("3","HO mengunggah di menu ini","#2f8f5b")}${chip("4","PIC tiap LP mengirim laporan bulanan = Actual","#7b61c9")}${chip("5","Dashboard menghitung Plan vs Actual otomatis","#d64545")}</div></div>
+  <div style="margin-top:10px;display:flex;gap:8px"><button class="bt" ${PU.busy||!okN?"disabled":""} onclick="importPlans()">${PU.busy?"Menyimpan…":"✔ Simpan "+okN+" plan"}</button><button class="bt w" onclick="PU.files=[];PU.msg='';renderAll()">Kosongkan daftar</button></div></div>`:""}</div></details>`:"";
+ return`<div class="pl-head"><h2>Plan ${S.year}</h2>
+   <select class="fs" onchange="switchYear(+this.value)">${yearList().map(y=>`<option value="${y}" ${S.year===y?"selected":""}>${y}</option>`).join("")}</select>
+   ${adm?`<div class="pl-act"><button class="bt" type="button" onclick="openManualPlan()">+ Isi / ubah plan</button></div>`:""}
+   <p>Plan adalah target tahunan (benchmark) per Learning Point. Dashboard membandingkannya dengan laporan bulanan tiap LP (Actual).</p></div>
+ <div class="pl-sum">
+  <div class="pl-t ring"><div class="rg" style="--p:${pct};--c:${pct>=100?"#2f8f5b":"#f5a800"}"><b>${Math.round(pct)}%</b></div><div><small>LP sudah punya plan</small><b>${list.length} <span>dari ${LPS.length}</span></b></div></div>
+  <div class="pl-t hl"><small>Total target income / tahun</small><b>${rp(inc)}</b></div>
+  <div class="pl-t"><small>Total plan siswa</small><b>${nf(sum(list,p=>sum(p.batches,b=>b.siswa)))}</b></div>
+  <div class="pl-t"><small>Fasus · Customer baru</small><b>${nf(sum(list,p=>p.fasus))} <span>·</span> ${nf(sum(list,p=>p.cust))}</b></div></div>
  ${up}
- <div class="card"><div class="hd">Plan ${S.year} per Learning Point<span class="fl"><select class="fs" style="min-width:90px" onchange="switchYear(+this.value)">${yearList().map(y=>`<option value="${y}" ${S.year===y?"selected":""}>${y}</option>`).join("")}</select></span></div>
- <div class="chips" style="margin-bottom:8px">${chip(list.length+" / "+LPS.length,"LP sudah punya plan","#2f8f5b")}${chip(rp(sum(list,p=>p.mandiri+p.mandatory)),"Total income plan","#3f6fb5")}${chip(nf(sum(list,p=>sum(p.batches,b=>b.siswa))),"Total plan siswa","#f5a800")}</div>
- ${tbl(["Learning Point","Status","Disusun oleh","Income plan / tahun","Batch","Plan siswa","Fasus","Customer","Diubah","Aksi"],[rows])}</div>`;
+ <div class="pl-bar"><input class="fs" placeholder="Cari Learning Point atau wilayah…" value="${esc(PQ.q)}" oninput="PQ.q=this.value;renderPlanGrid()">
+  <div class="seg" id="plSeg">${[["all","Semua"],["ada","Sudah ada plan"],["belum","Belum ada plan"]].map(([v,l])=>`<button data-v="${v}" onclick="PQ.f='${v}';renderPlanGrid()">${l}</button>`).join("")}</div></div>
+ <div id="planGrid" class="pl-grid"></div>`;
 }
 function parsePlanRows(rows,fileName){
  const R={fileName,errors:[],warnings:[],plan:null,label:fileName},norm=c=>String(c??"").trim().toLowerCase();
@@ -1537,12 +1622,12 @@ function parsePlanRows(rows,fileName){
   else{if(!st)R.warnings.push("Batch "+n+" ("+nm+"): periode mulai kosong.");if(st&&en&&en<st)R.errors.push("Batch "+n+" ("+nm+"): periode selesai sebelum periode mulai.");
    if(year&&st&&(st>year+"-12"||(en&&en<year+"-01")))R.warnings.push("Batch "+n+" ("+nm+"): periode tidak beririsan dengan tahun plan "+year+".")}
   batches.push({name:nm||"Batch",start:st&&st!=="bad"?st:"",end:en&&en!=="bad"?en:"",kelas:N(p+"kelas","Batch "+n+" kelas"),siswa:N(p+"siswa","Batch "+n+" plan siswa"),seleksi:N(p+"seleksi","Batch "+n+" plan seleksi"),mcu:N(p+"mcu","Batch "+n+" plan MCU")})}
- const inc={};for(const k of["mandiri","mandatory"]){if(!has("inc."+k)){R.errors.push("Plan tahunan "+k+" wajib diisi (isi 0 jika tidak ada).");inc[k]=0}else inc[k]=N("inc."+k,"Plan tahunan "+k)}
- const mon=k=>{const ks=Array.from({length:12},(_,i)=>k+".m"+String(i+1).padStart(2,"0"));if(!ks.some(has))return null;const a=ks.map(x=>N(x,"Target bulanan "+x)),t=a.reduce((p,c)=>p+c,0);
-  if(inc[k]>0&&Math.abs(t-inc[k])>inc[k]*.01)R.warnings.push("Target bulanan "+k+" berjumlah "+rp(t)+", berbeda dengan target tahunan "+rp(inc[k])+". Dashboard memakai target bulanan.");return a};
- const mM=mon("mandiri"),mD=mon("mandatory"),cust=N("cust.target","Target customer"),fasus=N("fasus.plan","Plan Fasus");
+ let incAny=false,incTot=0;for(const k of["mandiri","mandatory"])if(has("inc."+k)){incAny=true;incTot+=N("inc."+k,"Plan tahunan income")}if(!incAny)R.errors.push("Plan tahunan income wajib diisi (isi 0 jika tidak ada).");
+ const mon=k=>{const ks=Array.from({length:12},(_,i)=>k+".m"+String(i+1).padStart(2,"0"));if(!ks.some(has))return null;return ks.map(x=>N(x,"Target bulanan "+x))};
+  /* peringatan selisih bulanan vs tahunan dihitung di bawah */
+ const mA=mon("mandiri"),mB=mon("mandatory"),mT=(mA||mB)?Array.from({length:12},(_,i)=>(mA?mA[i]:0)+(mB?mB[i]:0)):null,cust=N("cust.target","Target customer"),fasus=N("fasus.plan","Plan Fasus");if(mT){const t=mT.reduce((p,c)=>p+c,0);if(incTot>0&&Math.abs(t-incTot)>incTot*.01)R.warnings.push("Target bulanan berjumlah "+rp(t)+", berbeda dengan target tahunan "+rp(incTot)+". Dashboard memakai target bulanan.")}
  if(!batches.length)R.warnings.push("Tidak ada batch pada plan ini.");
- if(!R.errors.length){R.plan={lp:lp.id,year,pic:T("info.pic"),mandiri:inc.mandiri,mandatory:inc.mandatory,m_mandiri:mM,m_mandatory:mD,cust,fasus,batches};R.overwrite=!!(PL[year]&&PL[year][lp.id])}
+ if(!R.errors.length){R.plan={lp:lp.id,year,pic:T("info.pic"),mandiri:0,mandatory:incTot,m_mandiri:null,m_mandatory:mT,cust,fasus,batches};R.overwrite=!!(PL[year]&&PL[year][lp.id])}
  return R;
 }
 async function handlePlanFiles(list){
@@ -1576,10 +1661,10 @@ async function deletePlan(id){
 }
 function openPlan(id){
  const lp=LPS.find(l=>l.id===id),p=planOf(id);if(!p)return;
- const lm=(latest(id,12)||{}).month||0,custom=(p.m_mandiri&&p.m_mandiri.some(v=>v>0))||(p.m_mandatory&&p.m_mandatory.some(v=>v>0));
+ const lm=(latest(id,12)||{}).month||0,custom=p.m_mandatory&&p.m_mandatory.some(v=>v>0);
  const mrows=Array.from({length:12},(_,i)=>{const m=i+1,pt=planYTD(p,"mandiri",m)+planYTD(p,"mandatory",m),r=m<=lm?latest(id,m):null,ac=r?r.kipl.mandiri.actual+r.kipl.mandatory.actual:null,pp=ac==null?null:pc(ac,pt);
   return`<tr><td>${MONTHS[i]}</td><td>${rp(pt)}</td><td>${ac==null?"—":rp(ac)}</td><td style="background:${heatBg(pp)}"><b>${ac==null?"—":fp(pp)}</b></td></tr>`});
- openModal("Plan "+S.year+" · "+lp.name,`<div class="chips">${chip(p.pic||"—","Disusun oleh","#999")}${chip(rp(p.mandiri),"Mandiri / tahun","#3f6fb5")}${chip(rp(p.mandatory),"Mandatory / tahun","#3f6fb5")}${chip(p.fasus,"Fasus","#7b61c9")}${chip(p.cust,"Target customer","#f5a800")}</div>
+ openModal("Plan "+S.year+" · "+lp.name,`<div class="chips">${chip(p.pic||"—","Disusun oleh","#999")}${chip(rp(p.mandatory),"Income / tahun","#3f6fb5")}${chip(p.fasus,"Fasus","#7b61c9")}${chip(p.cust,"Target customer","#f5a800")}</div>
  <div class="sectt">BATCH & PERIODE PELATIHAN</div>${tbl(["Batch","Periode","Kelas","Plan siswa","Plan seleksi","Plan lolos MCU"],p.batches.map(b=>`<tr><td><b>${esc(b.name)}</b></td><td>${planPeriod(b)}</td><td>${b.kelas}</td><td>${b.siswa}</td><td>${b.seleksi}</td><td>${b.mcu}</td></tr>`),"Belum ada batch pada plan ini.")}
  <div class="sectt">TARGET INCOME KUMULATIF (YTD) VS ACTUAL</div><div class="desc">${custom?"Memakai target bulanan dari template.":"Target tahunan dibagi rata 12 bulan."} Actual diambil dari laporan final terakhir tiap bulan.</div>${tbl(["Bulan","Plan YTD","Actual YTD","Capaian"],mrows)}`,true);
 }
@@ -1590,13 +1675,13 @@ function closeLP(){if(lpMapI){try{lpMapI.remove()}catch(e){}lpMapI=null}const d=
 function planBox(id){
  const pl=planOf(id);
  if(!pl)return`<div class="sbox"><h4>Plan ${S.year}</h4><div class="empty">Belum ada Plan ${S.year} untuk LP ini. HO dapat mengunggahnya di menu Plan.</div></div>`;
- return`<div class="sbox"><h4>Plan ${S.year} (benchmark)</h4><div class="chips" style="margin-bottom:8px">${chip(rp(pl.mandiri),"Mandiri / tahun","#3f6fb5")}${chip(rp(pl.mandatory),"Mandatory / tahun","#3f6fb5")}${chip(nf(sum(pl.batches,b=>b.siswa)),"Plan siswa","#2f8f5b")}${chip(pl.fasus,"Fasus","#7b61c9")}${chip(pl.cust,"Target customer","#f5a800")}</div>${pl.batches.length?tbl(["Batch","Periode","Kelas","Plan siswa"],pl.batches.map(b=>`<tr><td><b>${esc(b.name)}</b></td><td>${planPeriod(b)}</td><td>${b.kelas}</td><td>${b.siswa}</td></tr>`)):""}</div>`;
+ return`<div class="sbox"><h4>Plan ${S.year} (benchmark)</h4><div class="chips" style="margin-bottom:8px">${chip(rp(pl.mandatory),"Income / tahun","#3f6fb5")}${chip(nf(sum(pl.batches,b=>b.siswa)),"Plan siswa","#2f8f5b")}${chip(pl.fasus,"Fasus","#7b61c9")}${chip(pl.cust,"Target customer","#f5a800")}</div>${pl.batches.length?tbl(["Batch","Periode","Kelas","Plan siswa"],pl.batches.map(b=>`<tr><td><b>${esc(b.name)}</b></td><td>${planPeriod(b)}</td><td>${b.kelas}</td><td>${b.siswa}</td></tr>`)):""}</div>`;
 }
 function openLP(id){
  closeModal();closeLP();
  const{lp,m,r,body}=lpBody(id),col=REG_COL[lp.region]||"#64748b",ll=lp.ll,bc=m.achv==null?"#64748b":band(m.achv);
  const tiles=r?`<div class="kt"><div><b>${cmp()?fp(m.achv):rs(pv(m))}</b><small>${cmp()?"Capaian income":PA_LABEL[S.pa]+" income"}</small></div><div><b>${rp(showA()?m.actual:m.plan)}</b><small>Income ${showA()?"actual":"plan"} (YTD)</small></div><div><b>${cmp()?m.siswa+" / "+m.sPlan:S.pa==="plan"?m.sPlan:m.siswa}</b><small>Siswa reguler</small></div><div><b>${m.cust}</b><small>Customer / project baru</small></div></div>`:"";
- $("lpDrawer").innerHTML=`<div class="dov" onclick="closeLP()"></div><aside class="dwr" role="dialog" aria-label="Detail ${esc(lp.name)}"><div class="dwh"><div style="display:flex;justify-content:space-between;gap:10px"><div><span class="bdg" style="background:${col}22;color:${col}">${esc(lp.region)}</span><span class="bdg">${lp.coord?"Koordinator "+esc(lp.coord):"Langsung ke HO"}</span>${stPill(m.status)}<h2>${esc(lp.name)}</h2><small>${lp.id} · ${r?"data laporan "+MONTHS[r.month-1]+" "+S.year+(r.pic?" · PIC "+esc(r.pic):""):"belum ada laporan "+S.year}</small></div><button class="xbtn" style="align-self:flex-start" onclick="closeLP()">Tutup ✕</button></div></div>
+ $("lpDrawer").innerHTML=`<div class="dov" onclick="closeLP()"></div><aside class="dwr" role="dialog" aria-label="Detail ${esc(lp.name)}"><div class="dwh"><div style="display:flex;justify-content:space-between;gap:10px"><div><span class="bdg" style="background:${col}22;color:${col}">${esc(lp.region)}</span><span class="bdg">${lp.coord?"Koordinator "+esc(lp.coord):"Langsung ke HO"}</span>${stPill(m.status)}<h2>${esc(lp.name)}</h2><small>${lp.id} · ${r&&!r.virtual?"data laporan "+MONTHS[r.month-1]+" "+S.year+(r.pic?" · PIC "+esc(r.pic):""):"belum ada laporan "+S.year}</small></div><button class="xbtn" style="align-self:flex-start" onclick="closeLP()">Tutup ✕</button></div></div>
  <div class="dwb"><div class="mcap"><span>📍 Lokasi perkiraan (pusat kota)</span><a href="https://www.google.com/maps/search/?api=1&amp;query=${ll[0]},${ll[1]}" target="_blank" rel="noopener">Buka di Google Maps ↗</a></div><div id="lpMap" class="lmap"></div>${tiles}${planBox(id)}${body}</div></aside>`;
  if(typeof L!=="undefined"){
   const mp=lpMapI=L.map("lpMap",{scrollWheelZoom:false}).setView(ll,9);
@@ -1639,13 +1724,14 @@ function viewAsset(){
  return`<div class="card"><div class="hd">Daftar Aset per Learning Point<small id="astNote"></small></div>
   <div class="ast-bar"><input class="fs" placeholder="Cari LP atau nama aset…" value="${esc(S.aq)}" oninput="S.aq=this.value;renderAssetBody()">
    <div class="seg" id="astSeg">${[["all","Semua"],["Rusak","Rusak"],["Baik","Baik"]].map(([v,l])=>`<button data-v="${v}" onclick="S.ac='${v}';renderAssetBody()">${l}</button>`).join("")}</div>
+   ${isAdmin()?`<select class="fs ast-add" onchange="if(this.value){openAssetEditor(this.value);this.value=''}"><option value="">＋ Isi / kelola aset LP…</option>${LPS.map(l=>`<option value="${l.id}">${esc(l.name)}</option>`).join("")}</select>`:""}
    <button class="bt w" style="margin-left:auto" onclick="exportAssetCSV()">⬇ CSV Aset</button></div>
   <div id="assetBody"></div></div>`;
 }
 function assetGroups(){
  const q=S.aq.trim().toLowerCase(),filtered=!!q||S.ac!=="all";
  return lpList().map(l=>{
-  const r=latest(l.id,S.month),all=r?r.assets:[],lpHit=!q||(l.name+" "+l.region).toLowerCase().includes(q);
+  const r=latestAssetRep(l.id,S.month),all=r?r.assets:[],lpHit=!q||(l.name+" "+l.region).toLowerCase().includes(q);
   const as=all.filter(a=>(S.ac==="all"||a.cond===S.ac)&&(lpHit||a.name.toLowerCase().includes(q)));
   return{lp:l,r,all,as};
  }).filter(g=>!filtered||g.as.length);
@@ -1653,10 +1739,10 @@ function assetGroups(){
 function renderAssetBody(){
  const el=$("assetBody");if(!el)return;
  document.querySelectorAll("#astSeg button").forEach(x=>x.classList.toggle("on",x.dataset.v===S.ac));
- const lr=lpList().map(l=>latest(l.id,S.month)),have=lr.filter(Boolean),tot=sum(have,r=>r.assets.length),bad=sum(have,r=>r.assets.filter(a=>a.cond==="Rusak").length);
- $("astNote").textContent="laporan final terakhir tiap LP s.d. "+MONTHS[S.month-1]+" "+S.year;
+ const lr=lpList().map(l=>latestAssetRep(l.id,S.month)),have=lr.filter(Boolean),tot=sum(have,r=>r.assets.length),bad=sum(have,r=>r.assets.filter(a=>a.cond==="Rusak").length);
+ $("astNote").textContent="data aset terakhir tiap LP s.d. "+MONTHS[S.month-1]+" "+S.year;
  const all=assetGroups(),shown=all.filter(g=>g.r),missing=all.filter(g=>!g.r);
- const lpBad=lpList().filter(l=>{const r=latest(l.id,S.month);return r&&r.assets.some(a=>a.cond==="Rusak")}).length;
+ const lpBad=lpList().filter(l=>{const r=latestAssetRep(l.id,S.month);return r&&r.assets.some(a=>a.cond==="Rusak")}).length;
  const pR=tot?bad/tot*100:0,open=!!S.aq.trim()||S.ac==="Baik";
  const okP=tot?100-pR:0,rc=!tot?"#9aa4ae":okP>=90?"#2f8f5b":okP>=75?"#e8a317":"#d64545";
  const sumHtml=`<div class="ast-sum">
@@ -1680,32 +1766,47 @@ function renderAssetBody(){
  const regHtml=Object.keys(byReg).map(rg=>{
   const gs=byReg[rg].slice().sort((x,y)=>y.all.filter(a=>a.cond==="Rusak").length-x.all.filter(a=>a.cond==="Rusak").length),nb=sum(gs,g=>g.all.filter(a=>a.cond==="Rusak").length);
   return`<section class="ast-col"><div class="ast-reg"><h3>${esc(rg)}</h3><span>${gs.length} LP</span>${nb?`<span class="warn">${nb} aset rusak</span>`:""}</div><div class="ast-grid">${gs.map(card).join("")}</div></section>`}).join("");
- const missHtml=missing.length?`<div class="ast-miss"><b>${missing.length} LP belum ada laporan final</b><p>Aset mereka akan muncul di sini setelah laporan dikirim.</p><div class="tags">${missing.map(g=>`<button onclick="openLP('${g.lp.id}')">${esc(g.lp.name)}</button>`).join("")}</div></div>`:"";
+ const missHtml=missing.length?`<div class="ast-miss"><b>${missing.length} LP belum punya data aset</b><p>${isAdmin()?"Klik nama LP untuk mengisi aset langsung di aplikasi, atau unggah laporan LP.":"Aset akan muncul setelah laporan LP dikirim atau diisi HO."}</p><div class="tags">${missing.map(g=>`<button onclick="${isAdmin()?"openAssetEditor":"openLP"}('${g.lp.id}')">${isAdmin()?"＋ ":""}${esc(g.lp.name)}</button>`).join("")}</div></div>`:"";
  const empty=!shown.length&&!missing.length?`<div class="ast-empty"><b>Tidak ada aset yang cocok</b>Ubah kata kunci atau filter kondisi.</div>`:"";
  el.innerHTML=sumHtml+(regHtml?`<div class="ast-regs">${regHtml}</div>`:"")+missHtml+empty;
 }
 function openAssetEditor(id){
- if(!isAdmin())return;
- const r=latest(id,S.month);
- if(!r){toast("Belum ada laporan final untuk LP ini s.d. periode terpilih. Impor laporan dulu.","err");return}
- AE={lp:id,month:r.month,list:r.assets.map(a=>({...a}))};renderAE();
+ if(!isAdmin()||!id)return;
+ const r=latestAssetRep(id,S.month);
+ AE={lp:id,month:r?r.month:S.month,list:r?r.assets.map(a=>({...a})):[],isNew:!r};renderAE();
 }
 function syncAE(){AE.list.forEach((a,i)=>{const n=$("aeN"+i),c=$("aeC"+i);if(n)a.name=n.value;if(c)a.cond=c.value})}
 function renderAE(){
- const lp=LPS.find(l=>l.id===AE.lp);
- openModal("Kelola aset · "+lp.name,`<div class="desc">Aset di bawah ini milik <b>${esc(lp.name)}</b> dan disimpan pada laporan ${MONTHS[AE.month-1]} ${S.year} LP tersebut. Status laporan tidak berubah.</div>
-  ${AE.list.map((a,i)=>`<div class="fl"><input class="fs" id="aeN${i}" value="${esc(a.name)}" placeholder="Nama aset" style="flex:1;min-width:240px"><select class="fs" id="aeC${i}" style="min-width:90px"><option ${a.cond==="Baik"?"selected":""}>Baik</option><option ${a.cond==="Rusak"?"selected":""}>Rusak</option></select><button class="btn-s d" onclick="aeDel(${i})">Hapus</button></div>`).join("")||'<div class="empty">Belum ada aset.</div>'}
-  <div class="fl"><button class="bt w" onclick="aeAdd()">+ Tambah aset</button><button class="bt" onclick="aeSave()">✔ Simpan</button></div>`);
+ const lp=LPS.find(l=>l.id===AE.lp),mn=MONTHS[AE.month-1]+" "+S.year,ex=(REP[AE.lp+"|"+AE.month]||{}).status;
+ const note=AE.isNew?`Belum ada laporan untuk <b>${esc(lp.name)}</b>. Saat disimpan, aset dicatat pada laporan <b>Draft ${mn}</b> yang hanya berisi aset. Draft tidak masuk hitungan dashboard dan bisa dilengkapi atau diganti saat laporan resmi diunggah.`:`Aset di bawah ini milik <b>${esc(lp.name)}</b> dan disimpan pada laporan ${mn}${ex?" ("+(stLabel[ex]||[ex])[0]+")":""}. Status laporan tidak berubah.`;
+ openModal("Kelola aset · "+lp.name,`<div class="mf"><div class="desc">${note}</div>
+  <div class="mf-list">${AE.list.map((a,i)=>`<div class="mf-row"><div class="mf-f" style="grid-column:span 2"><label>Nama aset</label><input id="aeN${i}" value="${esc(a.name)}" placeholder="mis. Battery Hidrometer (LVA)"></div><div class="mf-f"><label>Kondisi</label><select id="aeC${i}"><option ${a.cond==="Baik"?"selected":""}>Baik</option><option ${a.cond==="Rusak"?"selected":""}>Rusak</option></select></div><button type="button" class="btn-s d x" onclick="aeDel(${i})" title="Hapus baris">✕</button></div>`).join("")||'<div class="mf-hint">Belum ada aset. Tambahkan baris atau tempel daftar di bawah.</div>'}</div>
+  <div class="fl"><button class="bt w" type="button" onclick="aeAdd()">+ Tambah baris</button><span class="mf-msg" style="margin:0;color:var(--mu)">${AE.list.length} / 30 aset</span></div>
+  <details class="mf-det"><summary>Tempel banyak aset sekaligus</summary><div class="desc" style="margin:8px 0">Satu aset per baris. Tulis <b>| Rusak</b> di akhir baris untuk aset rusak, contoh: <code>Battery Hidrometer (LVA) | Rusak</code>. Tanpa keterangan dianggap Baik.</div><textarea id="aeBulk" rows="5" style="width:100%;padding:10px 12px;border:0;border-radius:10px;box-shadow:0 0 0 1px var(--line);font:inherit;font-size:13px" placeholder="Laptop Instruktur 1&#10;Proyektor Kelas A | Rusak"></textarea><div style="margin-top:8px"><button class="bt w" type="button" onclick="aeBulk()">Tambahkan ke daftar</button></div></details>
+  <div class="mf-foot"><span id="aeMsg" class="mf-msg"></span><button class="bt w" type="button" onclick="closeModal()">Batal</button><button class="bt" type="button" id="aeSaveBtn" onclick="aeSave()">✔ Simpan aset</button></div></div>`,true);
 }
-function aeAdd(){syncAE();AE.list.push({name:"",cond:"Baik"});renderAE()}
+function aeAdd(){syncAE();if(AE.list.length>=30){toast("Maksimal 30 aset per LP.","err");return}AE.list.push({name:"",cond:"Baik"});renderAE();const i=AE.list.length-1,e=$("aeN"+i);if(e)e.focus()}
 function aeDel(i){syncAE();AE.list.splice(i,1);renderAE()}
+function aeBulk(){
+ syncAE();const t=($("aeBulk")||{}).value||"",add=[];
+ t.split(/\r?\n/).forEach(line=>{const s=line.trim();if(!s)return;const m=s.match(/^(.*?)\s*[|;]\s*(rusak|baik)\s*$/i),name=(m?m[1]:s).trim();if(name)add.push({name,cond:m&&m[2].toLowerCase()==="rusak"?"Rusak":"Baik"})});
+ if(!add.length){toast("Tidak ada baris untuk ditambahkan.","err");return}
+ const room=30-AE.list.length;if(add.length>room)toast("Hanya "+Math.max(0,room)+" baris pertama yang ditambahkan (maksimal 30 aset).","err");
+ AE.list=AE.list.concat(add.slice(0,Math.max(0,room)));renderAE();
+}
 async function aeSave(){
- syncAE();const list=AE.list.map(a=>({name:a.name.trim(),cond:a.cond})).filter(a=>a.name);
+ syncAE();const list=AE.list.map(a=>({name:a.name.trim(),cond:a.cond==="Rusak"?"Rusak":"Baik"})).filter(a=>a.name),key=AE.lp+"|"+AE.month,b=$("aeSaveBtn");
+ if(!list.length&&AE.isNew){const m=$("aeMsg");if(m)m.textContent="Tambahkan minimal satu aset.";return}
+ if(b){b.disabled=true;b.textContent="Menyimpan…"}
  try{
   if(CONFIG.API_URL){const r=await api("saveAssets",{lp:AE.lp,year:S.year,month:AE.month,assets:list});if(!r.ok)throw new Error(r.message||"Gagal menyimpan.");await loadData(false)}
-  else{const rp=REP[AE.lp+"|"+AE.month];if(rp)rp.assets=list}
-  closeModal();toast("Aset "+LPS.find(l=>l.id===AE.lp).name+" disimpan.","ok");
- }catch(e){toast(e.message,"err")}
+  else{
+   const rp0=REP[key];
+   if(rp0)rp0.assets=list;
+   else REP[key]={lp:AE.lp,year:S.year,month:AE.month,status:"draft",pic:"",kesiswaan:{batches:[],bintalsik:null},akademik:{batches:[],csr:{program:0,sekolah:0,peserta:0}},kipl:{mandiri:{plan:0,actual:0},mandatory:{plan:0,actual:0},customers:[],fasusPlan:0,fasusUsed:0},assets:list,updatedAt:new Date().toISOString()};
+  }
+  closeModal();toast("Aset "+LPS.find(l=>l.id===AE.lp).name+" disimpan"+(DEMO?" (MODE DEMO: tidak masuk spreadsheet).":"."),"ok");
+ }catch(e){toast(e.message,"err");if(b){b.disabled=false;b.textContent="✔ Simpan aset"}return}
  renderAll();
 }
 function exportAssetCSV(){
@@ -1763,7 +1864,7 @@ function mfHtml(d){
    <div id="mfBin" class="mf-g ${bin?"":"hide"}">${mfNum("Seleksi","b-sel",bin&&bin.seleksi)}${mfNum("Psikotes","b-psi",bin&&bin.psikotes)}${mfNum("Interview","b-itv",bin&&bin.interview)}${mfNum("MCU","b-mcu",bin&&bin.mcu)}${mfTxt("Lokasi","b-lok",bin&&bin.lokasi,"mis. Site A")}</div>`)}
   ${mfSec("AKADEMIK","Siswa reguler per batch dan program CSR.",`<div id="mfReg" class="mf-list">${reg.map(mfReg).join("")}</div><button type="button" class="bt w" onclick="mfAdd('reg')">+ Tambah batch reguler</button>
    <div class="mf-g" style="margin-top:6px">${mfNum("CSR · Program","csr-p",csr.program)}${mfNum("CSR · Sekolah / PT","csr-s",csr.sekolah)}${mfNum("CSR · Peserta","csr-q",csr.peserta)}</div>`)}
-  ${mfSec("KIPL","Income adalah angka <b>kumulatif tahun berjalan (YTD)</b> sampai bulan laporan, dalam Rupiah (boleh ditulis 1.500.000.000). Isi 0 bila tidak ada.",`<div class="mf-g">${mfNum("Mandiri · Actual YTD (Rp)","inc-m",mi.actual,"wajib")}${mfNum("Mandatory · Actual YTD (Rp)","inc-d",md.actual,"wajib")}${mfNum("Fasus NT UTS · Direncanakan","fs-plan",p.fasusPlan)}${mfNum("Fasus NT UTS · Terpakai","fs-used",p.fasusUsed)}</div>
+  ${mfSec("KIPL","Income adalah angka <b>kumulatif tahun berjalan (YTD)</b> sampai bulan laporan, dalam Rupiah (boleh ditulis 1.500.000.000). Isi 0 bila tidak ada.",`<div class="mf-g">${mfNum("Income · Actual YTD (Rp)","inc-d",(mi.actual||0)+(md.actual||0),"wajib")}${mfNum("Fasus NT UTS · Direncanakan","fs-plan",p.fasusPlan)}${mfNum("Fasus NT UTS · Terpakai","fs-used",p.fasusUsed)}</div>
    <div class="sh">New Customer / New Project (Big 5)</div><div id="mfCust" class="mf-list">${(p.customers||[]).map(mfCust).join("")}</div><button type="button" class="bt w" onclick="mfAdd('cust')">+ Tambah customer / project</button>`)}
   ${mfSec("DAFTAR ASET","Aset milik LP ini beserta kondisinya.",`<div id="mfAset" class="mf-list">${(d.assets||[]).map(mfAset).join("")}</div><button type="button" class="bt w" onclick="mfAdd('aset')">+ Tambah aset</button>`)}
   ${mfFoot("Simpan laporan")}</form>`;
@@ -1801,7 +1902,7 @@ function mfCollect(){
   if(b.siswaPlan>0&&b.siswa>b.siswaPlan)R.warnings.push(L+" ("+b.name+"): siswa ("+b.siswa+") melebihi plan ("+b.siswaPlan+")");reg.push(b)});
  if(!reg.length&&!rek.length)R.warnings.push("Tidak ada data batch (rekrutmen maupun reguler).");
  const csr={program:N(q(".csr-p"),"CSR program"),sekolah:N(q(".csr-s"),"CSR sekolah/PT"),peserta:N(q(".csr-q"),"CSR peserta")};
- const inc={};[["m","Mandiri actual"],["d","Mandatory actual"]].forEach(([k,l])=>{const el=q(".inc-"+k);if(raw(el)===""){R.errors.push(l+" wajib diisi (isi 0 jika tidak ada).");inc[k]=0}else inc[k]=N(el,l)});
+ const inc={};[["d","Income actual"]].forEach(([k,l])=>{const el=q(".inc-"+k);if(raw(el)===""){R.errors.push(l+" wajib diisi (isi 0 jika tidak ada).");inc[k]=0}else inc[k]=N(el,l)});
  const customers=qa('[data-k="cust"]').filter(r=>raw(q(".c-name",r))).map(r=>({name:raw(q(".c-name",r)),type:q(".c-type",r).value==="New Project"?"New Project":"New Customer"}));
  const fasusPlan=N(q(".fs-plan"),"Fasus plan"),fasusUsed=N(q(".fs-used"),"Fasus terpakai");
  if(fasusPlan>0&&fasusUsed>fasusPlan)R.warnings.push("Fasus terpakai ("+fasusUsed+") melebihi yang direncanakan ("+fasusPlan+").");
@@ -1810,7 +1911,7 @@ function mfCollect(){
   const old=(YR[year]||{})[lp+"|"+month],op=old&&old.kipl?old.kipl:{mandiri:{plan:0},mandatory:{plan:0}};   // plan lama di laporan (kompatibilitas) tidak hilang saat diedit
   R.report={lp,year,month,status:q(".mf-status").value==="draft"?"draft":"submitted",pic:raw(q(".mf-pic")),
    kesiswaan:{batches:rek,bintalsik:bin},akademik:{batches:reg,csr},
-   kipl:{mandiri:{plan:op.mandiri.plan||0,actual:inc.m},mandatory:{plan:op.mandatory.plan||0,actual:inc.d},customers,fasusPlan,fasusUsed},assets};
+   kipl:{mandiri:{plan:0,actual:0},mandatory:{plan:(op.mandiri.plan||0)+(op.mandatory.plan||0),actual:inc.d},customers,fasusPlan,fasusUsed},assets};
  }
  return R;
 }
@@ -1835,15 +1936,24 @@ async function mfSave(){
 
 /* ---------- PLAN ---------- */
 function mpHtml(d){
- const mm=d.m_mandiri||[],md=d.m_mandatory||[],hasM=(mm.some&&mm.some(v=>v>0))||(md.some&&md.some(v=>v>0)),bats=d.batches&&d.batches.length?d.batches:[{}];
+ const mm=d.m_mandatory||[],hasM=mm.some&&mm.some(v=>v>0),bats=d.batches&&d.batches.length?d.batches:[{}];
  return`<form id="mfForm" class="mf" onsubmit="event.preventDefault();mpSave()" novalidate>
   <div class="mf-g">${mfSel("Learning Point","mp-lp",LPS.map(l=>[l.id,l.name+" · "+l.region]),d.lp,'onchange="mpCheck()"')}${mfTxt("Tahun plan","mp-year",d.year||S.year,"",'type="number" min="2000" max="2100" onchange="mpCheck()"')}${mfTxt("Disusun oleh","mp-pic",d.pic,"Nama penyusun (HO)")}</div>
   <div id="mfHint" class="mf-hint"></div>
-  ${mfSec("TARGET INCOME TAHUNAN","Dalam Rupiah (boleh ditulis 1.500.000.000). Dashboard membagi rata 12 bulan, kecuali target bulanan diisi di bawah.",`<div class="mf-g">${mfNum("Mandiri / tahun (Rp)","inc-m",d.mandiri,"wajib")}${mfNum("Mandatory / tahun (Rp)","inc-d",d.mandatory,"wajib")}${mfNum("Target customer / project baru","cust-t",d.cust)}${mfNum("Plan Fasus NT UTS","fasus-t",d.fasus)}</div>
-   <details class="mf-det" ${hasM?"open":""}><summary>Target bulanan (opsional, bukan kumulatif)</summary><div class="mf-mon"><b></b><b>Mandiri (Rp)</b><b>Mandatory (Rp)</b>${MON.map((m,i)=>`<span>${m}</span><input class="mm-m" inputmode="decimal" value="${esc(nv(mm[i]))}" placeholder="0"><input class="mm-d" inputmode="decimal" value="${esc(nv(md[i]))}" placeholder="0">`).join("")}</div></details>`)}
+  ${mfSec("TARGET","Rupiah penuh; boleh ditulis 1.500.000.000.",`<div class="mf-g">${mfNum("Target income / tahun (Rp)","inc-d",d.mandatory,"wajib")}${mfNum("Target customer / project baru","cust-t",d.cust)}${mfNum("Plan Fasus NT UTS","fasus-t",d.fasus)}</div>
+   <details class="mf-det" ${hasM?"open":""}><summary>Target per bulan (opsional)</summary>
+    <div class="desc" style="margin:8px 0">Kosongkan semua = target tahunan dibagi rata 12 bulan. Isi per bulan bila target tidak merata. Angka di sini adalah target <b>bulan itu saja</b>, bukan kumulatif.</div>
+    <div class="mf-mon" oninput="mpSum()">${MON.map((m,i)=>`<label class="mf-mi"><span>${m}</span><input class="mm-d" inputmode="decimal" value="${esc(nv(mm[i]))}" placeholder="0"></label>`).join("")}</div>
+    <div class="mf-monf"><span id="mmSum"></span><button type="button" class="btn-s" onclick="mpSplit()">Isi rata dari target tahunan</button><button type="button" class="btn-s" onclick="mpClearMon()">Kosongkan</button></div></details>`)}
   ${mfSec("BATCH &amp; PERIODE PELATIHAN","Periode batch boleh melewati pergantian tahun. Kosongkan &quot;Selesai&quot; bila batch masih berjalan.",`<div id="mpBat" class="mf-list">${bats.map(mpBat).join("")}</div><button type="button" class="bt w" onclick="mfAdd('bat')">+ Tambah batch</button>`)}
   ${mfFoot("Simpan plan")}</form>`;
 }
+function mpSum(){
+ const el=$("mmSum");if(!el)return;const vals=[...document.querySelectorAll("#mfForm .mm-d")].map(e=>parseNum(mfRaw(e))).map(v=>v==null||isNaN(v)?0:v),t=vals.reduce((a,b)=>a+b,0),ann=parseNum(mfRaw(mfQ(".inc-d")))||0;
+ el.textContent=t?"Jumlah bulanan: "+rp(t)+(ann?" · target tahunan: "+rp(ann)+(Math.abs(t-ann)>ann*.01?" (berbeda)":" (sama)"):""):"";
+}
+function mpSplit(){const ann=parseNum(mfRaw(mfQ(".inc-d")));if(ann==null||isNaN(ann)||ann<=0){toast("Isi target income / tahun dulu.","err");return}const v=Math.round(ann/12);document.querySelectorAll("#mfForm .mm-d").forEach(e=>e.value=v);mpSum()}
+function mpClearMon(){document.querySelectorAll("#mfForm .mm-d").forEach(e=>e.value="");mpSum()}
 function openManualPlan(lp){
  if(!isAdmin())return;
  const id=lp||(LPS[0]||{}).id,ex=planOf(id),d=ex?JSON.parse(JSON.stringify(ex)):{};d.lp=id;d.year=S.year;
@@ -1861,10 +1971,9 @@ function mpCollect(){
  const lp=raw(q(".mp-lp")),year=parseNum(raw(q(".mp-year")));
  if(!LPS.some(l=>l.id===lp))R.errors.push("Pilih Learning Point.");
  if(year==null||isNaN(year)||year<2000||year>2100||Math.floor(year)!==year)R.errors.push("Tahun plan tidak valid.");
- const inc={};[["m","mandiri"],["d","mandatory"]].forEach(([k,l])=>{const el=q(".inc-"+k);if(raw(el)===""){R.errors.push("Plan tahunan "+l+" wajib diisi (isi 0 jika tidak ada).");inc[k]=0}else inc[k]=N(el,"Plan tahunan "+l)});
- const mon=(cls,key,tot)=>{const els=qa("."+cls);if(!els.some(e=>raw(e)!==""))return null;const a=els.map((e,i)=>N(e,"Target bulanan "+MON[i]+" ("+key+")")),t=a.reduce((p,c)=>p+c,0);
-  if(tot>0&&Math.abs(t-tot)>tot*.01)R.warnings.push("Target bulanan "+key+" berjumlah "+rp(t)+", berbeda dengan target tahunan "+rp(tot)+". Dashboard memakai target bulanan.");return a};
- const mM=mon("mm-m","mandiri",inc.m),mD=mon("mm-d","mandatory",inc.d);
+ const incEl=q(".inc-d");let incTot=0;if(raw(incEl)===""){R.errors.push("Target income tahunan wajib diisi (isi 0 jika tidak ada).")}else incTot=N(incEl,"Target income tahunan");
+ const mon=cls=>{const els=qa("."+cls);if(!els.some(e=>raw(e)!==""))return null;const a=els.map((e,i)=>N(e,"Target bulanan "+MON[i])),t=a.reduce((p,c)=>p+c,0);if(incTot>0&&Math.abs(t-incTot)>incTot*.01)R.warnings.push("Target bulanan berjumlah "+rp(t)+", berbeda dengan target tahunan "+rp(incTot)+". Dashboard memakai target bulanan.");return a};
+ const mT=mon("mm-d");
  const batches=[];qa('[data-k="bat"]').forEach((r,i)=>{if(!["c-name","c-start","c-end","c-kelas","c-siswa","c-sel","c-mcu"].some(c=>raw(q("."+c,r))!==""))return;
   const L="Batch "+(i+1),nm=raw(q(".c-name",r)),st=raw(q(".c-start",r)),en=raw(q(".c-end",r));if(!nm)R.errors.push(L+": nama batch kosong.");
   if(!st)R.warnings.push(L+" ("+nm+"): periode mulai kosong.");
@@ -1873,7 +1982,7 @@ function mpCollect(){
   batches.push({name:nm||"Batch",start:st,end:en,kelas:N(q(".c-kelas",r),L+" kelas"),siswa:N(q(".c-siswa",r),L+" plan siswa"),seleksi:N(q(".c-sel",r),L+" plan seleksi"),mcu:N(q(".c-mcu",r),L+" plan MCU")})});
  if(!batches.length)R.warnings.push("Tidak ada batch pada plan ini.");
  const cust=N(q(".cust-t"),"Target customer"),fasus=N(q(".fasus-t"),"Plan Fasus");
- if(!R.errors.length)R.plan={lp,year,pic:raw(q(".mp-pic")),mandiri:inc.m,mandatory:inc.d,m_mandiri:mM,m_mandatory:mD,cust,fasus,batches};
+ if(!R.errors.length)R.plan={lp,year,pic:raw(q(".mp-pic")),mandiri:0,mandatory:incTot,m_mandiri:null,m_mandatory:mT,cust,fasus,batches};
  return R;
 }
 async function persistPlans(plans){
@@ -1908,254 +2017,254 @@ boot();
    Untuk mengganti template: ubah file .xlsx -> base64 -> tempel di TEMPLATE_B64 di bawah. */
 const TEMPLATE_NAME="Template_Laporan_LP.xlsx",PLAN_TEMPLATE_NAME="Template_Plan_LP.xlsx";
 const TEMPLATE_B64=
-"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";
+"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"+
+"AAsACwDKAgAAxygAAAAA";
 const PLAN_TEMPLATE_B64=
-"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"+
-"AgAADSgAAAAA";
+"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";
 function downloadTemplate(kind){
  const pl=kind==="plan",name=pl?PLAN_TEMPLATE_NAME:TEMPLATE_NAME;
  try{
