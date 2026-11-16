@@ -763,6 +763,98 @@ svg.lc{display:block;overflow:visible}
 @media(max-width:560px){.pl-sum{grid-template-columns:1fr}.pl-bar .fs{min-width:0;width:100%}}
 
 .ast-bar .ast-add{min-width:200px}
+
+/* ================= PENGGUNA (manajemen user) ================= */
+.um-top h2{font:700 28px var(--fh);letter-spacing:-.8px;margin:0 0 14px}
+.um-grid{display:grid;grid-template-columns:minmax(300px,420px) 1fr;gap:16px;align-items:start}
+.um-grid.one{grid-template-columns:minmax(300px,480px)}
+.um-card{background:#fff;border-radius:22px;box-shadow:var(--sh);padding:22px 24px;min-width:0}
+.um-h{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:16px;flex-wrap:wrap}
+.um-h h3{font:700 19px var(--fh);margin:0}.um-h p{margin:3px 0 0;color:var(--mu);font-size:13px}
+.um-me{display:flex;align-items:center;gap:12px;background:var(--soft);border-radius:16px;padding:12px 14px;margin-bottom:16px}
+.um-me b{display:block;font-size:14px}.um-me small{color:var(--mu);font-size:12px;font-weight:600}
+.um-av{width:42px;height:42px;border-radius:50%;background:var(--ink);color:var(--y);display:grid;place-items:center;font:800 17px var(--fh);flex:none}
+.um-av.sm{width:34px;height:34px;font-size:14px}
+.um-form{display:flex;flex-direction:column;gap:14px}
+.um-pw{position:relative}.um-pw input{padding-right:104px}
+.um-pw button{position:absolute;right:6px;top:50%;transform:translateY(-50%);border:0;background:var(--soft);color:var(--ink2);font-size:12px;font-weight:700;border-radius:8px;padding:5px 10px;cursor:pointer}
+.um-pw button:hover{background:var(--ink);color:#fff}
+.um-form .mf-f input,.um-form .mf-f select{padding:11px 14px;font-size:14px}
+.um-form .mf-f input[readonly]{background:var(--soft);color:var(--mu)}
+.um-hint{display:block;margin-top:4px;color:var(--mu);font-size:12px}
+.um-meter{display:flex;align-items:center;gap:10px;margin-top:-6px}
+.um-bar{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;flex:1}
+.um-bar i{height:5px;border-radius:9px;background:#e4e9ee;transition:background .15s}
+.um-bar[data-s="1"] i:nth-child(-n+1){background:#d64545}
+.um-bar[data-s="2"] i:nth-child(-n+2){background:#e8a317}
+.um-bar[data-s="3"] i:nth-child(-n+3){background:#7bb661}
+.um-bar[data-s="4"] i{background:#2f8f5b}
+.um-meter span{font-size:12px;font-weight:700;color:var(--mu);min-width:44px;text-align:right}
+.um-msg{min-height:20px;font-size:13px;font-weight:600;line-height:1.5}.um-msg.e{color:#b91c1c}.um-msg.ok{color:#1d6b42}
+.um-note{background:var(--soft);border-radius:12px;padding:9px 12px;color:var(--mu);font-size:12.5px;line-height:1.5}
+.um-empty{padding:24px;text-align:center;color:var(--mu);font-size:13px}
+.um-scroll{overflow-x:auto}
+.um-t{width:100%;border-collapse:collapse;font-size:13px}
+.um-t th{text-align:left;font-size:12px;color:var(--mu);font-weight:700;padding:8px 10px;border-bottom:1px solid var(--line)}
+.um-t td{padding:12px 10px;border-bottom:1px solid var(--line);vertical-align:middle}
+.um-t tr:last-child td{border-bottom:0}
+.um-u{display:flex;align-items:center;gap:10px}.um-u small{display:block;color:var(--mu);font-size:12px}
+.um-you{font-style:normal;font-size:10.5px;font-weight:800;background:var(--y);color:var(--ink);border-radius:99px;padding:1px 7px;margin-left:4px}
+.um-role{display:inline-block;border-radius:99px;padding:3px 11px;font-size:12px;font-weight:700}
+.um-role.a{background:var(--ink);color:var(--y)}.um-role.v{background:var(--soft);color:var(--ink2)}
+.um-dt{color:var(--mu);white-space:nowrap}.um-act{text-align:right;white-space:nowrap}
+@media(max-width:900px){.um-grid,.um-grid.one{grid-template-columns:1fr}}
+
+/* ================= PLAN · palet teal & navy (tata letak tidak berubah) ================= */
+#view-plan,#mcard.mp-theme{--pp-ink:#0c2b3a;--pp-deep:#0b4f6c;--pp-teal:#0f8b8d;--pp-teal-d:#0a6b6d;--pp-mint:#e3f4f2;--pp-sky:#e4edf9;--pp-lilac:#ebe8f8;--pp-coral:#d9573b;--pp-coral-s:#fde9e3;--pp-line:#cfe1e4;--pp-mu:#587482}
+#view-plan .pl-head h2{color:var(--pp-ink)}
+#view-plan .pl-head p{color:var(--pp-mu)}
+#view-plan .pl-head .fs,#view-plan .pl-bar .fs{box-shadow:0 0 0 1px var(--pp-line)}
+#view-plan .pl-bar .fs:focus{box-shadow:0 0 0 2px var(--pp-teal);outline:0}
+#view-plan .pl-t{background:var(--pp-mint);color:var(--pp-ink)}
+#view-plan .pl-t:nth-child(3){background:var(--pp-sky)}
+#view-plan .pl-t:nth-child(4){background:var(--pp-lilac)}
+#view-plan .pl-t small{color:var(--pp-mu)}
+#view-plan .pl-t b span{color:var(--pp-mu)}
+#view-plan .pl-t.hl{background:linear-gradient(135deg,var(--pp-deep),var(--pp-teal));color:#fff;box-shadow:0 16px 32px -16px #0b4f6ccc}
+#view-plan .pl-t.hl small{color:#cdeeed}
+#view-plan .pl-t .rg{background:conic-gradient(var(--c) calc(var(--p)*1%),#bfdcdc 0)}
+#view-plan .pl-up{background:#f1f8f8;box-shadow:0 0 0 1px var(--pp-line)}
+#view-plan .pl-up>summary{color:var(--pp-ink)}#view-plan .pl-up>summary small{color:var(--pp-mu)}
+#view-plan .drop{border-color:#9ec7cb;background:#fff;color:var(--pp-ink)}
+#view-plan .drop.over{border-color:var(--pp-teal);background:var(--pp-mint)}
+#view-plan .seg{box-shadow:0 0 0 1px var(--pp-line)}
+#view-plan .seg button{color:var(--pp-ink)}#view-plan .seg button:hover{background:var(--pp-mint)}
+#view-plan .seg button.on{background:var(--pp-deep);color:#fff}
+#view-plan .pc{border:1px solid var(--pp-line);box-shadow:inset 0 4px 0 var(--pp-teal),0 12px 28px -20px #0c2b3a80}
+#view-plan .pc.empty{border:2px dashed #a9cdd1;box-shadow:none;background:#f3fafa}
+#view-plan .pc-h h4{color:var(--pp-ink)}#view-plan .pc-h h4:hover{color:var(--pp-teal-d)}
+#view-plan .pc-h small,#view-plan .pc-inc small,#view-plan .pc-st small,#view-plan .pc-f,#view-plan .pc-none{color:var(--pp-mu)}
+#view-plan .pc-inc b{color:var(--pp-deep)}
+#view-plan .pc-st{border-color:var(--pp-line)}#view-plan .pc-st b{color:var(--pp-ink)}
+#view-plan .pill.g{background:#d1eeea;color:#0a5c5e}
+#view-plan .pill.r{background:var(--pp-coral-s);color:#b3412a}
+#view-plan .bt,#mcard.mp-theme .bt{background:var(--pp-deep);color:#fff}
+#view-plan .bt:hover,#mcard.mp-theme .bt:hover{background:var(--pp-teal-d)}
+#view-plan .bt:disabled,#mcard.mp-theme .bt:disabled{background:#9db7c2}
+#view-plan .bt.w,#mcard.mp-theme .bt.w{background:#fff;color:var(--pp-deep);box-shadow:0 0 0 1px var(--pp-line)}
+#view-plan .bt.w:hover,#mcard.mp-theme .bt.w:hover{background:#fff;box-shadow:0 0 0 1px var(--pp-teal)}
+#view-plan .btn-s,#mcard.mp-theme .btn-s{border-color:var(--pp-line);color:var(--pp-ink)}
+#view-plan .btn-s:hover,#mcard.mp-theme .btn-s:hover{background:var(--pp-deep);border-color:var(--pp-deep);color:#fff}
+#view-plan .btn-s.d,#mcard.mp-theme .btn-s.d{background:var(--pp-coral-s);border-color:#f1c4b8;color:#b3412a}
+#view-plan .btn-s.d:hover,#mcard.mp-theme .btn-s.d:hover{background:var(--pp-coral);border-color:var(--pp-coral);color:#fff}
+/* formulir & detail Plan (popup) */
+#mcard.mp-theme .sectt{background:linear-gradient(90deg,var(--pp-deep),var(--pp-teal));color:#fff;border:0}
+#mcard.mp-theme .mf-f label{color:var(--pp-mu)}
+#mcard.mp-theme .mf-f input,#mcard.mp-theme .mf-f select,#mcard.mp-theme .mf-mon input{box-shadow:0 0 0 1px var(--pp-line)}
+#mcard.mp-theme .mf-f input:focus,#mcard.mp-theme .mf-f select:focus,#mcard.mp-theme .mf-mon input:focus{box-shadow:0 0 0 2px var(--pp-teal);outline:0}
+#mcard.mp-theme .mf-row{background:var(--pp-mint)}
+#mcard.mp-theme .mf-hint,#mcard.mp-theme .mf-det{background:#eef6f7;color:var(--pp-ink)}
+#mcard.mp-theme .mf-foot{border-top-color:var(--pp-line)}
+#mcard.mp-theme .desc{color:var(--pp-mu)}
+#mcard.mp-theme input[type=month]{font-size:12px;padding:9px 6px 9px 10px}
+#mcard.mp-theme .mf-row[data-k="bat"]{grid-template-columns:1.1fr 1.35fr 1.35fr repeat(4,.8fr) auto}
+@media(max-width:760px){#mcard.mp-theme .mf-row[data-k="bat"]{grid-template-columns:1fr 1fr}}
 </style>
 </head>
 <body>
@@ -857,13 +949,14 @@ svg.lc{display:block;overflow:visible}
   <div id="view-summary" class="view"></div>
   <div id="view-asset" class="view"></div>
   <div id="view-input" class="view"></div>
+  <div id="view-users" class="view"></div>
  </div>
 </div>
 
 <script>
 /* ============ CONFIG ============ */
 const CONFIG={
-  API_URL:"https://script.google.com/macros/s/AKfycbxQVwxjyuboilupXAFTyuORXILrQSGyWCUxYGyaICQVUJHi4U3335aeaJVQGKCtBLQ9/exec",                       // Tempel URL Apps Script (/exec) di sini. Kosong = mode demo.
+  API_URL:"https://script.google.com/macros/s/AKfycbyrRRtYfMGuHPEPL1oO_cYhigqZ0_KhsswQ-5uec5DeB0-cP-OkYw5fTjEZNq56Znm0/exec",                       // Tempel URL Apps Script (/exec) di sini. Kosong = mode demo.
   LOGO:"logo ut school.png",        // nama file logo di GitHub
   // Template Excel LP kini tertanam di dalam file ini (lihat TEMPLATE_B64 di bagian bawah)
   LAST_DUE_MONTH:10,                // di mode server nilai ini diambil dari sheet Config
@@ -1116,7 +1209,7 @@ function lineChart(labels,series){
 }
 
 /* ============ MODAL ============ */
-function openModal(title,html,wide){$("mTitle").textContent=title;$("mBody").innerHTML=html;$("mcard").classList.toggle("wide",!!wide);$("modal").classList.add("open")}
+function openModal(title,html,wide){$("mcard").classList.remove("mp-theme");$("mTitle").textContent=title;$("mBody").innerHTML=html;$("mcard").classList.toggle("wide",!!wide);$("modal").classList.add("open")}
 function closeModal(){$("modal").classList.remove("open")}
 document.addEventListener("keydown",e=>{if(e.key==="Escape"){closeModal();closeLP()}});
 const chip=(v,l,c)=>`<span class="ch" style="--c:${c}"><b>${v}</b>${l}</span>`;
@@ -1172,8 +1265,8 @@ async function doLogin(e){
  e.preventDefault();const u=$("lu").value.trim().toLowerCase(),p=$("lp").value;$("lerr").textContent="";
  loginBusy(true,"Memeriksa akun…","Memverifikasi username dan password.");loginTimers();let ok=false;
  try{
-  if(CONFIG.API_URL){const r=await api("login",{username:u,password:p},45000);if(!r.ok)throw new Error(r.message||"Login gagal.");SESSION={role:r.role,name:r.name,token:r.token}}
-  else{const d=DEMO_USERS[u];if(!d||d.pw!==p)throw new Error("Username atau password salah.");SESSION={role:d.role,name:d.name,token:"demo"}}
+  if(CONFIG.API_URL){const r=await api("login",{username:u,password:p},45000);if(!r.ok)throw new Error(r.message||"Login gagal.");SESSION={role:r.role,name:r.name,username:r.username||u,token:r.token}}
+  else{const d=DEMO_USERS[u];if(!d||d.pw!==p)throw new Error("Username atau password salah.");SESSION={role:d.role,name:d.name,username:u,token:"demo"}}
   stopLoginTimers();ok=true;$("lt").textContent="Login berhasil";$("ls").textContent="Memuat data dashboard…";saveSession();await enterApp();
  }catch(err){stopLoginTimers();if(!ok)SESSION=null;$("lerr").textContent=err.message}
  finally{loginBusy(false)}
@@ -1183,6 +1276,7 @@ async function enterApp(){
  $("app").classList.remove("hide");$("who").textContent=SESSION.name;$("who").className="who "+SESSION.role;
  if(window.innerWidth<=700)$("sidebar").classList.add("collapsed");
  renderNav();
+ if(CONFIG.API_URL&&!SESSION.username)api("me").then(r=>{if(r&&r.ok&&r.username){SESSION.username=r.username;saveSession()}}).catch(()=>{});   // sesi lama belum menyimpan username
  try{await loadData(false)}finally{$("loginModal").classList.add("hide")}   // overlay login tetap tampil (dengan loading) sampai data siap
 }
 
@@ -1210,13 +1304,14 @@ async function loadData(manual){
 /* ============ NAVIGASI ============ */
 const ICON={dashboard:'<path d="M3 13h8V3H3zm0 8h8v-6H3zm10 0h8V11h-8zm0-18v6h8V3z"/>',status:'<path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/>',summary:'<path d="M4 4h16v4H4zm0 6h10v10H4zm12 0h4v10h-4z"/>',input:'<path d="M3 17.25V21h3.75L17.8 9.94l-3.75-3.75zM20.7 7.04a1 1 0 0 0 0-1.41l-2.34-2.34a1 1 0 0 0-1.41 0l-1.83 1.83 3.75 3.75z"/>',asset:'<path d="M20 6h-3V4a2 2 0 0 0-2-2H9a2 2 0 0 0-2 2v2H4a2 2 0 0 0-2 2v11a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2zM9 4h6v2H9z"/>',out:'<path d="M10 17l1.4-1.4L8.8 13H20v-2H8.8l2.6-2.6L10 7l-5 5zM4 5h8V3H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h8v-2H4z"/>'};
 ICON.plan='<path d="M14.4 6 14 4H5v17h2v-7h5.6l.4 2h7V6z"/>';
-const VIEWS={dashboard:"Dashboard Overview",plan:"Plan (Benchmark)",summary:"Ringkasan Konsolidasi",asset:"Daftar Aset per LP",input:"Input Data"};
+ICON.users='<path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zm0 2c-3.3 0-8 1.7-8 5v1h16v-1c0-3.3-4.7-5-8-5z"/>';
+const VIEWS={dashboard:"Dashboard Overview",plan:"Plan (Benchmark)",summary:"Ringkasan Konsolidasi",asset:"Daftar Aset per LP",input:"Input Data",users:"Pengguna"};
 function renderNav(){
- const items=Object.entries(VIEWS).filter(([k])=>k!=="input"||isAdmin()).map(([k,v])=>`<div class="nl ${S.view===k?"on":""}" onclick="switchView('${k}')"><svg viewBox="0 0 24 24">${ICON[k]}</svg><span class="nt">${v}</span>${k==="input"?'<span class="nt soon">ADMIN</span>':""}</div>`).join("");
+ const items=Object.entries(VIEWS).filter(([k])=>k!=="input"||isAdmin()).map(([k,v])=>`<div class="nl ${S.view===k?"on":""}" onclick="switchView('${k}')"><svg viewBox="0 0 24 24">${ICON[k]}</svg><span class="nt">${k==="users"&&!isAdmin()?"Akun Saya":v}</span>${k==="input"?'<span class="nt soon">ADMIN</span>':""}</div>`).join("");
  $("nav").innerHTML=items+`<div style="margin-top:auto;margin-bottom:12px"><div class="nl" style="color:#ef4444" onclick="logout()"><svg viewBox="0 0 24 24">${ICON.out}</svg><span class="nt">Keluar</span></div></div>`;
 }
 function toggleSidebar(){$("sidebar").classList.toggle("collapsed");setTimeout(()=>lokMap&&lokMap.invalidateSize(),300)}
-function switchView(v){S.view=v;document.querySelectorAll(".view").forEach(x=>x.classList.remove("on"));$("view-"+v).classList.add("on");renderNav();renderAll();if(v==="dashboard")setTimeout(()=>lokMap&&lokMap.invalidateSize(),100)}
+function switchView(v){S.view=v;if(v==="users")$("view-users").innerHTML="";document.querySelectorAll(".view").forEach(x=>x.classList.remove("on"));$("view-"+v).classList.add("on");renderNav();renderAll();if(v==="users")loadUsers();if(v==="dashboard")setTimeout(()=>lokMap&&lokMap.invalidateSize(),100)}
 function toggleFullScreen(){const el=document.documentElement;if(!document.fullscreenElement&&!document.webkitFullscreenElement)(el.requestFullscreen||el.webkitRequestFullscreen).call(el);else(document.exitFullscreen||document.webkitExitFullscreen).call(document)}
 ["fullscreenchange","webkitfullscreenchange"].forEach(e=>document.addEventListener(e,()=>setTimeout(()=>lokMap&&lokMap.invalidateSize(),250)));
 
@@ -1228,11 +1323,11 @@ function renderFilters(){
  <label>Koordinator:</label><select class="fs" style="min-width:110px" onchange="S.coord=this.value;renderAll()"><option value="all">Semua</option>${["Medan","Surabaya","Makassar"].map(c=>`<option value="${c}" ${S.coord===c?"selected":""}>${c}</option>`).join("")}<option value="direct" ${S.coord==="direct"?"selected":""}>Langsung HO</option></select>
  <label>Batch:</label><select class="fs" style="min-width:110px" onchange="S.batch=this.value;renderAll()"><option value="all">Semua Batch</option>${batchList().map(b=>`<option value="${esc(b)}" ${S.batch===b?"selected":""}>${esc(b)}</option>`).join("")}</select>
  <label>Data:</label><select class="fs" style="min-width:130px" onchange="S.pa=this.value;renderAll()"><option value="both" ${S.pa==="both"?"selected":""}>Plan vs Actual</option><option value="plan" ${S.pa==="plan"?"selected":""}>Plan saja</option><option value="actual" ${S.pa==="actual"?"selected":""}>Actual saja</option></select>`;
- const bn=$("batchNote");bn.classList.toggle("hide",S.batch==="all"||S.view==="input"||S.view==="plan");
+ const bn=$("batchNote");bn.classList.toggle("hide",S.batch==="all"||S.view==="input"||S.view==="plan"||S.view==="users");
  bn.innerHTML=`<b>Filter batch: ${esc(S.batch)}</b> · periode ${spanText(S.batch)}. Rekrutmen/MCU dan Siswa/OJT menampilkan batch ini secara utuh, termasuk laporan dari tahun kalender lain selama batch berlangsung. Income, customer, Fasus, CSR, Bintalsik, dan aset dilaporkan per LP (bukan per batch) sehingga tidak ikut disaring.`+(S.view==="asset"?" Daftar aset tidak dipengaruhi batch.":"")+` <button class="btn-s" onclick="showBatchHistory()">Riwayat batch</button>`;
- $("fbar").classList.toggle("hide",S.view==="input"||S.view==="plan");
+ $("fbar").classList.toggle("hide",S.view==="input"||S.view==="plan"||S.view==="users");
  const pn=$("planNote"),miss=LPS.filter(l=>!planOf(l.id)).length,waiting=S.pa==="both"?LPS.filter(l=>planOf(l.id)&&!latest(l.id,S.month)).length:0;   // sudah punya Plan, belum ada laporan Actual final
- pn.classList.toggle("hide",DEMO||(!miss&&!waiting)||S.view==="input"||S.view==="plan");
+ pn.classList.toggle("hide",DEMO||(!miss&&!waiting)||S.view==="input"||S.view==="plan"||S.view==="users");
  pn.innerHTML=(miss?`<b>${miss} dari ${LPS.length} LP belum memiliki Plan ${S.year}.</b> Capaian LP tersebut memakai angka plan dari laporan lama (jika ada) atau belum bisa dihitung. <button class="btn-s" onclick="switchView('plan')">Buka menu Plan</button>`:"")+(waiting?`${miss?"<br>":""}<b>${waiting} LP sudah punya Plan ${S.year} tetapi belum ada laporan Actual final.</b> Capaian baru dihitung setelah laporan bulanannya masuk. <button class="btn-s" onclick="S.pa='plan';renderAll()">Lihat Plan saja</button>`:"");
 }
 function renderAll(){
@@ -1241,6 +1336,7 @@ function renderAll(){
  else if(S.view==="summary")$("view-summary").innerHTML=viewSummary();
  else if(S.view==="asset"){$("view-asset").innerHTML=viewAsset();renderAssetBody()}
  else if(S.view==="input")$("view-input").innerHTML=viewInput();
+ else if(S.view==="users"){if(!$("umRoot"))$("view-users").innerHTML=viewUsers()}
  else if(S.view==="plan"){$("view-plan").innerHTML=viewPlan();renderPlanGrid()}
 }
 function renderDashboard(){
@@ -1396,9 +1492,7 @@ function viewInput(){
  <div class="card" style="margin-bottom:10px"><div class="hd">Laporan tersimpan<span class="fl"><select class="fs" style="min-width:90px" onchange="switchYear(+this.value)">${yearList().map(y=>`<option value="${y}" ${S.year===y?"selected":""}>${y}</option>`).join("")}</select><select class="fs" style="min-width:150px" onchange="UP.month=+this.value;renderAll()">${Array.from({length:12},(_,i)=>`<option value="${i+1}" ${m===i+1?"selected":""}>${MONTHS[i]} ${S.year}</option>`).join("")}</select></span></div>
   ${tbl(["Learning Point","Status","PIC","Terakhir diubah","Aksi (khusus HO)"],[saved])}</div>
  ${batchMasterCard()}
- <div class="card"><div class="hd">Ganti password akun</div>
-  <div class="fl"><select class="fs" id="pwUser" style="min-width:120px"><option value="admin">admin (HO)</option><option value="viewer">viewer</option></select><input class="fs" id="pwNew" type="password" placeholder="Password baru (min. 8 karakter)" style="min-width:260px"><button class="bt" onclick="changePw()">Simpan password</button></div>
-  ${DEMO?'<div class="desc" style="margin-top:8px">Tersedia setelah terhubung ke Apps Script.</div>':""}</div>`;
+ <div class="card"><div class="hd">Akun &amp; password</div><div class="fl"><span class="desc" style="margin:0">Ganti password dan kelola user kini ada di menu <b>Pengguna</b>.</span><button class="bt" type="button" onclick="switchView('users')">Buka menu Pengguna</button></div></div>`;
 }
 let UP={files:[],status:"submitted",month:null,busy:false,msg:""};
 
@@ -1514,12 +1608,6 @@ async function setSaved(id,month,status){
  try{if(CONFIG.API_URL){const r=await api("setStatus",{lp:id,year:S.year,month,status});if(!r.ok)throw new Error(r.message);await loadData(false)}else REP[id+"|"+month].status=status;toast("Status diubah menjadi "+stLabel[status][0]+".","ok")}catch(e){toast(e.message,"err")}
  renderAll();
 }
-async function changePw(){
- if(!CONFIG.API_URL){toast("Tersedia setelah terhubung ke Apps Script.","err");return}
- const u=$("pwUser").value,p=$("pwNew").value;if(p.length<8){toast("Password minimal 8 karakter.","err");return}
- try{const r=await api("changePassword",{username:u,newPassword:p});if(!r.ok)throw new Error(r.message);$("pwNew").value="";toast("Password "+u+" diperbarui.","ok")}catch(e){toast(e.message,"err")}
-}
-
 /* ============ DETAIL LP (popup bentuk slide) ============ */
 function lpBody(id){
  const lp=LPS.find(l=>l.id===id),m=metrics(lp),r=m.rep,P=S.pa;let body;
@@ -1590,7 +1678,7 @@ function viewPlan(){
    ${adm?`<div class="pl-act"><button class="bt" type="button" onclick="openManualPlan()">+ Isi / ubah plan</button></div>`:""}
    <p>Plan adalah target tahunan (benchmark) per Learning Point. Dashboard membandingkannya dengan laporan bulanan tiap LP (Actual).</p></div>
  <div class="pl-sum">
-  <div class="pl-t ring"><div class="rg" style="--p:${pct};--c:${pct>=100?"#2f8f5b":"#f5a800"}"><b>${Math.round(pct)}%</b></div><div><small>LP sudah punya plan</small><b>${list.length} <span>dari ${LPS.length}</span></b></div></div>
+  <div class="pl-t ring"><div class="rg" style="--p:${pct};--c:${pct>=100?"#0b6b4f":"#0f8b8d"}"><b>${Math.round(pct)}%</b></div><div><small>LP sudah punya plan</small><b>${list.length} <span>dari ${LPS.length}</span></b></div></div>
   <div class="pl-t hl"><small>Total target income / tahun</small><b>${rp(inc)}</b></div>
   <div class="pl-t"><small>Total plan siswa</small><b>${nf(sum(list,p=>sum(p.batches,b=>b.siswa)))}</b></div>
   <div class="pl-t"><small>Fasus · Customer baru</small><b>${nf(sum(list,p=>p.fasus))} <span>·</span> ${nf(sum(list,p=>p.cust))}</b></div></div>
@@ -1664,9 +1752,9 @@ function openPlan(id){
  const lm=(latest(id,12)||{}).month||0,custom=p.m_mandatory&&p.m_mandatory.some(v=>v>0);
  const mrows=Array.from({length:12},(_,i)=>{const m=i+1,pt=planYTD(p,"mandiri",m)+planYTD(p,"mandatory",m),r=m<=lm?latest(id,m):null,ac=r?r.kipl.mandiri.actual+r.kipl.mandatory.actual:null,pp=ac==null?null:pc(ac,pt);
   return`<tr><td>${MONTHS[i]}</td><td>${rp(pt)}</td><td>${ac==null?"—":rp(ac)}</td><td style="background:${heatBg(pp)}"><b>${ac==null?"—":fp(pp)}</b></td></tr>`});
- openModal("Plan "+S.year+" · "+lp.name,`<div class="chips">${chip(p.pic||"—","Disusun oleh","#999")}${chip(rp(p.mandatory),"Income / tahun","#3f6fb5")}${chip(p.fasus,"Fasus","#7b61c9")}${chip(p.cust,"Target customer","#f5a800")}</div>
+ openModal("Plan "+S.year+" · "+lp.name,`<div class="chips">${chip(p.pic||"—","Disusun oleh","#587482")}${chip(rp(p.mandatory),"Income / tahun","#0b4f6c")}${chip(p.fasus,"Fasus","#0f8b8d")}${chip(p.cust,"Target customer","#d9573b")}</div>
  <div class="sectt">BATCH & PERIODE PELATIHAN</div>${tbl(["Batch","Periode","Kelas","Plan siswa","Plan seleksi","Plan lolos MCU"],p.batches.map(b=>`<tr><td><b>${esc(b.name)}</b></td><td>${planPeriod(b)}</td><td>${b.kelas}</td><td>${b.siswa}</td><td>${b.seleksi}</td><td>${b.mcu}</td></tr>`),"Belum ada batch pada plan ini.")}
- <div class="sectt">TARGET INCOME KUMULATIF (YTD) VS ACTUAL</div><div class="desc">${custom?"Memakai target bulanan dari template.":"Target tahunan dibagi rata 12 bulan."} Actual diambil dari laporan final terakhir tiap bulan.</div>${tbl(["Bulan","Plan YTD","Actual YTD","Capaian"],mrows)}`,true);
+ <div class="sectt">TARGET INCOME KUMULATIF (YTD) VS ACTUAL</div><div class="desc">${custom?"Memakai target bulanan dari template.":"Target tahunan dibagi rata 12 bulan."} Actual diambil dari laporan final terakhir tiap bulan.</div>${tbl(["Bulan","Plan YTD","Actual YTD","Capaian"],mrows)}`,true);$("mcard").classList.add("mp-theme");
 }
 
 /* ============ DETAIL LP (drawer + peta) ============ */
@@ -1957,7 +2045,7 @@ function mpClearMon(){document.querySelectorAll("#mfForm .mm-d").forEach(e=>e.va
 function openManualPlan(lp){
  if(!isAdmin())return;
  const id=lp||(LPS[0]||{}).id,ex=planOf(id),d=ex?JSON.parse(JSON.stringify(ex)):{};d.lp=id;d.year=S.year;
- openModal("Plan "+S.year+" · tulis langsung",mpHtml(d),true);mpCheck();
+ openModal("Plan "+S.year+" · tulis langsung",mpHtml(d),true);$("mcard").classList.add("mp-theme");mpCheck();
 }
 function mpKey(){return{lp:mfRaw(mfQ(".mp-lp")),year:+mfRaw(mfQ(".mp-year"))}}
 function mpCheck(){
@@ -1999,6 +2087,99 @@ async function mpSave(){
  const b=$("mfBtn");b.disabled=true;b.textContent="Menyimpan…";
  try{await persistPlans([p]);closeModal();renderAll();toast("Plan "+p.year+" "+lp.name+" tersimpan"+(DEMO?" (MODE DEMO: tidak masuk spreadsheet).":"."),"ok")}
  catch(e){mfMsg([e.message]);b.disabled=false;b.textContent="✔ Simpan plan"}
+}
+
+/* ============ PENGGUNA (manajemen user) ============
+   Semua orang: ganti password sendiri (wajib password lama). Admin: lihat, tambah, ubah, reset password, hapus user.
+   Memakai aksi backend: changeOwnPassword, listUsers, saveUser, deleteUser. */
+let USERS=null,USERS_ERR="";
+const ROLE_LBL={admin:"Admin (HO)",viewer:"Viewer"};
+const meName=()=>String((SESSION&&SESSION.username)||"").toLowerCase();
+function pwScore(p){let s=0;if(p.length>=8)s++;if(p.length>=12)s++;if(/[a-z]/.test(p)&&/[A-Z]/.test(p))s++;if(/\d/.test(p)&&/[^\d]/.test(p))s++;if(/[^A-Za-z0-9]/.test(p))s++;return Math.min(4,s)}
+function opMeter(){const p=$("opNew").value.trim(),s=p?Math.max(1,pwScore(p)):0;$("opBar").dataset.s=s;$("opLbl").textContent=["","Lemah","Cukup","Baik","Kuat"][s]}
+function togglePw(b){const i=b.parentElement.querySelector("input"),s=i.type==="password";i.type=s?"text":"password";b.textContent=s?"Sembunyikan":"Tampilkan"}
+const pwField=(id,label,ph,ac,extra)=>`<div class="mf-f"><label for="${id}">${label}</label><div class="um-pw"><input id="${id}" type="password" autocomplete="${ac}" placeholder="${ph}" ${extra||""}><button type="button" onclick="togglePw(this)">Tampilkan</button></div></div>`;
+function viewUsers(){
+ const me=SESSION||{},adm=isAdmin(),ini=s=>esc(String(s||"?").trim().charAt(0).toUpperCase()||"?");
+ const own=`<section class="um-card"><div class="um-h"><div><h3>Akun saya</h3><p>Ganti password akun yang sedang dipakai.</p></div></div>
+  <div class="um-me"><div class="um-av">${ini(me.name)}</div><div><b>${esc(me.name||"")}</b><small>${me.username?"@"+esc(me.username)+" · ":""}${esc(ROLE_LBL[me.role]||me.role||"")}</small></div></div>
+  <form class="um-form" onsubmit="submitOwnPw(event)" novalidate autocomplete="off">
+   ${pwField("opCur","Password saat ini","Password yang dipakai sekarang","current-password")}
+   ${pwField("opNew","Password baru","Minimal 8 karakter","new-password",'oninput="opMeter()"')}
+   <div class="um-meter"><div class="um-bar" id="opBar" data-s="0"><i></i><i></i><i></i><i></i></div><span id="opLbl"></span></div>
+   ${pwField("opNew2","Ulangi password baru","Ketik ulang password baru","new-password")}
+   <div id="opMsg" class="um-msg" role="status"></div>
+   <button class="bt" id="opBtn" type="submit">Simpan password baru</button>
+  </form>
+  ${CONFIG.API_URL?"":'<div class="um-note">Mode demo: ganti password tersedia setelah aplikasi terhubung ke Apps Script.</div>'}</section>`;
+ const mng=adm?`<section class="um-card um-wide"><div class="um-h"><div><h3>Daftar pengguna</h3><p>Admin dapat menambah akun, mengubah role, mereset password, dan menghapus akun.</p></div>${CONFIG.API_URL?`<button class="bt" type="button" onclick="openUserForm()">+ Tambah user</button>`:""}</div><div id="umList">${userList()}</div></section>`:"";
+ return`<div id="umRoot" class="um"><div class="um-top"><h2>${adm?"Manajemen User":"Akun Saya"}</h2></div><div class="um-grid ${adm?"":"one"}">${own}${mng}</div></div>`;
+}
+function userList(){
+ if(USERS_ERR)return`<div class="um-msg e">${esc(USERS_ERR)} <button class="btn-s" onclick="loadUsers()">Coba lagi</button></div>`;
+ if(!USERS)return`<div class="um-empty">Memuat daftar pengguna…</div>`;
+ const real=!!CONFIG.API_URL;
+ return`<div class="um-scroll"><table class="um-t"><thead><tr><th>Pengguna</th><th>Role</th><th>Terakhir diubah</th><th></th></tr></thead><tbody>${USERS.map(u=>{const self=u.username.toLowerCase()===meName();
+  return`<tr><td><div class="um-u"><span class="um-av sm">${esc(String(u.name||u.username).trim().charAt(0).toUpperCase())}</span><div><b>${esc(u.name)}</b>${self?' <em class="um-you">Anda</em>':""}<small>@${esc(u.username)}</small></div></div></td>
+  <td><span class="um-role ${u.role==="admin"?"a":"v"}">${esc(ROLE_LBL[u.role]||u.role)}</span></td><td class="um-dt">${esc(String(u.updatedAt||"—").slice(0,16))}</td>
+  <td class="um-act">${real?`<button class="btn-s" onclick="openUserForm('${esc(u.username)}')">Ubah</button>${self?"":`<button class="btn-s d" onclick="delUser('${esc(u.username)}')">Hapus</button>`}`:""}</td></tr>`}).join("")}</tbody></table></div>
+  ${real?"":'<div class="um-note">Mode demo: daftar ini hanya contoh dan tidak dapat diubah.</div>'}`;
+}
+function refreshUserList(){const el=$("umList");if(el)el.innerHTML=userList()}
+async function loadUsers(){
+ if(!isAdmin())return;USERS_ERR="";
+ if(!CONFIG.API_URL){USERS=Object.entries(DEMO_USERS).map(([u,d])=>({username:u,role:d.role,name:d.name,updatedAt:""}));refreshUserList();return}
+ try{const r=await api("listUsers");if(!r.ok)throw new Error(r.message||"Gagal memuat daftar pengguna.");USERS=r.users||[]}catch(e){USERS_ERR=e.message}
+ refreshUserList();
+}
+async function submitOwnPw(e){
+ e.preventDefault();const cur=$("opCur").value.trim(),n1=$("opNew").value.trim(),n2=$("opNew2").value.trim(),m=$("opMsg"),b=$("opBtn");
+ const err=x=>{m.className="um-msg e";m.textContent=x};
+ if(!CONFIG.API_URL)return err("Mode demo: ganti password tersedia setelah terhubung ke Apps Script.");
+ if(!cur)return err("Isi password saat ini.");
+ if(n1.length<8)return err("Password baru minimal 8 karakter.");
+ if(n1!==n2)return err("Ulangi password baru tidak sama dengan password baru.");
+ if(n1===cur)return err("Password baru harus berbeda dari password saat ini.");
+ b.disabled=true;b.textContent="Menyimpan…";m.className="um-msg";m.textContent="";
+ try{
+  const r=await api("changeOwnPassword",{currentPassword:cur,newPassword:n1});if(!r.ok)throw new Error(r.message||"Gagal mengganti password.");
+  if(r.token){SESSION.token=r.token;saveSession()}   // sesi lama dicabut server; pakai token baru agar tidak keluar sendiri
+  ["opCur","opNew","opNew2"].forEach(i=>{$(i).value="";$(i).type="password"});document.querySelectorAll(".um-pw button").forEach(x=>x.textContent="Tampilkan");opMeter();
+  m.className="um-msg ok";m.textContent="Password berhasil diganti. Pakai password baru saat login berikutnya.";toast("Password diperbarui.","ok");
+ }catch(x){err(x.message)}
+ finally{b.disabled=false;b.textContent="Simpan password baru"}
+}
+function openUserForm(u){
+ if(!isAdmin()||!CONFIG.API_URL)return;
+ const ex=u?(USERS||[]).find(x=>x.username===u):null,self=!!ex&&ex.username.toLowerCase()===meName();
+ openModal(ex?"Ubah user · "+ex.username:"Tambah user",`<form id="ufForm" class="um-form" onsubmit="saveUserForm(event)" novalidate autocomplete="off">
+  <div class="mf-f"><label for="ufUser">Username</label><input id="ufUser" value="${esc(ex?ex.username:"")}" ${ex?"readonly":""} placeholder="huruf kecil, angka, titik, strip (3–30 karakter)" autocomplete="off"></div>
+  <div class="mf-f"><label for="ufName">Nama tampilan</label><input id="ufName" value="${esc(ex?ex.name:"")}" placeholder="mis. Budi · Kepala Sekolah"></div>
+  <div class="mf-f"><label for="ufRole">Role</label><select id="ufRole" ${self?"disabled":""}><option value="viewer" ${ex&&ex.role==="viewer"?"selected":""}>Viewer · hanya membaca</option><option value="admin" ${ex&&ex.role==="admin"?"selected":""}>Admin (HO) · boleh mengubah data</option></select>${self?'<small class="um-hint">Role akun Anda sendiri tidak bisa diubah.</small>':""}</div>
+  ${self?'<div class="um-note">Untuk mengganti password akun Anda sendiri, pakai bagian <b>Akun saya</b>.</div>':pwField("ufPw",ex?"Reset password (kosongkan bila tidak diubah)":"Password awal","Minimal 8 karakter","new-password")}
+  ${ex&&!self?'<div class="um-note">Mengubah password atau role akan mengeluarkan akun ini dari sesi yang sedang aktif.</div>':""}
+  <div id="ufMsg" class="um-msg" role="alert"></div>
+  <div class="mf-foot"><button class="bt w" type="button" onclick="closeModal()">Batal</button><button class="bt" id="ufBtn" type="submit">✔ Simpan</button></div></form>`);
+ setTimeout(()=>{const f=$(ex?"ufName":"ufUser");if(f)f.focus()},50);
+}
+async function saveUserForm(e){
+ e.preventDefault();const ex=(USERS||[]).find(x=>x.username.toLowerCase()===$("ufUser").value.trim().toLowerCase()),pwEl=$("ufPw"),m=$("ufMsg"),b=$("ufBtn");
+ const username=$("ufUser").value.trim().toLowerCase(),name=$("ufName").value.trim(),role=$("ufRole").disabled?(ex?ex.role:"viewer"):$("ufRole").value,password=pwEl?pwEl.value.trim():"";
+ const err=x=>{m.className="um-msg e";m.textContent=x};
+ if(!/^[a-z0-9._-]{3,30}$/.test(username))return err("Username 3–30 karakter: huruf kecil, angka, titik, strip, atau garis bawah.");
+ if(!ex&&password.length<8)return err("Password awal minimal 8 karakter.");
+ if(password&&password.length<8)return err("Password minimal 8 karakter.");
+ b.disabled=true;b.textContent="Menyimpan…";
+ try{
+  const r=await api("saveUser",{username,name,role,password});if(!r.ok)throw new Error(r.message||"Gagal menyimpan.");
+  if(username===meName()&&name){SESSION.name=name;saveSession();$("who").textContent=name}
+  closeModal();toast(r.created?"User "+username+" ditambahkan.":"User "+username+" diperbarui.","ok");await loadUsers();
+ }catch(x){err(x.message);b.disabled=false;b.textContent="✔ Simpan"}
+}
+async function delUser(u){
+ if(!confirm("Hapus user @"+u+"? Akun ini tidak bisa login lagi. Tindakan ini tidak bisa dibatalkan."))return;
+ try{const r=await api("deleteUser",{username:u});if(!r.ok)throw new Error(r.message||"Gagal menghapus.");toast("User "+u+" dihapus.","ok");await loadUsers()}
+ catch(e){toast(e.message,"err")}
 }
 
 /* ============ BOOT ============ */
