@@ -855,6 +855,47 @@ svg.lc{display:block;overflow:visible}
 #mcard.mp-theme input[type=month]{font-size:12px;padding:9px 6px 9px 10px}
 #mcard.mp-theme .mf-row[data-k="bat"]{grid-template-columns:1.1fr 1.35fr 1.35fr repeat(4,.8fr) auto}
 @media(max-width:760px){#mcard.mp-theme .mf-row[data-k="bat"]{grid-template-columns:1fr 1fr}}
+/* ===== Plan utama / Plan HO ===== */
+.ult{background:var(--pp-card,#fff);border:1px solid var(--pp-line,#dbe7ea);border-radius:16px;padding:16px 18px;margin:0 0 14px}
+.ult.empty{display:flex;gap:16px;align-items:center;justify-content:space-between;background:var(--pp-mint,#e8f6f3);border-style:dashed}
+.ult h3{margin:0 0 3px;font-size:16px;color:var(--pp-navy,#0b4f6c)}.ult p{margin:0;font-size:12.5px;color:var(--pp-mu,#5b7480);max-width:760px;line-height:1.5}
+.ult-h{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;flex-wrap:wrap}.ult-a{display:flex;gap:6px}
+.ul-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:10px;margin-top:12px}
+.ul-m{background:var(--pp-sky,#eef7fb);border-radius:12px;padding:11px 13px}.ul-m small{display:block;font-size:11px;font-weight:700;color:var(--pp-mu,#5b7480);text-transform:uppercase;letter-spacing:.03em}
+.ul-m>b{display:block;font-size:19px;color:var(--pp-navy,#0b4f6c);margin:2px 0 7px}
+.ul-bar{height:7px;border-radius:9px;background:#fff;overflow:hidden}.ul-bar i{display:block;height:100%;background:var(--pp-teal,#0f8b8d);border-radius:9px}
+.ul-m.over .ul-bar i{background:var(--pp-coral,#e0675a)}
+.ul-c{display:flex;justify-content:space-between;gap:8px;margin-top:6px;font-size:11.5px;color:var(--pp-mu,#5b7480)}.ul-c em{font-style:normal}.ul-c em.o{color:var(--pp-coral,#c4493c);font-weight:700}
+.ul-warn{margin-top:10px;padding:9px 12px;border-radius:10px;background:#fdeceb;color:#8f2f26;font-size:12.5px;display:flex;gap:10px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+.ul-none{font-size:12.5px;color:var(--pp-mu,#5b7480)}
+.ul-prev{margin-top:12px}.ul-prev td.o{color:#c4493c;font-weight:700}
+.pc.ho{background:linear-gradient(160deg,#0b4f6c,#0f6f86);color:#fff;border-color:transparent}
+.pc.ho h4,.pc.ho b{color:#fff}.pc.ho small,.pc.ho .pc-f{color:#cfe8ef}.pc.ho .pill{background:#ffffff26;color:#fff}
+.pc.ho .btn-s{background:#ffffff1f;color:#fff;border-color:#ffffff40}
+#view-plan .pc.ho h4,#view-plan .pc.ho b,#view-plan .pc.ho .pc-inc b,#view-plan .pc.ho .pc-st b{color:#fff}
+#view-plan .pc.ho small,#view-plan .pc.ho .pc-f,#view-plan .pc.ho .pc-f span,#view-plan .pc.ho .pc-inc small,#view-plan .pc.ho .pc-st small{color:#cfe8ef}
+#view-plan .pc.ho .pc-inc{background:transparent}
+#view-plan .pc.ho .btn-s{background:#ffffff1f;color:#fff;border-color:#ffffff40}
+tr.ho-row td{background:#eaf4f8}
+.mp-alloc{margin:8px 0 2px;padding:10px 12px;border-radius:12px;background:var(--pp-sky,#eef7fb);font-size:12.5px;color:var(--pp-navy,#0b4f6c)}
+.mp-alloc.none{background:#f4f6f7;color:var(--pp-mu,#5b7480)}
+.mpa-h{font-weight:700;margin-bottom:6px}
+.mpa-r{display:grid;grid-template-columns:150px 1fr auto auto;gap:8px;align-items:center;padding:4px 0;border-top:1px solid #d6e6ec}
+.mpa-n{font-weight:700}.mpa-d{color:var(--pp-mu,#5b7480)}.mpa-s{font-weight:700;color:#0b6b4f}.mpa-r.over .mpa-s{color:#c4493c}
+@media(max-width:700px){.mpa-r{grid-template-columns:1fr}}
+.kpi em.kn{display:block;margin-top:3px;color:#3f6fb5}
+/* ===== Kotak pencarian LP & saran nama ===== */
+.mf-f{position:relative}
+.cb{position:relative}.cb .cb-in{padding-right:34px}
+.cb-ic{position:absolute;right:11px;top:50%;transform:translateY(-50%);color:#8aa0a8;font-size:16px;pointer-events:none}
+.cb-list,.sg{display:none;position:absolute;left:0;right:0;top:calc(100% + 4px);z-index:60;background:#fff;border-radius:12px;box-shadow:0 8px 28px #0b2a3a30,0 0 0 1px #dbe7ea;max-height:260px;overflow:auto;padding:4px}
+.cb-list.open,.sg.open{display:block}
+.cb-o,.sg-o{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:8px 10px;border-radius:8px;cursor:pointer;font-size:13px}
+.cb-o small{display:block;color:#6b8791;font-size:11px;margin-top:1px}.sg-o small{color:#8aa0a8;font-size:11px}
+.cb-o:hover,.cb-o.act,.sg-o:hover,.sg-o.act{background:#e6f4f4}.cb-o.sel{box-shadow:inset 3px 0 0 #0f8b8d}
+.cb-o mark,.sg-o mark{background:#bfe9e6;color:inherit;border-radius:3px;padding:0 1px}
+.cb-b{font-size:10.5px;font-weight:700;padding:2px 8px;border-radius:20px;background:#eef1f3;color:#6b7a89;white-space:nowrap}.cb-b.g{background:#d9f2e8;color:#0b6b4f}
+.cb-none{padding:12px;font-size:12.5px;color:#6b7a89}
 </style>
 </head>
 <body>
@@ -956,7 +997,7 @@ svg.lc{display:block;overflow:visible}
 <script>
 /* ============ CONFIG ============ */
 const CONFIG={
-  API_URL:"https://script.google.com/macros/s/AKfycbyrRRtYfMGuHPEPL1oO_cYhigqZ0_KhsswQ-5uec5DeB0-cP-OkYw5fTjEZNq56Znm0/exec",                       // Tempel URL Apps Script (/exec) di sini. Kosong = mode demo.
+  API_URL:"https://script.google.com/macros/s/AKfycbwGKFipUTFM64MK0t517sEFY_0yyo9CmMCxHmyzJF6FiHyO_qR7FdzENaycugLxikLkGA/exec",                       // Tempel URL Apps Script (/exec) di sini. Kosong = mode demo.
   LOGO:"logo ut school.png",        // nama file logo di GitHub
   // Template Excel LP kini tertanam di dalam file ini (lihat TEMPLATE_B64 di bagian bawah)
   LAST_DUE_MONTH:10,                // di mode server nilai ini diambil dari sheet Config
@@ -1148,10 +1189,11 @@ function metrics(lp,m=S.month){
  }
  const ar=latestAssetRep(lp.id,m),ast=ar?ar.assets:[];
  const o={lp,status:curStatus(lp.id,m),rep:r,stale,nb,batchMonth:bm,ast,astMonth:ar?ar.month:null,assetN:ast.length,bad:ast.filter(a=>a.cond==="Rusak").length};
+ const plA=planOf(lp.id);o.planAll=plA?planYTD(plA,"mandiri",m)+planYTD(plA,"mandatory",m):0;   // plan YTD s.d. bulan terpilih, tidak peduli sudah lapor atau belum
  if(!r)return{...o,plan:0,actual:0,achv:null,mand:{plan:0,actual:0},mandt:{plan:0,actual:0}};
  const k=r.kipl,kb=r.kesiswaan.batches;
  const pl=planOf(lp.id);o.hasPlan=!!pl;
- if(pl){o.mand={plan:planYTD(pl,"mandiri",r.month),actual:k.mandiri.actual};o.mandt={plan:planYTD(pl,"mandatory",r.month),actual:k.mandatory.actual}}else{o.mand=k.mandiri;o.mandt=k.mandatory}
+ if(pl){const pm=S.pa==="plan"?m:r.month;o.mand={plan:planYTD(pl,"mandiri",pm),actual:k.mandiri.actual};o.mandt={plan:planYTD(pl,"mandatory",pm),actual:k.mandatory.actual}}else{o.mand=k.mandiri;o.mandt=k.mandatory}
  o.plan=o.mand.plan+o.mandt.plan;o.actual=o.mand.actual+o.mandt.actual;o.achv=pc(o.actual,o.plan);
  o.sel=sum(kb,b=>b.seleksi);o.psi=sum(kb,b=>b.psikotes);o.itv=sum(kb,b=>b.interview);o.mcu=sum(kb,b=>b.mcu);
  o.sPlan=pl?sum(pl.batches.filter(b=>S.batch==="all"||batchKey(b.name)===S.batch),b=>b.siswa):sum(r.akademik.batches,b=>b.siswaPlan);o.siswa=sum(r.akademik.batches,b=>b.siswa);o.ojt=sum(r.akademik.batches,b=>b.ojt);
@@ -1167,7 +1209,7 @@ function agg(ms){
  T.csrP=sum(a,x=>x.rep.akademik.csr.program);T.csrS=sum(a,x=>x.rep.akademik.csr.sekolah);T.csrQ=sum(a,x=>x.rep.akademik.csr.peserta);
  const bs=a.map(x=>x.rep.kesiswaan.bintalsik).filter(Boolean);
  T.binN=bs.length;T.binSel=sum(bs,b=>b.seleksi);T.binPsi=sum(bs,b=>b.psikotes);T.binItv=sum(bs,b=>b.interview);T.binMcu=sum(bs,b=>b.mcu);T.binLok=[...new Set(bs.map(b=>b.lokasi))].length;
- T.assets=sum(ms,x=>x.assetN||0);
+ T.assets=sum(ms,x=>x.assetN||0);T.planAll=sum(ms,x=>x.planAll||0);
  return T;
 }
 function batchAgg(ms){const o={};ms.filter(x=>x.rep).forEach(x=>x.rep.akademik.batches.forEach(b=>{const g=o[b.name]||(o[b.name]={kelas:0,plan:0,siswa:0,ojt:0,lp:0});g.kelas+=b.kelas||0;g.plan+=bPlan(x.lp.id,b);g.siswa+=b.siswa||0;g.ojt+=b.ojt||0;g.lp++}));return o}
@@ -1221,16 +1263,16 @@ function incRows(ms,kind){
  .map(({x,o,p})=>`<tr class="cl" onclick="openLP('${x.lp.id}')"><td><b>${esc(x.lp.name)}</b></td>${showP()?`<td>${rp(o.plan)}</td>`:""}${showA()?`<td>${rp(o.actual)}</td>`:""}${cmp()?`<td style="background:${heatBg(p)}"><b>${fp(p)}</b></td>`:""}</tr>`);
 }
 function showInfo(key){
- const ms=lpList().map(l=>metrics(l)),T=agg(ms),per=MONTHS[S.month-1]+" "+S.year,md=PA_LABEL[S.pa];
+ const ms=lpList().map(l=>metrics(l)),T=aggTop(ms),per=MONTHS[S.month-1]+" "+S.year,md=PA_LABEL[S.pa],hoX=k=>(T.ho&&S.pa==="plan"&&T.ho[k]>0)?[hoTr([nf(T.ho[k])])]:[];
  if(key==="tot"){
   const t=[T.plan,T.actual],nm="Income";
-  openModal(nm+" · "+md+" · s.d. "+per,`<div class="desc">Income kumulatif tahun berjalan (YTD), dari laporan terakhir tiap LP. ${cmp()?"Diurutkan dari capaian terendah.":"Hanya menampilkan data "+md+"; diurutkan dari nilai terbesar."}</div><div class="chips">${showP()?chip(rp(t[0]),"Plan","#3f6fb5"):""}${showA()?chip(rp(t[1]),"Actual","#2f8f5b"):""}${cmp()?chip(fp(pc(t[1],t[0])),"Capaian","#f5a800")+chip(rp(t[0]-t[1]),"Gap","#d64545"):""}</div>`+tbl(incHeads(),incRows(ms,key)),true);
+  openModal(nm+" · "+md+" · s.d. "+per,`<div class="desc">Income kumulatif tahun berjalan (YTD), dari laporan terakhir tiap LP. ${cmp()?"Diurutkan dari capaian terendah.":"Hanya menampilkan data "+md+"; diurutkan dari nilai terbesar."}</div><div class="chips">${showP()?chip(rp(t[0]),"Plan","#3f6fb5"):""}${showA()?chip(rp(t[1]),"Actual","#2f8f5b"):""}${cmp()?chip(fp(pc(t[1],t[0])),"Capaian","#f5a800")+chip(rp(t[0]-t[1]),"Gap","#d64545"):""}</div>`+tbl(incHeads(),incRows(ms,key).concat(T.ho&&S.pa==="plan"&&T.ho.incYTD>0?[hoTr([rp(T.ho.incYTD)])]:[])),true);
  }else if(key==="sis"){
   const rows=ms.filter(x=>x.rep).sort((a,b)=>cmp()?pc(a.siswa,a.sPlan)-pc(b.siswa,b.sPlan):S.pa==="plan"?b.sPlan-a.sPlan:b.siswa-a.siswa).map(x=>{const p=pc(x.siswa,x.sPlan);return`<tr class="cl" onclick="openLP('${x.lp.id}')"><td><b>${esc(x.lp.name)}</b></td>${showA()?`<td>${x.siswa}</td>`:""}${showP()?`<td>${x.sPlan}</td>`:""}${cmp()?`<td style="background:${heatBg(p)}"><b>${fp(p)}</b></td>`:""}${showA()?`<td>${x.ojt}</td>`:""}</tr>`});
-  openModal("Siswa Reguler · "+md+" · s.d. "+per,`<div class="desc">Siswa reguler seluruh batch. Hanya menampilkan data ${md}.</div><div class="chips">${showA()?chip(nf(T.siswa),"Siswa","#2f8f5b"):""}${showP()?chip(nf(T.sPlan),"Plan","#3f6fb5"):""}${cmp()?chip(fp(pc(T.siswa,T.sPlan)),"Terisi","#f5a800"):""}${showA()?chip(T.ojt,"Lokasi OJT","#7b61c9"):""}</div>`+tbl(["Learning Point",...(showA()?["Siswa"]:[]),...(showP()?["Plan"]:[]),...(cmp()?["%"]:[]),...(showA()?["OJT"]:[])],rows));
+  openModal("Siswa Reguler · "+md+" · s.d. "+per,`<div class="desc">Siswa reguler seluruh batch. Hanya menampilkan data ${md}.</div><div class="chips">${showA()?chip(nf(T.siswa),"Siswa","#2f8f5b"):""}${showP()?chip(nf(T.sPlan),"Plan","#3f6fb5"):""}${cmp()?chip(fp(pc(T.siswa,T.sPlan)),"Terisi","#f5a800"):""}${showA()?chip(T.ojt,"Lokasi OJT","#7b61c9"):""}</div>`+tbl(["Learning Point",...(showA()?["Siswa"]:[]),...(showP()?["Plan"]:[]),...(cmp()?["%"]:[]),...(showA()?["OJT"]:[])],rows.concat(hoX("siswa"))));
  }else if(key==="cust"){
   const rows=ms.filter(x=>x.rep).sort((a,b)=>S.pa==="plan"?b.fP-a.fP:b.cust-a.cust).map(x=>{const p=pc(x.fU,x.fP);return`<tr class="cl" onclick="openLP('${x.lp.id}')"><td><b>${esc(x.lp.name)}</b></td>${showA()?`<td>${x.cust}</td><td>${x.fU}</td>`:""}${showP()?`<td>${x.fP}</td>`:""}${cmp()?`<td style="background:${heatBg(p)}"><b>${fp(p)}</b></td>`:""}</tr>`});
-  openModal("New Customer / Project & Fasus · "+md+" · s.d. "+per,`<div class="desc">New customer/project (Big 5) dan pemakaian fasus NT UTS. Hanya menampilkan data ${md}.</div><div class="chips">${showA()?chip(T.cust,"New customer/project","#2f8f5b")+chip(T.fU,"Fasus terpakai","#3f6fb5"):""}${showP()?chip(T.fP,"Fasus direncanakan","#3f6fb5"):""}${cmp()?chip(fp(pc(T.fU,T.fP)),"Fasus %","#f5a800"):""}</div>`+tbl(["Learning Point",...(showA()?["Customer / Project","Fasus terpakai"]:[]),...(showP()?["Fasus plan"]:[]),...(cmp()?["%"]:[])],rows));
+  openModal("New Customer / Project & Fasus · "+md+" · s.d. "+per,`<div class="desc">New customer/project (Big 5) dan pemakaian fasus NT UTS. Hanya menampilkan data ${md}.</div><div class="chips">${showA()?chip(T.cust,"New customer/project","#2f8f5b")+chip(T.fU,"Fasus terpakai","#3f6fb5"):""}${showP()?chip(T.fP,"Fasus direncanakan","#3f6fb5"):""}${cmp()?chip(fp(pc(T.fU,T.fP)),"Fasus %","#f5a800"):""}</div>`+tbl(["Learning Point",...(showA()?["Customer / Project","Fasus terpakai"]:[]),...(showP()?["Fasus plan"]:[]),...(cmp()?["%"]:[])],rows.concat(hoX("fasus"))));
  }
 }
 
@@ -1305,7 +1347,7 @@ async function loadData(manual){
 const ICON={dashboard:'<path d="M3 13h8V3H3zm0 8h8v-6H3zm10 0h8V11h-8zm0-18v6h8V3z"/>',status:'<path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/>',summary:'<path d="M4 4h16v4H4zm0 6h10v10H4zm12 0h4v10h-4z"/>',input:'<path d="M3 17.25V21h3.75L17.8 9.94l-3.75-3.75zM20.7 7.04a1 1 0 0 0 0-1.41l-2.34-2.34a1 1 0 0 0-1.41 0l-1.83 1.83 3.75 3.75z"/>',asset:'<path d="M20 6h-3V4a2 2 0 0 0-2-2H9a2 2 0 0 0-2 2v2H4a2 2 0 0 0-2 2v11a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2zM9 4h6v2H9z"/>',out:'<path d="M10 17l1.4-1.4L8.8 13H20v-2H8.8l2.6-2.6L10 7l-5 5zM4 5h8V3H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h8v-2H4z"/>'};
 ICON.plan='<path d="M14.4 6 14 4H5v17h2v-7h5.6l.4 2h7V6z"/>';
 ICON.users='<path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zm0 2c-3.3 0-8 1.7-8 5v1h16v-1c0-3.3-4.7-5-8-5z"/>';
-const VIEWS={dashboard:"Dashboard Overview",plan:"Plan (Benchmark)",summary:"Ringkasan Konsolidasi",asset:"Daftar Aset per LP",input:"Input Data",users:"Pengguna"};
+const VIEWS={dashboard:"Dashboard Overview",plan:"Plan (Benchmark)",input:"Actual",asset:"Daftar Aset per LP",summary:"Ringkasan Konsolidasi",users:"Pengguna"};
 function renderNav(){
  const items=Object.entries(VIEWS).filter(([k])=>k!=="input"||isAdmin()).map(([k,v])=>`<div class="nl ${S.view===k?"on":""}" onclick="switchView('${k}')"><svg viewBox="0 0 24 24">${ICON[k]}</svg><span class="nt">${k==="users"&&!isAdmin()?"Akun Saya":v}</span>${k==="input"?'<span class="nt soon">ADMIN</span>':""}</div>`).join("");
  $("nav").innerHTML=items+`<div style="margin-top:auto;margin-bottom:12px"><div class="nl" style="color:#ef4444" onclick="logout()"><svg viewBox="0 0 24 24">${ICON.out}</svg><span class="nt">Keluar</span></div></div>`;
@@ -1340,8 +1382,8 @@ function renderAll(){
  else if(S.view==="plan"){$("view-plan").innerHTML=viewPlan();renderPlanGrid()}
 }
 function renderDashboard(){
- const lps=lpList(),ms=lps.map(l=>metrics(l)),T=agg(ms),per=MONTHS[S.month-1],P=S.pa;
- const kInc=cmp()?`<div class="kpi" onclick="showInfo('tot')"><span>Capaian income (YTD) <i class="i">ⓘ</i></span><b>${fp(T.achv)}</b>${vbar(T.achv)}<em>${rp(T.actual)} dari plan ${rp(T.plan)}</em></div>`
+ const lps=lpList(),ms=lps.map(l=>metrics(l)),T=aggTop(ms),per=MONTHS[S.month-1],P=S.pa;
+ const kInc=cmp()?`<div class="kpi" onclick="showInfo('tot')"><span>Capaian income (YTD) <i class="i">ⓘ</i></span><b>${fp(T.achv)}</b>${vbar(T.achv)}<em>${rp(T.actual)} dari plan ${rp(T.plan)}</em>${T.totPlanAll>T.plan+1?`<em class="kn">Total plan s.d. ${per} ${rp(T.totPlanAll)}${T.ho?" (termasuk Plan HO "+rp(T.ho.incYTD)+")":""} · ${T.rep} dari ${T.n} LP sudah lapor</em>`:""}</div>`
   :`<div class="kpi" onclick="showInfo('tot')"><span>Income ${P==="plan"?"Plan":"Actual"} (YTD) <i class="i">ⓘ</i></span><b>${rp(P==="plan"?T.plan:T.actual)}</b><em>Kumulatif s.d. ${per} ${S.year}</em></div>`;
  const kSis=cmp()?`<div class="kpi" onclick="showInfo('sis')"><span>Siswa reguler <i class="i">ⓘ</i></span><b>${nf(T.siswa)}<small> / ${nf(T.sPlan)}</small></b>${vbar(pc(T.siswa,T.sPlan),"#3f6fb5")}<em>${fp(pc(T.siswa,T.sPlan))} dari plan · ${T.ojt} lokasi OJT</em></div>`
   :`<div class="kpi" onclick="showInfo('sis')"><span>Siswa reguler ${P==="plan"?"(Plan)":"(Actual)"} <i class="i">ⓘ</i></span><b>${nf(P==="plan"?T.sPlan:T.siswa)}</b><em>${P==="plan"?"Plan siswa seluruh batch reguler":T.ojt+" lokasi OJT"}</em></div>`;
@@ -1518,7 +1560,7 @@ function parseTemplateRows(rows,fileName){
  const N=(k,label)=>{const n=parseNum(V[k]);if(n!==null&&(isNaN(n)||n<0)){R.errors.push(label+': harus angka ≥ 0 (terisi "'+T(k)+'")');return 0}return n??0};
  const any=(p,fs)=>fs.some(f=>has(p+"."+f));
  const funnel=(label,a)=>{const names=["seleksi","psikotes","interview","MCU"];for(let i=1;i<4;i++)if(a[i]>a[i-1])R.warnings.push(label+": "+names[i]+" ("+a[i]+") lebih besar dari "+names[i-1]+" ("+a[i-1]+")")};
- if(String(V["info.jenis"]||"").toLowerCase()==="plan"){R.errors.push("Ini Template Plan. Unggah lewat menu Plan, bukan Input Data.");return R}
+ if(String(V["info.jenis"]||"").toLowerCase()==="plan"){R.errors.push("Ini Template Plan. Unggah lewat menu Plan, bukan menu Actual.");return R}
  // Informasi
  const lpName=T("info.lp"),lp=LPS.find(l=>l.name.toLowerCase()===lpName.toLowerCase());
  if(!lpName)R.errors.push("Learning Point belum dipilih.");else if(!lp)R.errors.push('Learning Point "'+lpName+'" tidak dikenal.');
@@ -1658,7 +1700,8 @@ function renderPlanGrid(){
  const adm=isAdmin(),P=PL[S.year]||{},q=PQ.q.trim().toLowerCase();
  document.querySelectorAll("#plSeg button").forEach(x=>x.classList.toggle("on",x.dataset.v===PQ.f));
  const rows=LPS.filter(l=>(!q||(l.name+" "+l.region).toLowerCase().includes(q))&&(PQ.f==="all"||(PQ.f==="ada"?!!P[l.id]:!P[l.id])));
- el.innerHTML=rows.length?rows.map(l=>planCard(l,P[l.id],adm)).join(""):`<div class="ast-empty"><b>Tidak ada LP yang cocok</b>Ubah kata kunci atau filter.</div>`;
+ const ho=(!q&&PQ.f==="all")?hoCard():"";
+ el.innerHTML=(rows.length||ho)?ho+rows.map(l=>planCard(l,P[l.id],adm)).join(""):`<div class="ast-empty"><b>Tidak ada LP yang cocok</b>Ubah kata kunci atau filter.</div>`;
 }
 function viewPlan(){
  const adm=isAdmin(),P=PL[S.year]||{},list=LPS.map(l=>P[l.id]).filter(Boolean),okN=PU.files.filter(f=>f.plan&&!f.dup).length,errN=PU.files.filter(f=>!f.plan).length;
@@ -1679,9 +1722,10 @@ function viewPlan(){
    <p>Plan adalah target tahunan (benchmark) per Learning Point. Dashboard membandingkannya dengan laporan bulanan tiap LP (Actual).</p></div>
  <div class="pl-sum">
   <div class="pl-t ring"><div class="rg" style="--p:${pct};--c:${pct>=100?"#0b6b4f":"#0f8b8d"}"><b>${Math.round(pct)}%</b></div><div><small>LP sudah punya plan</small><b>${list.length} <span>dari ${LPS.length}</span></b></div></div>
-  <div class="pl-t hl"><small>Total target income / tahun</small><b>${rp(inc)}</b></div>
+  <div class="pl-t hl"><small>Total plan income semua LP</small><b>${rp(inc)}</b></div>
   <div class="pl-t"><small>Total plan siswa</small><b>${nf(sum(list,p=>sum(p.batches,b=>b.siswa)))}</b></div>
   <div class="pl-t"><small>Fasus · Customer baru</small><b>${nf(sum(list,p=>p.fasus))} <span>·</span> ${nf(sum(list,p=>p.cust))}</b></div></div>
+ ${ultPanel()}
  ${up}
  <div class="pl-bar"><input class="fs" placeholder="Cari Learning Point atau wilayah…" value="${esc(PQ.q)}" oninput="PQ.q=this.value;renderPlanGrid()">
   <div class="seg" id="plSeg">${[["all","Semua"],["ada","Sudah ada plan"],["belum","Belum ada plan"]].map(([v,l])=>`<button data-v="${v}" onclick="PQ.f='${v}';renderPlanGrid()">${l}</button>`).join("")}</div></div>
@@ -1695,7 +1739,7 @@ function parsePlanRows(rows,fileName){
  rows.slice(hi+1).forEach(r=>{const k=String(r[ki]??"").trim();if(k){const v=r[vi];V[k]=(typeof v==="string"?v.trim():v)??""}});
  const T=k=>String(V[k]??"").trim(),has=k=>T(k)!=="";
  const N=(k,l)=>{const n=parseNum(V[k]);if(n!==null&&(isNaN(n)||n<0)){R.errors.push(l+': harus angka ≥ 0 (terisi "'+T(k)+'")');return 0}return n??0};
- if(String(V["info.jenis"]||"").toLowerCase()!=="plan"){R.errors.push("Ini bukan Template Plan. Laporan bulanan diunggah lewat menu Input Data.");return R}
+ if(String(V["info.jenis"]||"").toLowerCase()!=="plan"){R.errors.push("Ini bukan Template Plan. Laporan bulanan diunggah lewat menu Actual.");return R}
  const lpName=T("info.lp"),lp=LPS.find(l=>l.name.toLowerCase()===lpName.toLowerCase());
  if(!lpName)R.errors.push("Learning Point belum dipilih.");else if(!lp)R.errors.push('Learning Point "'+lpName+'" tidak dikenal.');
  const yr=parseNum(V["info.tahun"]);let year=null;
@@ -1763,7 +1807,7 @@ function closeLP(){if(lpMapI){try{lpMapI.remove()}catch(e){}lpMapI=null}const d=
 function planBox(id){
  const pl=planOf(id);
  if(!pl)return`<div class="sbox"><h4>Plan ${S.year}</h4><div class="empty">Belum ada Plan ${S.year} untuk LP ini. HO dapat mengunggahnya di menu Plan.</div></div>`;
- return`<div class="sbox"><h4>Plan ${S.year} (benchmark)</h4><div class="chips" style="margin-bottom:8px">${chip(rp(pl.mandatory),"Income / tahun","#3f6fb5")}${chip(nf(sum(pl.batches,b=>b.siswa)),"Plan siswa","#2f8f5b")}${chip(pl.fasus,"Fasus","#7b61c9")}${chip(pl.cust,"Target customer","#f5a800")}</div>${pl.batches.length?tbl(["Batch","Periode","Kelas","Plan siswa"],pl.batches.map(b=>`<tr><td><b>${esc(b.name)}</b></td><td>${planPeriod(b)}</td><td>${b.kelas}</td><td>${b.siswa}</td></tr>`)):""}</div>`;
+ return`<div class="sbox"><h4>Plan ${S.year} (benchmark)</h4><div class="chips" style="margin-bottom:8px">${chip(rp(pl.mandatory),"Income / tahun","#3f6fb5")}${chip(nf(sum(pl.batches,b=>b.siswa)),"Plan siswa","#2f8f5b")}${chip(pl.fasus,"Fasus","#7b61c9")}${chip(pl.cust,"Target customer","#f5a800")}${chip(rp(planYTD(pl,"mandatory",S.month)+planYTD(pl,"mandiri",S.month)),"Plan YTD s.d. "+MONTHS[S.month-1],"#0f8b8d")}</div>${pl.batches.length?tbl(["Batch","Periode","Kelas","Plan siswa"],pl.batches.map(b=>`<tr><td><b>${esc(b.name)}</b></td><td>${planPeriod(b)}</td><td>${b.kelas}</td><td>${b.siswa}</td></tr>`)):""}</div>`;
 }
 function openLP(id){
  closeModal();closeLP();
@@ -1944,8 +1988,8 @@ function mfMsg(list,kind){const m=$("mfMsg");if(!m)return;m.className="mf-msg "+
 function mfHtml(d){
  const k=d.kesiswaan||{},a=d.akademik||{},p=d.kipl||{},bin=k.bintalsik,csr=a.csr||{},mi=p.mandiri||{},md=p.mandatory||{};
  const rek=k.batches&&k.batches.length?k.batches:[{}],reg=a.batches&&a.batches.length?a.batches:[{}];
- return`<form id="mfForm" class="mf" onsubmit="event.preventDefault();mfSave()" novalidate>
-  <div class="mf-g">${mfSel("Learning Point","mf-lp",LPS.map(l=>[l.id,l.name+" · "+l.region]),d.lp,'onchange="mfCheck()"')}${mfTxt("Tahun","mf-year",d.year||S.year,"",'type="number" min="2000" max="2100" onchange="mfCheck()"')}${mfSel("Bulan laporan","mf-month",MONTHS.map((m,i)=>[i+1,m]),d.month,'onchange="mfCheck()"')}${mfTxt("PIC","mf-pic",d.pic,"Nama PIC LP")}${mfSel("Status (Final = dihitung dashboard)","mf-status",[["submitted","Final"],["draft","Draft"]],d.status||"submitted")}</div>
+ return`<form id="mfForm" class="mf" onsubmit="event.preventDefault();mfSave()" oninput="if(!event.target.closest('.cb'))this.dataset.dirty='1'" novalidate>
+  <div class="mf-g">${lpPicker("mf-lp",d.lp,"mfPick","lpBadgeRep")}${mfTxt("Tahun","mf-year",d.year||S.year,"",'type="number" min="2000" max="2100" onchange="mfCheck()"')}${mfSel("Bulan laporan","mf-month",MONTHS.map((m,i)=>[i+1,m]),d.month,'onchange="mfCheck()"')}${mfTxt("PIC","mf-pic",d.pic,"Nama PIC LP (ketik untuk saran)",'data-sug="pic" autocomplete="off"')}${mfSel("Status (Final = dihitung dashboard)","mf-status",[["submitted","Final"],["draft","Draft"]],d.status||"submitted")}</div>
   <div id="mfHint" class="mf-hint"></div>
   ${mfSec("KESISWAAN","Rekrutmen &amp; MCU per batch (jumlah orang).",`<div id="mfRek" class="mf-list">${rek.map(mfRek).join("")}</div><button type="button" class="bt w" onclick="mfAdd('rek')">+ Tambah batch rekrutmen</button>
    <label class="mf-chk"><input type="checkbox" class="b-on" ${bin?"checked":""} onchange="$('mfBin').classList.toggle('hide',!this.checked)"> Ada pelaksanaan Bintalsik bulan ini</label>
@@ -2018,16 +2062,17 @@ async function mfSave(){
  const rep=R.report,lp=LPS.find(l=>l.id===rep.lp),ex=(YR[rep.year]||{})[rep.lp+"|"+rep.month];
  if(!confirm("Simpan laporan "+lp.name+" · "+MONTHS[rep.month-1]+" "+rep.year+" sebagai "+(rep.status==="draft"?"DRAFT":"FINAL")+"?"+(ex?"\nLaporan yang sudah ada akan ditimpa.":"")+(R.warnings.length?"\n\nPeringatan:\n- "+R.warnings.join("\n- "):"")))return;
  const b=$("mfBtn");b.disabled=true;b.textContent="Menyimpan…";
- try{await persistReports([rep]);closeModal();if(rep.year===S.year)UP.month=rep.month;renderAll();toast("Laporan "+lp.name+" · "+MONTHS[rep.month-1]+" "+rep.year+" tersimpan"+(DEMO?" (MODE DEMO: tidak masuk spreadsheet).":"."),"ok")}
+ try{await persistReports([rep]);rememberName("pic",rep.pic);closeModal();if(rep.year===S.year)UP.month=rep.month;renderAll();toast("Laporan "+lp.name+" · "+MONTHS[rep.month-1]+" "+rep.year+" tersimpan"+(DEMO?" (MODE DEMO: tidak masuk spreadsheet).":"."),"ok")}
  catch(e){mfMsg([e.message]);b.disabled=false;b.textContent="✔ Simpan laporan"}
 }
 
 /* ---------- PLAN ---------- */
 function mpHtml(d){
  const mm=d.m_mandatory||[],hasM=mm.some&&mm.some(v=>v>0),bats=d.batches&&d.batches.length?d.batches:[{}];
- return`<form id="mfForm" class="mf" onsubmit="event.preventDefault();mpSave()" novalidate>
-  <div class="mf-g">${mfSel("Learning Point","mp-lp",LPS.map(l=>[l.id,l.name+" · "+l.region]),d.lp,'onchange="mpCheck()"')}${mfTxt("Tahun plan","mp-year",d.year||S.year,"",'type="number" min="2000" max="2100" onchange="mpCheck()"')}${mfTxt("Disusun oleh","mp-pic",d.pic,"Nama penyusun (HO)")}</div>
+ return`<form id="mfForm" class="mf" onsubmit="event.preventDefault();mpSave()" oninput="if(!event.target.closest('.cb'))this.dataset.dirty='1';mpAlloc()" novalidate>
+  <div class="mf-g">${lpPicker("mp-lp",d.lp,"mpPick","lpBadgePlan")}${mfTxt("Tahun plan","mp-year",d.year||S.year,"",'type="number" min="2000" max="2100" onchange="mpCheck()"')}${mfTxt("Disusun oleh","mp-pic",d.pic,"Nama penyusun (ketik untuk saran)",'data-sug="planner" autocomplete="off"')}</div>
   <div id="mfHint" class="mf-hint"></div>
+  <div id="mpAlloc" class="mp-alloc none"></div>
   ${mfSec("TARGET","Rupiah penuh; boleh ditulis 1.500.000.000.",`<div class="mf-g">${mfNum("Target income / tahun (Rp)","inc-d",d.mandatory,"wajib")}${mfNum("Target customer / project baru","cust-t",d.cust)}${mfNum("Plan Fasus NT UTS","fasus-t",d.fasus)}</div>
    <details class="mf-det" ${hasM?"open":""}><summary>Target per bulan (opsional)</summary>
     <div class="desc" style="margin:8px 0">Kosongkan semua = target tahunan dibagi rata 12 bulan. Isi per bulan bila target tidak merata. Angka di sini adalah target <b>bulan itu saja</b>, bukan kumulatif.</div>
@@ -2050,7 +2095,7 @@ function openManualPlan(lp){
 function mpKey(){return{lp:mfRaw(mfQ(".mp-lp")),year:+mfRaw(mfQ(".mp-year"))}}
 function mpCheck(){
  const k=mpKey(),ex=(PL[k.year]||{})[k.lp],h=$("mfHint");if(!h)return;
- h.innerHTML=ex?`Plan untuk LP dan tahun ini <b>sudah ada</b>. Menyimpan akan menimpanya. <button type="button" class="btn-s" onclick="mpLoad()">Muat plan tersimpan ke formulir</button>`:"Belum ada plan tersimpan untuk kombinasi ini (atau tahun tersebut belum dimuat).";
+ mpAlloc();h.innerHTML=ex?`Plan untuk LP dan tahun ini <b>sudah ada</b>. Menyimpan akan menimpanya. <button type="button" class="btn-s" onclick="mpLoad()">Muat plan tersimpan ke formulir</button>`:"Belum ada plan tersimpan untuk kombinasi ini (atau tahun tersebut belum dimuat).";
 }
 function mpLoad(){const k=mpKey(),ex=(PL[k.year]||{})[k.lp];if(!ex)return;const d=JSON.parse(JSON.stringify(ex));d.lp=k.lp;d.year=k.year;$("mBody").innerHTML=mpHtml(d);mpCheck()}
 function mpCollect(){
@@ -2085,7 +2130,7 @@ async function mpSave(){
  const p=R.plan,lp=LPS.find(l=>l.id===p.lp),ex=(PL[p.year]||{})[p.lp];
  if(!confirm("Simpan Plan "+p.year+" "+lp.name+"?"+(ex?"\nPlan yang sudah ada akan ditimpa.":"")+(R.warnings.length?"\n\nPeringatan:\n- "+R.warnings.join("\n- "):"")))return;
  const b=$("mfBtn");b.disabled=true;b.textContent="Menyimpan…";
- try{await persistPlans([p]);closeModal();renderAll();toast("Plan "+p.year+" "+lp.name+" tersimpan"+(DEMO?" (MODE DEMO: tidak masuk spreadsheet).":"."),"ok")}
+ try{await persistPlans([p]);rememberName("planner",p.pic);closeModal();renderAll();toast("Plan "+p.year+" "+lp.name+" tersimpan"+(DEMO?" (MODE DEMO: tidak masuk spreadsheet).":"."),"ok")}
  catch(e){mfMsg([e.message]);b.disabled=false;b.textContent="✔ Simpan plan"}
 }
 
@@ -2181,6 +2226,195 @@ async function delUser(u){
  try{const r=await api("deleteUser",{username:u});if(!r.ok)throw new Error(r.message||"Gagal menghapus.");toast("User "+u+" dihapus.","ok");await loadUsers()}
  catch(e){toast(e.message,"err")}
 }
+
+/* ============ PLAN UTAMA (target seluruh perusahaan) + PLAN HO (= sisa yang belum dialokasikan ke LP) ============
+   Disimpan sebagai baris khusus lp "ALL" di sheet Plans. HO tinggal mengisi plan tiap LP; sisanya otomatis menjadi Plan HO.
+   Melebihi plan utama boleh (hanya diberi catatan); plan utama selalu bisa diubah. Item bernilai 0 = tidak dikontrol. */
+const SUMK=["income","siswa","fasus","cust"],UL={income:"Income / tahun",siswa:"Plan siswa",fasus:"Fasus NT UTS",cust:"Customer / project baru"};
+const fmtK=(k,v)=>k==="income"?rp(v):nf(v);
+const siswaOf=p=>sum(p.batches||[],b=>b.siswa||0);
+function ultOf(y=S.year){const p=(PL[y]||{}).ALL;if(!p)return null;return{income:(p.mandatory||0)+(p.mandiri||0),siswa:siswaOf(p),fasus:p.fasus||0,cust:p.cust||0,pic:p.pic||"",updatedAt:p.updatedAt||""}}
+function allocOf(y=S.year,skip){
+ const P=PL[y]||{},a={income:0,siswa:0,fasus:0,cust:0,n:0};
+ LPS.forEach(l=>{const p=P[l.id];if(!p||l.id===skip)return;a.n++;a.income+=(p.mandatory||0)+(p.mandiri||0);a.siswa+=siswaOf(p);a.fasus+=p.fasus||0;a.cust+=p.cust||0});return a;
+}
+function hoOf(y=S.year){
+ const u=ultOf(y);if(!u)return null;const a=allocOf(y),remain={},over={};
+ SUMK.forEach(k=>{remain[k]=u[k]>0?Math.max(0,u[k]-a[k]):0;over[k]=u[k]>0?Math.max(0,a[k]-u[k]):0});
+ return{u,a,remain,over,anyOver:SUMK.some(k=>over[k]>0)};
+}
+const hoScope=()=>lpList().length===LPS.length&&S.batch==="all";   // Plan HO hanya ikut dihitung bila tidak ada filter wilayah/koordinator/batch
+/** Agregat dashboard utama: agg() + Plan HO. T.totPlanAll = total plan YTD seluruh LP (+HO) tanpa memandang sudah lapor atau belum. */
+function aggTop(ms){
+ const T=agg(ms),h=hoOf(S.year);T.ho=null;T.totPlanAll=T.planAll;
+ if(h&&hoScope()){const iy=h.remain.income*S.month/12;T.ho={...h.remain,incYTD:iy};T.totPlanAll=T.planAll+iy;
+  if(S.pa==="plan"){T.plan+=iy;T.sPlan+=h.remain.siswa;T.fP+=h.remain.fasus;T.cP+=h.remain.cust}}
+ return T;
+}
+const hoTr=(cells)=>`<tr class="ho-row"><td><b>HO</b> <small>Plan HO · sisa belum dialokasikan ke LP</small></td>${cells.map(c=>`<td>${c}</td>`).join("")}</tr>`;
+
+/* ---------- panel di halaman Plan ---------- */
+function ultPanel(){
+ const adm=isAdmin(),h=hoOf();
+ if(!h)return`<section class="ult empty"><div><h3>Plan Utama ${S.year}</h3><p>Belum ada plan utama. Plan utama adalah target seluruh perusahaan: HO mengisinya dulu, lalu membaginya ke tiap Learning Point. Sisa yang belum dibagi otomatis menjadi <b>Plan HO</b>.</p></div>${adm?`<button class="bt" type="button" onclick="openUltForm()">+ Atur plan utama</button>`:""}</section>`;
+ const ms=SUMK.filter(k=>h.u[k]>0).map(k=>{
+  const tot=h.u[k],al=h.a[k],over=h.over[k]>0,pctL=Math.min(100,al/tot*100);
+  return`<div class="ul-m ${over?"over":""}"><small>${UL[k]}</small><b>${fmtK(k,tot)}</b><div class="ul-bar"><i style="width:${pctL}%"></i></div><div class="ul-c"><span>LP: <b>${fmtK(k,al)}</b></span>${over?`<em class="o">Melebihi ${fmtK(k,h.over[k])}</em>`:`<em>Plan HO: <b>${fmtK(k,h.remain[k])}</b></em>`}</div></div>`}).join("");
+ const warn=h.anyOver?`<div class="ul-warn"><span>Plan LP melebihi plan utama pada: ${SUMK.filter(k=>h.over[k]>0).map(k=>UL[k].toLowerCase()).join(", ")}. Tidak masalah; plan utama boleh diubah.</span>${adm?`<button class="btn-s" type="button" onclick="ultRaise()">Naikkan plan utama sesuai total LP</button>`:""}</div>`:"";
+ return`<section class="ult"><div class="ult-h"><div><h3>Plan Utama ${S.year}</h3><p>Target seluruh perusahaan${h.u.pic?" · disusun "+esc(h.u.pic):""}. Plan LP dibagi dari angka ini; sisanya menjadi <b>Plan HO</b> dan ikut dihitung di Dashboard.</p></div>${adm?`<div class="ult-a"><button class="bt" type="button" onclick="openUltForm()">Ubah plan utama</button><button class="btn-s d" type="button" onclick="ultDelete()">Hapus</button></div>`:""}</div>
+  <div class="ul-grid">${ms||'<div class="ul-none">Semua target bernilai 0. Ubah plan utama untuk mengisi.</div>'}</div>${warn}</section>`;
+}
+function hoCard(){
+ const h=hoOf();if(!h)return"";const r=h.remain,adm=isAdmin();
+ return`<article class="pc ho"><div class="pc-h"><div><h4>HO</h4><small>Plan HO · sisa belum dialokasikan</small></div><span class="pill">Otomatis</span></div>
+  <div class="pc-inc"><small>Sisa income / tahun</small><b>${rp(r.income)}</b></div>
+  <div class="pc-st"><div><b>${nf(r.siswa)}</b><small>Plan siswa</small></div><div><b>—</b><small>Batch</small></div><div><b>${nf(r.fasus)}</b><small>Fasus</small></div><div><b>${nf(r.cust)}</b><small>Customer</small></div></div>
+  <div class="pc-f"><span>Plan utama ${rp(h.u.income)}</span><span class="pc-a">${adm?`<button class="btn-s" type="button" onclick="openUltForm()">Atur</button>`:""}</span></div></article>`;
+}
+function ultHtml(d){
+ return`<form id="mfForm" class="mf" onsubmit="event.preventDefault();ultSave()" oninput="ultPrev()" novalidate>
+  <div class="mf-g">${mfTxt("Tahun","ul-year",d.year,"",'type="number" min="2000" max="2100"')}${mfTxt("Disusun oleh","ul-pic",d.pic,"Nama penyusun (HO)",'data-sug="planner" autocomplete="off"')}</div>
+  ${mfSec("TARGET SELURUH PERUSAHAAN","Isi hanya target yang ingin dikontrol. Kosong atau 0 = tidak ada plan utama untuk item itu. Rupiah penuh, boleh ditulis 1.500.000.000.",`<div class="mf-g">${mfNum("Income / tahun (Rp)","ul-inc",d.income)}${mfNum("Plan siswa (total)","ul-sis",d.siswa)}${mfNum("Fasus NT UTS","ul-fas",d.fasus)}${mfNum("Customer / project baru","ul-cus",d.cust)}</div>`)}
+  <div id="ulPrev" class="ul-prev"></div>
+  ${mfFoot("Simpan plan utama")}</form>`;
+}
+function openUltForm(){
+ if(!isAdmin())return;const u=ultOf()||{};
+ openModal("Plan Utama "+S.year,ultHtml({year:S.year,pic:u.pic,income:u.income||"",siswa:u.siswa||"",fasus:u.fasus||"",cust:u.cust||""}),true);
+ $("mcard").classList.add("mp-theme");ultPrev();
+}
+function ultVals(){
+ const F=$("mfForm"),num=c=>{const v=parseNum(mfRaw(F.querySelector(c)));return v==null||isNaN(v)?null:v};
+ return{year:+mfRaw(F.querySelector(".ul-year")),pic:mfRaw(F.querySelector(".ul-pic")),income:num(".ul-inc"),siswa:num(".ul-sis"),fasus:num(".ul-fas"),cust:num(".ul-cus")};
+}
+function ultPrev(){
+ const el=$("ulPrev");if(!el||!$("mfForm").querySelector(".ul-year"))return;const v=ultVals(),a=allocOf(v.year);
+ const rows=SUMK.map(k=>{const t=v[k]||0,al=a[k];if(!(t>0)&&!(al>0))return"";const left=t>0?t-al:null;
+  return`<tr><td>${UL[k]}</td><td>${t>0?fmtK(k,t):"—"}</td><td>${fmtK(k,al)}</td><td class="${left!=null&&left<0?"o":""}">${left==null?"tidak dikontrol":left<0?"Melebihi "+fmtK(k,-left):"Plan HO "+fmtK(k,left)}</td></tr>`}).join("");
+ el.innerHTML=rows?`<div class="sh">Pembagian ke Learning Point (${v.year||"?"}) · ${a.n} LP sudah punya plan</div><table class="t"><thead><tr><th>Item</th><th>Plan utama</th><th>Sudah di LP</th><th>Hasil</th></tr></thead><tbody>${rows}</tbody></table><div class="desc" style="margin-top:6px">Sisa otomatis menjadi Plan HO. Bila LP melebihi plan utama tetap boleh; Anda bisa menaikkan plan utama kapan saja.</div>`:"";
+}
+function ultPlanObj(y,pic,x){return{lp:"ALL",year:y,pic,mandiri:0,mandatory:x.income||0,m_mandiri:null,m_mandatory:null,cust:x.cust||0,fasus:x.fasus||0,batches:x.siswa>0?[{name:"Total",start:"",end:"",kelas:0,siswa:x.siswa,seleksi:0,mcu:0}]:[]}}
+async function ultSave(){
+ const v=ultVals(),errs=[],msg=$("mfMsg");
+ if(!(v.year>=2000&&v.year<=2100))errs.push("Tahun tidak valid.");
+ SUMK.forEach(k=>{const raw=mfRaw($("mfForm").querySelector(".ul-"+({income:"inc",siswa:"sis",fasus:"fas",cust:"cus"})[k]));if(raw!==""&&(v[k]==null||v[k]<0))errs.push(UL[k]+": harus angka ≥ 0.")});
+ const x={};SUMK.forEach(k=>x[k]=v[k]||0);
+ if(!errs.length&&!SUMK.some(k=>x[k]>0))errs.push("Isi minimal satu target (income, siswa, Fasus, atau customer).");
+ if(errs.length){mfMsg(errs);return}
+ const a=allocOf(v.year),ov=SUMK.filter(k=>x[k]>0&&a[k]>x[k]);
+ if(!confirm("Simpan Plan Utama "+v.year+"?"+(ov.length?"\n\nCatatan: plan LP saat ini sudah melebihi plan utama pada "+ov.map(k=>UL[k].toLowerCase()).join(", ")+". Tetap boleh disimpan.":"")))return;
+ const b=$("mfBtn");b.disabled=true;b.textContent="Menyimpan…";
+ try{await persistPlans([ultPlanObj(v.year,v.pic,x)]);rememberName("planner",v.pic);closeModal();renderAll();toast("Plan utama "+v.year+" tersimpan"+(DEMO?" (MODE DEMO: tidak masuk spreadsheet).":"."),"ok")}
+ catch(e){mfMsg([e.message]);b.disabled=false;b.textContent="✔ Simpan plan utama"}
+}
+async function ultRaise(){
+ const h=hoOf();if(!h||!isAdmin())return;const x={};SUMK.forEach(k=>x[k]=h.u[k]>0?Math.max(h.u[k],h.a[k]):0);
+ if(!confirm("Naikkan plan utama "+S.year+" supaya sama dengan total plan LP?\n"+SUMK.filter(k=>h.over[k]>0).map(k=>UL[k]+": "+fmtK(k,h.u[k])+" → "+fmtK(k,x[k])).join("\n")))return;
+ try{await persistPlans([ultPlanObj(S.year,h.u.pic,x)]);renderAll();toast("Plan utama dinaikkan.","ok")}catch(e){toast(e.message,"err")}
+}
+async function ultDelete(){
+ if(!isAdmin()||!confirm("Hapus Plan Utama "+S.year+"? Plan tiap LP tidak ikut terhapus. Dashboard kembali memakai jumlah plan LP saja."))return;
+ try{if(CONFIG.API_URL){const r=await api("deletePlan",{lp:"ALL",year:S.year});if(!r.ok)throw new Error(r.message);await loadData(false)}else delete (PL[S.year]||{}).ALL;renderAll();toast("Plan utama dihapus.","ok")}
+ catch(e){toast(e.message,"err")}
+}
+
+/* ---------- catatan alokasi di formulir Plan LP ---------- */
+const MPF={income:".inc-d",fasus:".fasus-t",cust:".cust-t"};
+function mpAlloc(){
+ const el=$("mpAlloc");if(!el||!mfQ(".mp-year"))return;const k=mpKey(),u=ultOf(k.year);
+ if(!u){el.className="mp-alloc none";el.innerHTML=`Plan utama ${k.year||""} belum diatur, jadi tidak ada Plan HO. ${isAdmin()?'<button type="button" class="btn-s" onclick="closeModal();openUltForm()">Atur plan utama</button>':""}`;return}
+ const a=allocOf(k.year,k.lp),num=c=>{const v=parseNum(mfRaw(mfQ(c)));return v==null||isNaN(v)?0:v};
+ const cur={income:num(".inc-d"),fasus:num(".fasus-t"),cust:num(".cust-t"),siswa:[...document.querySelectorAll('#mfForm [data-k="bat"] .c-siswa')].reduce((t,e)=>{const v=parseNum(mfRaw(e));return t+(v==null||isNaN(v)?0:v)},0)};
+ const rows=SUMK.filter(x=>u[x]>0).map(x=>{const avail=Math.max(0,u[x]-a[x]),after=u[x]-a[x]-cur[x];
+  return`<div class="mpa-r ${after<0?"over":""}"><span class="mpa-n">${UL[x]}</span><span class="mpa-d">Plan utama <b>${fmtK(x,u[x])}</b> · LP lain <b>${fmtK(x,a[x])}</b> · tersedia <b>${fmtK(x,avail)}</b></span><span class="mpa-s">${after<0?"Melebihi "+fmtK(x,-after)+" (boleh)":"Sisa jadi Plan HO "+fmtK(x,after)}</span>${MPF[x]&&avail>0?`<button type="button" class="btn-s" onclick="mpUseLeft('${x}')">Pakai sisa</button>`:""}</div>`}).join("");
+ el.className="mp-alloc";el.innerHTML=`<div class="mpa-h">Dibagi dari Plan Utama ${k.year}. Yang tidak terpakai otomatis menjadi Plan HO.</div>${rows}`;
+}
+function mpUseLeft(x){const k=mpKey(),u=ultOf(k.year),a=allocOf(k.year,k.lp),e=mfQ(MPF[x]);if(!u||!e)return;e.value=Math.max(0,u[x]-a[x]);$("mfForm").dataset.dirty="1";mpAlloc();if(x==="income")mpSum()}
+function mpPick(id,prev,box){
+ const F=$("mfForm"),y=+mfRaw(mfQ(".mp-year"))||S.year;
+ if(F.dataset.dirty==="1"&&!confirm("Isian formulir akan diganti dengan data LP yang dipilih (plan tersimpan, atau kosong bila belum ada). Lanjutkan?")){cbSet(box,prev);return}
+ const ex=(PL[y]||{})[id],d=ex?JSON.parse(JSON.stringify(ex)):{};d.lp=id;d.year=y;
+ $("mBody").innerHTML=mpHtml(d);mpCheck();const e=mfQ(".inc-d");if(e)e.focus();
+}
+function mfPick(id,prev,box){
+ const F=$("mfForm"),y=+mfRaw(mfQ(".mf-year"))||S.year,m=+mfRaw(mfQ(".mf-month"))||1;
+ if(F.dataset.dirty==="1"&&!confirm("Isian formulir akan diganti dengan data LP yang dipilih (laporan tersimpan, atau kosong bila belum ada). Lanjutkan?")){cbSet(box,prev);return}
+ const ex=(YR[y]||{})[id+"|"+m],d=ex?JSON.parse(JSON.stringify(ex)):{};d.lp=id;d.year=y;d.month=m;
+ $("mBody").innerHTML=mfHtml(d);mfCheck();
+}
+const lpBadgePlan=l=>{const y=+mfRaw(mfQ(".mp-year"))||S.year;return(PL[y]||{})[l.id]?'<span class="cb-b g">Ada plan</span>':'<span class="cb-b">Belum</span>'};
+const lpBadgeRep=l=>{const y=+mfRaw(mfQ(".mf-year"))||S.year,m=+mfRaw(mfQ(".mf-month")),r=(YR[y]||{})[l.id+"|"+m];return r?`<span class="cb-b g">${r.status==="draft"?"Draft":"Sudah ada"}</span>`:'<span class="cb-b">Belum</span>'};
+
+/* ============ KOTAK PENCARIAN LEARNING POINT (combobox) ============ */
+function lpPicker(cls,value,onpick,badge){
+ const l=LPS.find(x=>x.id===value);
+ return`<div class="mf-f"><label>Learning Point</label><div class="cb" data-onpick="${onpick}" data-badge="${badge||""}"><input class="cb-in" type="text" autocomplete="off" role="combobox" aria-expanded="false" placeholder="Ketik nama, wilayah, atau kode LP…" value="${esc(l?l.name+" · "+l.region:"")}"><span class="cb-ic" aria-hidden="true">⌕</span><input type="hidden" class="${cls}" value="${esc(value||"")}"><div class="cb-list" role="listbox"></div></div></div>`;
+}
+const cbLabel=id=>{const l=LPS.find(x=>x.id===id);return l?l.name+" · "+l.region:""};
+function hlText(s,q){const w=(q||"").trim().toLowerCase().split(/\s+/)[0];if(!w)return esc(s);const i=s.toLowerCase().indexOf(w);return i<0?esc(s):esc(s.slice(0,i))+"<mark>"+esc(s.slice(i,i+w.length))+"</mark>"+esc(s.slice(i+w.length))}
+function cbOpen(box,q){
+ const list=box.querySelector(".cb-list"),cur=box.querySelector("input[type=hidden]").value,bf=window[box.dataset.badge],words=(q||"").trim().toLowerCase().split(/\s+/).filter(Boolean);
+ const rank=l=>{const n=l.name.toLowerCase();return n.startsWith(words[0]||"")?0:n.includes(words[0]||"")?1:2};
+ const arr=LPS.filter(l=>{const t=(l.name+" "+l.region+" "+l.id+" "+(l.coord||"")).toLowerCase();return words.every(w=>t.includes(w))}).sort((a,b)=>words.length?rank(a)-rank(b):0);
+ list.innerHTML=arr.length?arr.map(l=>`<div class="cb-o ${l.id===cur?"sel":""}" role="option" data-id="${l.id}"><span><b>${hlText(l.name,q)}</b><small>${esc(l.region)} · ${l.id}</small></span>${bf?bf(l):""}</div>`).join(""):`<div class="cb-none">Tidak ada LP yang cocok dengan “${esc(q||"")}”.</div>`;
+ list.classList.add("open");box.querySelector(".cb-in").setAttribute("aria-expanded","true");box._act=-1;
+}
+function cbClose(box){box.querySelector(".cb-list").classList.remove("open");const i=box.querySelector(".cb-in");i.setAttribute("aria-expanded","false");i.value=cbLabel(box.querySelector("input[type=hidden]").value)}
+function cbSet(box,id){box.querySelector("input[type=hidden]").value=id;box.querySelector(".cb-in").value=cbLabel(id)}
+function cbPick(box,id){const h=box.querySelector("input[type=hidden]"),prev=h.value;cbSet(box,id);cbClose(box);if(id!==prev){const fn=window[box.dataset.onpick];if(fn)fn(id,prev,box)}}
+function cbMove(box,d){const os=[...box.querySelectorAll(".cb-o")];if(!os.length)return;box._act=(((box._act??-1)+d)%os.length+os.length)%os.length;os.forEach((o,i)=>o.classList.toggle("act",i===box._act));os[box._act].scrollIntoView({block:"nearest"})}
+document.addEventListener("focusin",e=>{const i=e.target.closest&&e.target.closest(".cb-in");if(i){i.select();cbOpen(i.closest(".cb"),"")}});
+document.addEventListener("input",e=>{const t=e.target;if(t.classList&&t.classList.contains("cb-in"))cbOpen(t.closest(".cb"),t.value)});
+document.addEventListener("keydown",e=>{
+ const i=e.target.closest&&e.target.closest(".cb-in");if(!i)return;const box=i.closest(".cb"),open=box.querySelector(".cb-list").classList.contains("open");
+ if(e.key==="ArrowDown"||e.key==="ArrowUp"){e.preventDefault();if(!open)cbOpen(box,"");cbMove(box,e.key==="ArrowDown"?1:-1)}
+ else if(e.key==="Enter"){if(open){e.preventDefault();e.stopPropagation();const os=[...box.querySelectorAll(".cb-o")],o=os[box._act>=0?box._act:0];if(o)cbPick(box,o.dataset.id)}}
+ else if(e.key==="Escape"&&open){e.stopPropagation();cbClose(box)}
+ else if(e.key==="Tab"&&open)cbClose(box);
+},true);
+document.addEventListener("mousedown",e=>{
+ const o=e.target.closest&&e.target.closest(".cb-o");
+ if(o){e.preventDefault();cbPick(o.closest(".cb"),o.dataset.id);return}
+ document.querySelectorAll(".cb-list.open").forEach(l=>{const b=l.closest(".cb");if(!b.contains(e.target))cbClose(b)});
+});
+
+/* ============ SARAN NAMA seperti Google (PIC / Disusun oleh) ============ */
+const SUGK={pic:"ut_names_pic",planner:"ut_names_planner"};
+function nameBank(kind){
+ const m=new Map(),add=(nm,lp,w)=>{nm=String(nm||"").trim().replace(/\s+/g," ");if(!nm||nm==="—")return;const k=nm.toLowerCase(),o=m.get(k)||{name:nm,n:0,lps:new Set()};o.n+=w||1;if(lp)o.lps.add(lp);m.set(k,o)};
+ if(kind==="pic")Object.values(YR).forEach(y=>Object.values(y||{}).forEach(r=>add(r.pic,r.lp)));
+ if(kind==="planner")Object.values(PL).forEach(y=>Object.values(y||{}).forEach(p=>add(p.pic,p.lp)));
+ try{JSON.parse(localStorage.getItem(SUGK[kind])||"[]").forEach(n=>add(n,null,.5))}catch(e){}
+ return[...m.values()];
+}
+function rememberName(kind,name){
+ name=String(name||"").trim();if(!name||!SUGK[kind])return;
+ try{const a=JSON.parse(localStorage.getItem(SUGK[kind])||"[]").filter(n=>n.toLowerCase()!==name.toLowerCase());a.unshift(name);localStorage.setItem(SUGK[kind],JSON.stringify(a.slice(0,80)))}catch(e){}
+}
+function sugList(inp){
+ const kind=inp.dataset.sug,q=inp.value.trim().toLowerCase(),lpEl=document.querySelector("#mfForm .mf-lp,#mfForm .mp-lp"),lp=lpEl?lpEl.value:"";
+ const sc=o=>{const n=o.name.toLowerCase();if(!q)return 5;if(n.startsWith(q))return 0;if(n.split(" ").some(w=>w.startsWith(q)))return 1;if(n.includes(q))return 2;return 99};
+ return nameBank(kind).map(o=>({o,s:sc(o)-(lp&&o.lps.has(lp)?.5:0)})).filter(x=>x.s<90&&x.o.name.toLowerCase()!==q).sort((a,b)=>a.s-b.s||b.o.n-a.o.n||a.o.name.localeCompare(b.o.name)).slice(0,6).map(x=>({name:x.o.name,n:x.o.n,here:!!(lp&&x.o.lps.has(lp))}));
+}
+function sugBox(inp){let b=inp.parentElement.querySelector(".sg");if(!b){b=document.createElement("div");b.className="sg";b.setAttribute("role","listbox");inp.parentElement.appendChild(b)}return b}
+function sugOpen(inp){
+ const b=sugBox(inp),q=inp.value.trim(),a=sugList(inp);
+ if(!a.length){b.classList.remove("open");return}
+ b.innerHTML=a.map(x=>`<div class="sg-o" role="option" data-v="${esc(x.name)}"><span>${hlText(x.name,q)}</span><small>${x.here?"di LP ini":x.n>=1?"dipakai "+Math.round(x.n)+"×":""}</small></div>`).join("");
+ b.classList.add("open");b._act=-1;
+}
+const sugClose=inp=>{const b=inp.parentElement.querySelector(".sg");if(b)b.classList.remove("open")};
+function sugPick(inp,v){inp.value=v;sugClose(inp);inp.dispatchEvent(new Event("input",{bubbles:true}));inp._skip=true}
+document.addEventListener("input",e=>{const t=e.target;if(t.dataset&&t.dataset.sug){if(t._skip){t._skip=false;return}sugOpen(t)}});
+document.addEventListener("focusin",e=>{const t=e.target;if(t.dataset&&t.dataset.sug)sugOpen(t)});
+document.addEventListener("focusout",e=>{const t=e.target;if(t.dataset&&t.dataset.sug)setTimeout(()=>sugClose(t),120)});
+document.addEventListener("keydown",e=>{
+ const t=e.target;if(!(t.dataset&&t.dataset.sug))return;const b=t.parentElement.querySelector(".sg"),open=b&&b.classList.contains("open"),os=open?[...b.querySelectorAll(".sg-o")]:[];
+ if(e.key==="ArrowDown"||e.key==="ArrowUp"){if(!open){sugOpen(t);return}e.preventDefault();b._act=(((b._act??-1)+(e.key==="ArrowDown"?1:-1))%os.length+os.length)%os.length;os.forEach((o,i)=>o.classList.toggle("act",i===b._act))}
+ else if(e.key==="Enter"&&open&&b._act>=0){e.preventDefault();e.stopPropagation();sugPick(t,os[b._act].dataset.v)}
+ else if(e.key==="Escape"&&open){e.stopPropagation();sugClose(t)}
+},true);
+document.addEventListener("mousedown",e=>{const o=e.target.closest&&e.target.closest(".sg-o");if(o){e.preventDefault();sugPick(o.closest(".mf-f").querySelector("[data-sug]"),o.dataset.v)}});
 
 /* ============ BOOT ============ */
 function initLogo(){document.querySelectorAll(".logo-img").forEach(img=>{img.onerror=()=>{const slot=img.parentElement;slot.classList.add("fb");slot.textContent="UT"};img.src=encodeURI(CONFIG.LOGO)})}
