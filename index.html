@@ -1191,7 +1191,8 @@ function metrics(lp,m=S.month){
  const ar=latestAssetRep(lp.id,m),ast=ar?ar.assets:[];
  const o={lp,status:curStatus(lp.id,m),rep:r,stale,nb,batchMonth:bm,ast,astMonth:ar?ar.month:null,assetN:ast.length,bad:ast.filter(a=>a.cond==="Rusak").length};
  const plA=planOf(lp.id);o.planAll=plA?planYTD(plA,"mandiri",m)+planYTD(plA,"mandatory",m):0;   // plan YTD s.d. bulan terpilih, tidak peduli sudah lapor atau belum
- if(!r)return{...o,plan:0,actual:0,achv:null,mand:{plan:0,actual:0},mandt:{plan:0,actual:0}};
+ if(!r){const np=S.pa==="actual",pf=plA&&!np?plA:null;return{...o,plan:pf?o.planAll:0,actual:0,achv:null,mand:{plan:0,actual:0},mandt:{plan:0,actual:0},siswa:0,ojt:0,cust:0,fU:0,
+  sPlan:pf?sum(pf.batches.filter(b=>S.batch==="all"||batchKey(b.name)===S.batch),b=>b.siswa):0,fP:pf?pf.fasus:0,cP:pf?pf.cust:0}}   // belum lapor: plan tetap tampil, actual 0
  const k=r.kipl,kb=r.kesiswaan.batches;
  const pl=planOf(lp.id);o.hasPlan=!!pl;
  if(pl){const pm=S.pa==="plan"?m:r.month;o.mand={plan:planYTD(pl,"mandiri",pm),actual:k.mandiri.actual};o.mandt={plan:planYTD(pl,"mandatory",pm),actual:k.mandatory.actual}}else{o.mand=k.mandiri;o.mandt=k.mandatory}
@@ -1203,7 +1204,8 @@ function metrics(lp,m=S.month){
 }
 function agg(ms){
  const a=ms.filter(x=>x.rep),T={n:ms.length,sub:ms.filter(x=>x.status==="submitted").length,draft:ms.filter(x=>x.status==="draft").length,rep:a.length};
- ["plan","actual","sel","psi","itv","mcu","sPlan","siswa","ojt","cust","cP","fU","fP"].forEach(k=>T[k]=sum(a,x=>x[k]));
+ ["actual","sel","psi","itv","mcu","siswa","ojt","cust","fU"].forEach(k=>T[k]=sum(a,x=>x[k]));
+ ["plan","sPlan","cP","fP"].forEach(k=>T[k]=sum(ms,x=>x[k]||0));   // plan: semua LP yang punya plan, sudah lapor atau belum
  T.bad=sum(ms,x=>x.bad||0);
  T.mPlan=sum(a,x=>x.mand.plan);T.mAct=sum(a,x=>x.mand.actual);T.dPlan=sum(a,x=>x.mandt.plan);T.dAct=sum(a,x=>x.mandt.actual);
  T.achv=pc(T.actual,T.plan);
@@ -1259,21 +1261,21 @@ const chip=(v,l,c)=>`<span class="ch" style="--c:${c}"><b>${v}</b>${l}</span>`;
 const tbl=(heads,rows,emptyMsg)=>`<div class="tw"><table class="t"><thead><tr>${heads.map(h=>`<th>${h}</th>`).join("")}</tr></thead><tbody>${rows.join("")||`<tr><td colspan="${heads.length}" class="empty">${emptyMsg||"Tidak ada data."}</td></tr>`}</tbody></table></div>`;
 function incHeads(){return["Learning Point",...(showP()?["Plan tahunan"]:[]),...(showA()?["Actual YTD"]:[]),...(cmp()?["Capaian"]:[])]}
 function incRows(ms,kind){
- return ms.filter(x=>x.rep).map(x=>{const o={plan:x.plan,actual:x.actual},p=pc(o.actual,o.plan);return{x,o,p}})
+ return ms.filter(x=>x.rep||x.plan>0).map(x=>{const o={plan:x.plan,actual:x.actual},p=pc(o.actual,o.plan);return{x,o,p}})
  .sort((a,b)=>cmp()?(a.p??999)-(b.p??999):S.pa==="plan"?b.o.plan-a.o.plan:b.o.actual-a.o.actual)
  .map(({x,o,p})=>`<tr class="cl" onclick="openLP('${x.lp.id}')"><td><b>${esc(x.lp.name)}</b></td>${showP()?`<td>${rp(o.plan)}</td>`:""}${showA()?`<td>${rp(o.actual)}</td>`:""}${cmp()?`<td style="background:${heatBg(p)}"><b>${fp(p)}</b></td>`:""}</tr>`);
 }
 function showInfo(key){
- const ms=lpList().map(l=>metrics(l)),T=aggTop(ms),per=MONTHS[S.month-1]+" "+S.year,md=PA_LABEL[S.pa],hoX=k=>(T.ho&&S.pa==="plan"&&T.ho[k]>0)?[hoTr([nf(T.ho[k])])]:[];
+ const ms=lpList().map(l=>metrics(l)),T=aggTop(ms),per=MONTHS[S.month-1]+" "+S.year,md=PA_LABEL[S.pa],hoX=(k,A)=>(T.ho&&S.pa!=="actual"&&T.ho[k]>0)?[hoTr([...(showA()?A:[]),nf(T.ho[k]),...(cmp()?["—"]:[]),...(showA()&&k==="siswa"?["—"]:[])])]:[];
  if(key==="tot"){
   const t=[T.plan,T.actual],nm="Income";
-  openModal(nm+" · "+md+" · s.d. "+per,`<div class="desc">Income kumulatif tahun berjalan (YTD), dari laporan terakhir tiap LP. ${cmp()?"Diurutkan dari capaian terendah.":"Hanya menampilkan data "+md+"; diurutkan dari nilai terbesar."}</div><div class="chips">${showP()?chip(rp(t[0]),"Plan","#3f6fb5"):""}${showA()?chip(rp(t[1]),"Actual","#2f8f5b"):""}${cmp()?chip(fp(pc(t[1],t[0])),"Capaian","#f5a800")+chip(rp(t[0]-t[1]),"Gap","#d64545"):""}</div>`+tbl(incHeads(),incRows(ms,key).concat(T.ho&&S.pa==="plan"&&T.ho.incYTD>0?[hoTr([rp(T.ho.incYTD)])]:[])),true);
+  openModal(nm+" · "+md+" · s.d. "+per,`<div class="desc">Income kumulatif tahun berjalan (YTD), dari laporan terakhir tiap LP. ${cmp()?"Diurutkan dari capaian terendah.":"Hanya menampilkan data "+md+"; diurutkan dari nilai terbesar."}</div><div class="chips">${showP()?chip(rp(t[0]),"Plan","#3f6fb5"):""}${showA()?chip(rp(t[1]),"Actual","#2f8f5b"):""}${cmp()?chip(fp(pc(t[1],t[0])),"Capaian","#f5a800")+chip(rp(t[0]-t[1]),"Gap","#d64545"):""}</div>`+tbl(incHeads(),incRows(ms,key).concat(T.ho&&S.pa!=="actual"&&T.ho.incYTD>0?[hoTr([rp(T.ho.incYTD),...(showA()?["—"]:[]),...(cmp()?["—"]:[])])]:[])),true);
  }else if(key==="sis"){
-  const rows=ms.filter(x=>x.rep).sort((a,b)=>cmp()?pc(a.siswa,a.sPlan)-pc(b.siswa,b.sPlan):S.pa==="plan"?b.sPlan-a.sPlan:b.siswa-a.siswa).map(x=>{const p=pc(x.siswa,x.sPlan);return`<tr class="cl" onclick="openLP('${x.lp.id}')"><td><b>${esc(x.lp.name)}</b></td>${showA()?`<td>${x.siswa}</td>`:""}${showP()?`<td>${x.sPlan}</td>`:""}${cmp()?`<td style="background:${heatBg(p)}"><b>${fp(p)}</b></td>`:""}${showA()?`<td>${x.ojt}</td>`:""}</tr>`});
-  openModal("Siswa Reguler · "+md+" · s.d. "+per,`<div class="desc">Siswa reguler seluruh batch. Hanya menampilkan data ${md}.</div><div class="chips">${showA()?chip(nf(T.siswa),"Siswa","#2f8f5b"):""}${showP()?chip(nf(T.sPlan),"Plan","#3f6fb5"):""}${cmp()?chip(fp(pc(T.siswa,T.sPlan)),"Terisi","#f5a800"):""}${showA()?chip(T.ojt,"Lokasi OJT","#7b61c9"):""}</div>`+tbl(["Learning Point",...(showA()?["Siswa"]:[]),...(showP()?["Plan"]:[]),...(cmp()?["%"]:[]),...(showA()?["OJT"]:[])],rows.concat(hoX("siswa"))));
+  const rows=ms.filter(x=>x.rep||x.sPlan>0).sort((a,b)=>cmp()?(pc(a.siswa,a.sPlan)??999)-(pc(b.siswa,b.sPlan)??999):S.pa==="plan"?b.sPlan-a.sPlan:b.siswa-a.siswa).map(x=>{const p=pc(x.siswa,x.sPlan);return`<tr class="cl" onclick="openLP('${x.lp.id}')"><td><b>${esc(x.lp.name)}</b></td>${showA()?`<td>${x.siswa}</td>`:""}${showP()?`<td>${x.sPlan}</td>`:""}${cmp()?`<td style="background:${heatBg(p)}"><b>${fp(p)}</b></td>`:""}${showA()?`<td>${x.ojt}</td>`:""}</tr>`});
+  openModal("Siswa Reguler · "+md+" · s.d. "+per,`<div class="desc">Siswa reguler seluruh batch. Hanya menampilkan data ${md}.</div><div class="chips">${showA()?chip(nf(T.siswa),"Siswa","#2f8f5b"):""}${showP()?chip(nf(T.sPlan),"Plan","#3f6fb5"):""}${cmp()?chip(fp(pc(T.siswa,T.sPlan)),"Terisi","#f5a800"):""}${showA()?chip(T.ojt,"Lokasi OJT","#7b61c9"):""}</div>`+tbl(["Learning Point",...(showA()?["Siswa"]:[]),...(showP()?["Plan"]:[]),...(cmp()?["%"]:[]),...(showA()?["OJT"]:[])],rows.concat(hoX("siswa",["—"]))));
  }else if(key==="cust"){
-  const rows=ms.filter(x=>x.rep).sort((a,b)=>S.pa==="plan"?b.fP-a.fP:b.cust-a.cust).map(x=>{const p=pc(x.fU,x.fP);return`<tr class="cl" onclick="openLP('${x.lp.id}')"><td><b>${esc(x.lp.name)}</b></td>${showA()?`<td>${x.cust}</td><td>${x.fU}</td>`:""}${showP()?`<td>${x.fP}</td>`:""}${cmp()?`<td style="background:${heatBg(p)}"><b>${fp(p)}</b></td>`:""}</tr>`});
-  openModal("New Customer / Project & Fasus · "+md+" · s.d. "+per,`<div class="desc">New customer/project (Big 5) dan pemakaian fasus NT UTS. Hanya menampilkan data ${md}.</div><div class="chips">${showA()?chip(T.cust,"New customer/project","#2f8f5b")+chip(T.fU,"Fasus terpakai","#3f6fb5"):""}${showP()?chip(T.fP,"Fasus direncanakan","#3f6fb5"):""}${cmp()?chip(fp(pc(T.fU,T.fP)),"Fasus %","#f5a800"):""}</div>`+tbl(["Learning Point",...(showA()?["Customer / Project","Fasus terpakai"]:[]),...(showP()?["Fasus plan"]:[]),...(cmp()?["%"]:[])],rows.concat(hoX("fasus"))));
+  const rows=ms.filter(x=>x.rep||x.fP>0).sort((a,b)=>S.pa==="plan"?b.fP-a.fP:b.cust-a.cust).map(x=>{const p=pc(x.fU,x.fP);return`<tr class="cl" onclick="openLP('${x.lp.id}')"><td><b>${esc(x.lp.name)}</b></td>${showA()?`<td>${x.cust}</td><td>${x.fU}</td>`:""}${showP()?`<td>${x.fP}</td>`:""}${cmp()?`<td style="background:${heatBg(p)}"><b>${fp(p)}</b></td>`:""}</tr>`});
+  openModal("New Customer / Project & Fasus · "+md+" · s.d. "+per,`<div class="desc">New customer/project (Big 5) dan pemakaian fasus NT UTS. Hanya menampilkan data ${md}.</div><div class="chips">${showA()?chip(T.cust,"New customer/project","#2f8f5b")+chip(T.fU,"Fasus terpakai","#3f6fb5"):""}${showP()?chip(T.fP,"Fasus direncanakan","#3f6fb5"):""}${cmp()?chip(fp(pc(T.fU,T.fP)),"Fasus %","#f5a800"):""}</div>`+tbl(["Learning Point",...(showA()?["Customer / Project","Fasus terpakai"]:[]),...(showP()?["Fasus plan"]:[]),...(cmp()?["%"]:[])],rows.concat(hoX("fasus",["—","—"]))));
  }
 }
 
@@ -1384,7 +1386,7 @@ function renderAll(){
 }
 function renderDashboard(){
  const lps=lpList(),ms=lps.map(l=>metrics(l)),T=aggTop(ms),per=MONTHS[S.month-1],P=S.pa;
- const kInc=cmp()?`<div class="kpi" onclick="showInfo('tot')"><span>Capaian income (YTD) <i class="i">ⓘ</i></span><b>${fp(T.achv)}</b>${vbar(T.achv)}<em>${rp(T.actual)} dari plan ${rp(T.plan)}</em>${T.totPlanAll>T.plan+1?`<em class="kn">Total plan tahunan ${rp(T.totPlanAll)}${T.ho?" (termasuk Plan HO "+rp(T.ho.incYTD)+")":""} · ${T.rep} dari ${T.n} LP sudah lapor</em>`:""}</div>`
+ const kInc=cmp()?`<div class="kpi" onclick="showInfo('tot')"><span>Capaian income (YTD) <i class="i">ⓘ</i></span><b>${fp(T.achv)}</b>${vbar(T.achv)}<em>${rp(T.actual)} dari plan ${rp(T.plan)}</em>${T.ho||T.rep<T.n?`<em class="kn">${T.ho?"Termasuk Plan HO "+rp(T.ho.incYTD)+" · ":""}${T.rep} dari ${T.n} LP sudah lapor</em>`:""}</div>`
   :`<div class="kpi" onclick="showInfo('tot')"><span>Income ${P==="plan"?"Plan (tahunan)":"Actual (YTD)"} <i class="i">ⓘ</i></span><b>${rp(P==="plan"?T.plan:T.actual)}</b><em>${P==="plan"?"Target setahun penuh "+S.year:"Kumulatif s.d. "+per+" "+S.year}</em></div>`;
  const kSis=cmp()?`<div class="kpi" onclick="showInfo('sis')"><span>Siswa reguler <i class="i">ⓘ</i></span><b>${nf(T.siswa)}<small> / ${nf(T.sPlan)}</small></b>${vbar(pc(T.siswa,T.sPlan),"#3f6fb5")}<em>${fp(pc(T.siswa,T.sPlan))} dari plan · ${T.ojt} lokasi OJT</em></div>`
   :`<div class="kpi" onclick="showInfo('sis')"><span>Siswa reguler ${P==="plan"?"(Plan)":"(Actual)"} <i class="i">ⓘ</i></span><b>${nf(P==="plan"?T.sPlan:T.siswa)}</b><em>${P==="plan"?"Plan siswa seluruh batch reguler":T.ojt+" lokasi OJT"}</em></div>`;
@@ -2245,7 +2247,7 @@ const hoScope=()=>lpList().length===LPS.length&&S.batch==="all";   // Plan HO ha
 function aggTop(ms){
  const T=agg(ms),h=hoOf(S.year);T.ho=null;T.totPlanAll=T.planAll;
  if(h&&hoScope()){const iy=h.remain.income;T.ho={...h.remain,incYTD:iy};T.totPlanAll=T.planAll+iy;
-  if(S.pa==="plan"){T.plan+=iy;T.sPlan+=h.remain.siswa;T.fP+=h.remain.fasus;T.cP+=h.remain.cust}}
+  if(S.pa!=="actual"){T.plan+=iy;T.sPlan+=h.remain.siswa;T.fP+=h.remain.fasus;T.cP+=h.remain.cust;T.achv=pc(T.actual,T.plan)}}
  return T;
 }
 const hoTr=(cells)=>`<tr class="ho-row"><td><b>HO</b> <small>Plan HO · sisa belum dialokasikan ke LP</small></td>${cells.map(c=>`<td>${c}</td>`).join("")}</tr>`;
