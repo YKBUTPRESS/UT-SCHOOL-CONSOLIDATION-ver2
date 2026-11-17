@@ -997,7 +997,7 @@ tr.ho-row td{background:#eaf4f8}
 <script>
 /* ============ CONFIG ============ */
 const CONFIG={
-  API_URL:"https://script.google.com/macros/s/AKfycbwGKFipUTFM64MK0t517sEFY_0yyo9CmMCxHmyzJF6FiHyO_qR7FdzENaycugLxikLkGA/exec",                       // Tempel URL Apps Script (/exec) di sini. Kosong = mode demo.
+  API_URL:"https://script.google.com/macros/s/AKfycbzYVsA9x1oKyeupqynGo6EphB-VvCJvRP5XdTMK9apVkjtmy5PY3NNwboqP93cQVvFhuQ/exec",                       // Tempel URL Apps Script (/exec) di sini. Kosong = mode demo.
   LOGO:"logo ut school.png",        // nama file logo di GitHub
   // Template Excel LP kini tertanam di dalam file ini (lihat TEMPLATE_B64 di bagian bawah)
   LAST_DUE_MONTH:10,                // di mode server nilai ini diambil dari sheet Config
@@ -1083,7 +1083,8 @@ function foldIncome(reps,plans){
   p.m_mandiri=null;if(p.mandiri){p.mandatory=(p.mandatory||0)+p.mandiri}p.mandiri=0;
  });
 }
-function planYTD(p,kind,m){const a=p["m_"+kind];if(a&&a.some(v=>v>0))return a.slice(0,m).reduce((t,v)=>t+(v||0),0);return(p[kind]||0)*m/12}
+/* Plan = target TAHUNAN apa adanya (tidak dibagi per bulan). Parameter m dipertahankan agar pemanggil lama tetap jalan. */
+function planYTD(p,kind,m){return p[kind]||0}
 function bPlan(id,b){const pl=planOf(id);if(!pl)return b.siswaPlan||0;const k=batchKey(b.name),m=pl.batches.find(x=>batchKey(x.name)===k);return m?m.siswa:0}
 function pInc(id,x){const pl=planOf(id);return pl?planYTD(pl,"mandiri",x.month)+planYTD(pl,"mandatory",x.month):x.kipl.mandiri.plan+x.kipl.mandatory.plan}
 function yearList(){
@@ -1256,7 +1257,7 @@ function closeModal(){$("modal").classList.remove("open")}
 document.addEventListener("keydown",e=>{if(e.key==="Escape"){closeModal();closeLP()}});
 const chip=(v,l,c)=>`<span class="ch" style="--c:${c}"><b>${v}</b>${l}</span>`;
 const tbl=(heads,rows,emptyMsg)=>`<div class="tw"><table class="t"><thead><tr>${heads.map(h=>`<th>${h}</th>`).join("")}</tr></thead><tbody>${rows.join("")||`<tr><td colspan="${heads.length}" class="empty">${emptyMsg||"Tidak ada data."}</td></tr>`}</tbody></table></div>`;
-function incHeads(){return["Learning Point",...(showP()?["Plan YTD"]:[]),...(showA()?["Actual YTD"]:[]),...(cmp()?["Capaian"]:[])]}
+function incHeads(){return["Learning Point",...(showP()?["Plan tahunan"]:[]),...(showA()?["Actual YTD"]:[]),...(cmp()?["Capaian"]:[])]}
 function incRows(ms,kind){
  return ms.filter(x=>x.rep).map(x=>{const o={plan:x.plan,actual:x.actual},p=pc(o.actual,o.plan);return{x,o,p}})
  .sort((a,b)=>cmp()?(a.p??999)-(b.p??999):S.pa==="plan"?b.o.plan-a.o.plan:b.o.actual-a.o.actual)
@@ -1383,8 +1384,8 @@ function renderAll(){
 }
 function renderDashboard(){
  const lps=lpList(),ms=lps.map(l=>metrics(l)),T=aggTop(ms),per=MONTHS[S.month-1],P=S.pa;
- const kInc=cmp()?`<div class="kpi" onclick="showInfo('tot')"><span>Capaian income (YTD) <i class="i">ⓘ</i></span><b>${fp(T.achv)}</b>${vbar(T.achv)}<em>${rp(T.actual)} dari plan ${rp(T.plan)}</em>${T.totPlanAll>T.plan+1?`<em class="kn">Total plan s.d. ${per} ${rp(T.totPlanAll)}${T.ho?" (termasuk Plan HO "+rp(T.ho.incYTD)+")":""} · ${T.rep} dari ${T.n} LP sudah lapor</em>`:""}</div>`
-  :`<div class="kpi" onclick="showInfo('tot')"><span>Income ${P==="plan"?"Plan":"Actual"} (YTD) <i class="i">ⓘ</i></span><b>${rp(P==="plan"?T.plan:T.actual)}</b><em>Kumulatif s.d. ${per} ${S.year}</em></div>`;
+ const kInc=cmp()?`<div class="kpi" onclick="showInfo('tot')"><span>Capaian income (YTD) <i class="i">ⓘ</i></span><b>${fp(T.achv)}</b>${vbar(T.achv)}<em>${rp(T.actual)} dari plan ${rp(T.plan)}</em>${T.totPlanAll>T.plan+1?`<em class="kn">Total plan tahunan ${rp(T.totPlanAll)}${T.ho?" (termasuk Plan HO "+rp(T.ho.incYTD)+")":""} · ${T.rep} dari ${T.n} LP sudah lapor</em>`:""}</div>`
+  :`<div class="kpi" onclick="showInfo('tot')"><span>Income ${P==="plan"?"Plan (tahunan)":"Actual (YTD)"} <i class="i">ⓘ</i></span><b>${rp(P==="plan"?T.plan:T.actual)}</b><em>${P==="plan"?"Target setahun penuh "+S.year:"Kumulatif s.d. "+per+" "+S.year}</em></div>`;
  const kSis=cmp()?`<div class="kpi" onclick="showInfo('sis')"><span>Siswa reguler <i class="i">ⓘ</i></span><b>${nf(T.siswa)}<small> / ${nf(T.sPlan)}</small></b>${vbar(pc(T.siswa,T.sPlan),"#3f6fb5")}<em>${fp(pc(T.siswa,T.sPlan))} dari plan · ${T.ojt} lokasi OJT</em></div>`
   :`<div class="kpi" onclick="showInfo('sis')"><span>Siswa reguler ${P==="plan"?"(Plan)":"(Actual)"} <i class="i">ⓘ</i></span><b>${nf(P==="plan"?T.sPlan:T.siswa)}</b><em>${P==="plan"?"Plan siswa seluruh batch reguler":T.ojt+" lokasi OJT"}</em></div>`;
  const kCus=cmp()?`<div class="kpi" onclick="showInfo('cust')"><span>New customer / project <i class="i">ⓘ</i></span><b>${T.cust}</b>${vbar(pc(T.fU,T.fP),"#7b61c9")}<em>${T.cP?"Target customer "+T.cP+" · ":""}Fasus NT UTS terpakai ${T.fU} / ${T.fP} (${fp(pc(T.fU,T.fP))})</em></div>`
@@ -1402,7 +1403,7 @@ function mapLegend(){
 }
 function renderIncTiles(T){
  const tl=(v,l,c)=>`<div class="st" style="--c:${c}"><b>${v}</b><span>${l}</span></div>`;
- $("incTiles").innerHTML=(showP()?tl(rp(T.plan),"Plan YTD","#3f6fb5"):"")+(showA()?tl(rp(T.actual),"Actual YTD","#2f8f5b"):"")+(cmp()?tl(fp(T.achv),"Capaian","#f5a800")+tl(rp(T.plan-T.actual),"Gap","#d64545"):"");
+ $("incTiles").innerHTML=(showP()?tl(rp(T.plan),"Plan tahunan","#3f6fb5"):"")+(showA()?tl(rp(T.actual),"Actual YTD","#2f8f5b"):"")+(cmp()?tl(fp(T.achv),"Capaian","#f5a800")+tl(rp(T.plan-T.actual),"Gap","#d64545"):"");
 }
 function renderMap(ms){
  const box=$("lokMap");
@@ -1453,7 +1454,7 @@ function renderTrend(lps){
  const labels=[],plan=[],act=[];
  const lastM=S.pa==="plan"?S.month:Math.max(0,...lps.map(l=>(latest(l.id,12)||{}).month||0));
  for(let m=1;m<=S.month;m++){labels.push(MON[m-1]);if(m>lastM){plan.push(0);act.push(0);continue}const ms=lps.map(l=>metrics(l,m)).filter(x=>x.rep);plan.push(sum(ms,x=>x.plan));act.push(sum(ms,x=>x.actual))}
- const series=[];if(showP())series.push({name:"Plan (YTD)",color:"#9aa1a9",vals:plan,dash:1,w:2.5});if(showA())series.push({name:"Actual (YTD)",color:"#111",vals:act});
+ const series=[];if(showP())series.push({name:"Plan (tahunan)",color:"#9aa1a9",vals:plan,dash:1,w:2.5});if(showA())series.push({name:"Actual (YTD)",color:"#111",vals:act});
  $("trendNote").textContent=(cmp()?"Plan vs actual":PA_LABEL[S.pa])+" · Income";
  $("trend").innerHTML=lineChart(labels,series);
 }
@@ -1657,7 +1658,7 @@ function lpBody(id){
  else{
   const k=r.kipl,kb=r.kesiswaan,bs=kb.bintalsik,ser=[];
   const lm=r.virtual?S.month:(latest(id,12)||{}).month||0,vals=f=>Array.from({length:S.month},(_,i)=>{const x=latest(id,i+1)||(r.virtual?{...r,month:i+1}:null);return x&&i+1<=lm?f(x):0});
-  if(showP())ser.push({name:"Plan (YTD)",color:"#9aa1a9",dash:1,w:2.5,vals:vals(x=>pInc(id,x))});
+  if(showP())ser.push({name:"Plan (tahunan)",color:"#9aa1a9",dash:1,w:2.5,vals:vals(x=>pInc(id,x))});
   if(showA())ser.push({name:"Actual (YTD)",color:"#111",vals:vals(x=>x.kipl.mandiri.actual+x.kipl.mandatory.actual)});
   const tr=lineChart(MON.slice(0,S.month),ser);
   const inc=(t,o)=>`<div class="sbox"><h4>${t}</h4>${showP()?`<div class="row" style="grid-template-columns:50px 1fr"><span>Plan</span><b style="text-align:left">${rp(o.plan)}</b></div>`:""}${showA()?`<div class="row" style="grid-template-columns:50px 1fr"><span>Actual</span><b style="text-align:left">${rp(o.actual)}</b></div>`:""}${cmp()?`${vbar(pc(o.actual,o.plan))}<div class="tcell" style="margin-top:4px">Achv <b>${fp(pc(o.actual,o.plan))}</b></div>`:""}</div>`;
@@ -1759,7 +1760,7 @@ function parsePlanRows(rows,fileName){
   /* peringatan selisih bulanan vs tahunan dihitung di bawah */
  const mA=mon("mandiri"),mB=mon("mandatory"),mT=(mA||mB)?Array.from({length:12},(_,i)=>(mA?mA[i]:0)+(mB?mB[i]:0)):null,cust=N("cust.target","Target customer"),fasus=N("fasus.plan","Plan Fasus");if(mT){const t=mT.reduce((p,c)=>p+c,0);if(incTot>0&&Math.abs(t-incTot)>incTot*.01)R.warnings.push("Target bulanan berjumlah "+rp(t)+", berbeda dengan target tahunan "+rp(incTot)+". Dashboard memakai target bulanan.")}
  if(!batches.length)R.warnings.push("Tidak ada batch pada plan ini.");
- if(!R.errors.length){R.plan={lp:lp.id,year,pic:T("info.pic"),mandiri:0,mandatory:incTot,m_mandiri:null,m_mandatory:mT,cust,fasus,batches};R.overwrite=!!(PL[year]&&PL[year][lp.id])}
+ if(!R.errors.length){R.plan={lp:lp.id,year,pic:T("info.pic"),mandiri:0,mandatory:incTot,m_mandiri:null,m_mandatory:null,cust,fasus,batches};R.overwrite=!!(PL[year]&&PL[year][lp.id])}
  return R;
 }
 async function handlePlanFiles(list){
@@ -1793,12 +1794,12 @@ async function deletePlan(id){
 }
 function openPlan(id){
  const lp=LPS.find(l=>l.id===id),p=planOf(id);if(!p)return;
- const lm=(latest(id,12)||{}).month||0,custom=p.m_mandatory&&p.m_mandatory.some(v=>v>0);
+ const lm=(latest(id,12)||{}).month||0;
  const mrows=Array.from({length:12},(_,i)=>{const m=i+1,pt=planYTD(p,"mandiri",m)+planYTD(p,"mandatory",m),r=m<=lm?latest(id,m):null,ac=r?r.kipl.mandiri.actual+r.kipl.mandatory.actual:null,pp=ac==null?null:pc(ac,pt);
   return`<tr><td>${MONTHS[i]}</td><td>${rp(pt)}</td><td>${ac==null?"—":rp(ac)}</td><td style="background:${heatBg(pp)}"><b>${ac==null?"—":fp(pp)}</b></td></tr>`});
  openModal("Plan "+S.year+" · "+lp.name,`<div class="chips">${chip(p.pic||"—","Disusun oleh","#587482")}${chip(rp(p.mandatory),"Income / tahun","#0b4f6c")}${chip(p.fasus,"Fasus","#0f8b8d")}${chip(p.cust,"Target customer","#d9573b")}</div>
  <div class="sectt">BATCH & PERIODE PELATIHAN</div>${tbl(["Batch","Periode","Kelas","Plan siswa","Plan seleksi","Plan lolos MCU"],p.batches.map(b=>`<tr><td><b>${esc(b.name)}</b></td><td>${planPeriod(b)}</td><td>${b.kelas}</td><td>${b.siswa}</td><td>${b.seleksi}</td><td>${b.mcu}</td></tr>`),"Belum ada batch pada plan ini.")}
- <div class="sectt">TARGET INCOME KUMULATIF (YTD) VS ACTUAL</div><div class="desc">${custom?"Memakai target bulanan dari template.":"Target tahunan dibagi rata 12 bulan."} Actual diambil dari laporan final terakhir tiap bulan.</div>${tbl(["Bulan","Plan YTD","Actual YTD","Capaian"],mrows)}`,true);$("mcard").classList.add("mp-theme");
+ <div class="sectt">ACTUAL KUMULATIF (YTD) VS PLAN TAHUNAN</div><div class="desc">Plan adalah target tahunan ${rp(p.mandatory)} (tidak dibagi per bulan). Capaian = actual kumulatif dibanding target setahun penuh. Actual diambil dari laporan final terakhir tiap bulan.</div>${tbl(["Bulan","Plan tahunan","Actual YTD","Capaian"],mrows)}`,true);$("mcard").classList.add("mp-theme");
 }
 
 /* ============ DETAIL LP (drawer + peta) ============ */
@@ -1807,12 +1808,12 @@ function closeLP(){if(lpMapI){try{lpMapI.remove()}catch(e){}lpMapI=null}const d=
 function planBox(id){
  const pl=planOf(id);
  if(!pl)return`<div class="sbox"><h4>Plan ${S.year}</h4><div class="empty">Belum ada Plan ${S.year} untuk LP ini. HO dapat mengunggahnya di menu Plan.</div></div>`;
- return`<div class="sbox"><h4>Plan ${S.year} (benchmark)</h4><div class="chips" style="margin-bottom:8px">${chip(rp(pl.mandatory),"Income / tahun","#3f6fb5")}${chip(nf(sum(pl.batches,b=>b.siswa)),"Plan siswa","#2f8f5b")}${chip(pl.fasus,"Fasus","#7b61c9")}${chip(pl.cust,"Target customer","#f5a800")}${chip(rp(planYTD(pl,"mandatory",S.month)+planYTD(pl,"mandiri",S.month)),"Plan YTD s.d. "+MONTHS[S.month-1],"#0f8b8d")}</div>${pl.batches.length?tbl(["Batch","Periode","Kelas","Plan siswa"],pl.batches.map(b=>`<tr><td><b>${esc(b.name)}</b></td><td>${planPeriod(b)}</td><td>${b.kelas}</td><td>${b.siswa}</td></tr>`)):""}</div>`;
+ return`<div class="sbox"><h4>Plan ${S.year} (benchmark)</h4><div class="chips" style="margin-bottom:8px">${chip(rp(pl.mandatory),"Income / tahun","#3f6fb5")}${chip(nf(sum(pl.batches,b=>b.siswa)),"Plan siswa","#2f8f5b")}${chip(pl.fasus,"Fasus","#7b61c9")}${chip(pl.cust,"Target customer","#f5a800")}</div>${pl.batches.length?tbl(["Batch","Periode","Kelas","Plan siswa"],pl.batches.map(b=>`<tr><td><b>${esc(b.name)}</b></td><td>${planPeriod(b)}</td><td>${b.kelas}</td><td>${b.siswa}</td></tr>`)):""}</div>`;
 }
 function openLP(id){
  closeModal();closeLP();
  const{lp,m,r,body}=lpBody(id),col=REG_COL[lp.region]||"#64748b",ll=lp.ll,bc=m.achv==null?"#64748b":band(m.achv);
- const tiles=r?`<div class="kt"><div><b>${cmp()?fp(m.achv):rs(pv(m))}</b><small>${cmp()?"Capaian income":PA_LABEL[S.pa]+" income"}</small></div><div><b>${rp(showA()?m.actual:m.plan)}</b><small>Income ${showA()?"actual":"plan"} (YTD)</small></div><div><b>${cmp()?m.siswa+" / "+m.sPlan:S.pa==="plan"?m.sPlan:m.siswa}</b><small>Siswa reguler</small></div><div><b>${m.cust}</b><small>Customer / project baru</small></div></div>`:"";
+ const tiles=r?`<div class="kt"><div><b>${cmp()?fp(m.achv):rs(pv(m))}</b><small>${cmp()?"Capaian income":PA_LABEL[S.pa]+" income"}</small></div><div><b>${rp(showA()?m.actual:m.plan)}</b><small>Income ${showA()?"actual (YTD)":"plan (tahunan)"}</small></div><div><b>${cmp()?m.siswa+" / "+m.sPlan:S.pa==="plan"?m.sPlan:m.siswa}</b><small>Siswa reguler</small></div><div><b>${m.cust}</b><small>Customer / project baru</small></div></div>`:"";
  $("lpDrawer").innerHTML=`<div class="dov" onclick="closeLP()"></div><aside class="dwr" role="dialog" aria-label="Detail ${esc(lp.name)}"><div class="dwh"><div style="display:flex;justify-content:space-between;gap:10px"><div><span class="bdg" style="background:${col}22;color:${col}">${esc(lp.region)}</span><span class="bdg">${lp.coord?"Koordinator "+esc(lp.coord):"Langsung ke HO"}</span>${stPill(m.status)}<h2>${esc(lp.name)}</h2><small>${lp.id} · ${r&&!r.virtual?"data laporan "+MONTHS[r.month-1]+" "+S.year+(r.pic?" · PIC "+esc(r.pic):""):"belum ada laporan "+S.year}</small></div><button class="xbtn" style="align-self:flex-start" onclick="closeLP()">Tutup ✕</button></div></div>
  <div class="dwb"><div class="mcap"><span>📍 Lokasi perkiraan (pusat kota)</span><a href="https://www.google.com/maps/search/?api=1&amp;query=${ll[0]},${ll[1]}" target="_blank" rel="noopener">Buka di Google Maps ↗</a></div><div id="lpMap" class="lmap"></div>${tiles}${planBox(id)}${body}</div></aside>`;
  if(typeof L!=="undefined"){
@@ -2073,11 +2074,7 @@ function mpHtml(d){
   <div class="mf-g">${lpPicker("mp-lp",d.lp,"mpPick","lpBadgePlan")}${mfTxt("Tahun plan","mp-year",d.year||S.year,"",'type="number" min="2000" max="2100" onchange="mpCheck()"')}${mfTxt("Disusun oleh","mp-pic",d.pic,"Nama penyusun (ketik untuk saran)",'data-sug="planner" autocomplete="off"')}</div>
   <div id="mfHint" class="mf-hint"></div>
   <div id="mpAlloc" class="mp-alloc none"></div>
-  ${mfSec("TARGET","Rupiah penuh; boleh ditulis 1.500.000.000.",`<div class="mf-g">${mfNum("Target income / tahun (Rp)","inc-d",d.mandatory,"wajib")}${mfNum("Target customer / project baru","cust-t",d.cust)}${mfNum("Plan Fasus NT UTS","fasus-t",d.fasus)}</div>
-   <details class="mf-det" ${hasM?"open":""}><summary>Target per bulan (opsional)</summary>
-    <div class="desc" style="margin:8px 0">Kosongkan semua = target tahunan dibagi rata 12 bulan. Isi per bulan bila target tidak merata. Angka di sini adalah target <b>bulan itu saja</b>, bukan kumulatif.</div>
-    <div class="mf-mon" oninput="mpSum()">${MON.map((m,i)=>`<label class="mf-mi"><span>${m}</span><input class="mm-d" inputmode="decimal" value="${esc(nv(mm[i]))}" placeholder="0"></label>`).join("")}</div>
-    <div class="mf-monf"><span id="mmSum"></span><button type="button" class="btn-s" onclick="mpSplit()">Isi rata dari target tahunan</button><button type="button" class="btn-s" onclick="mpClearMon()">Kosongkan</button></div></details>`)}
+  ${mfSec("TARGET","Rupiah penuh; boleh ditulis 1.500.000.000.",`<div class="mf-g">${mfNum("Target income / tahun (Rp)","inc-d",d.mandatory,"wajib")}${mfNum("Target customer / project baru","cust-t",d.cust)}${mfNum("Plan Fasus NT UTS","fasus-t",d.fasus)}</div>`)}
   ${mfSec("BATCH &amp; PERIODE PELATIHAN","Periode batch boleh melewati pergantian tahun. Kosongkan &quot;Selesai&quot; bila batch masih berjalan.",`<div id="mpBat" class="mf-list">${bats.map(mpBat).join("")}</div><button type="button" class="bt w" onclick="mfAdd('bat')">+ Tambah batch</button>`)}
   ${mfFoot("Simpan plan")}</form>`;
 }
@@ -2115,7 +2112,7 @@ function mpCollect(){
   batches.push({name:nm||"Batch",start:st,end:en,kelas:N(q(".c-kelas",r),L+" kelas"),siswa:N(q(".c-siswa",r),L+" plan siswa"),seleksi:N(q(".c-sel",r),L+" plan seleksi"),mcu:N(q(".c-mcu",r),L+" plan MCU")})});
  if(!batches.length)R.warnings.push("Tidak ada batch pada plan ini.");
  const cust=N(q(".cust-t"),"Target customer"),fasus=N(q(".fasus-t"),"Plan Fasus");
- if(!R.errors.length)R.plan={lp,year,pic:raw(q(".mp-pic")),mandiri:0,mandatory:incTot,m_mandiri:null,m_mandatory:mT,cust,fasus,batches};
+ if(!R.errors.length)R.plan={lp,year,pic:raw(q(".mp-pic")),mandiri:0,mandatory:incTot,m_mandiri:null,m_mandatory:null,cust,fasus,batches};
  return R;
 }
 async function persistPlans(plans){
@@ -2247,7 +2244,7 @@ const hoScope=()=>lpList().length===LPS.length&&S.batch==="all";   // Plan HO ha
 /** Agregat dashboard utama: agg() + Plan HO. T.totPlanAll = total plan YTD seluruh LP (+HO) tanpa memandang sudah lapor atau belum. */
 function aggTop(ms){
  const T=agg(ms),h=hoOf(S.year);T.ho=null;T.totPlanAll=T.planAll;
- if(h&&hoScope()){const iy=h.remain.income*S.month/12;T.ho={...h.remain,incYTD:iy};T.totPlanAll=T.planAll+iy;
+ if(h&&hoScope()){const iy=h.remain.income;T.ho={...h.remain,incYTD:iy};T.totPlanAll=T.planAll+iy;
   if(S.pa==="plan"){T.plan+=iy;T.sPlan+=h.remain.siswa;T.fP+=h.remain.fasus;T.cP+=h.remain.cust}}
  return T;
 }
